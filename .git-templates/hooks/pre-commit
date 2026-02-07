@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Pre-commit hook to check PEP 8 and POSIX compliance
+
+echo "🔍 Running pre-commit checks..."
+
+# Check for files with missing final newline
+echo "📝 Checking POSIX compliance (final newline)..."
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(py|xml|js|css|md)$')
+
+for FILE in $FILES; do
+    if [ -f "$FILE" ]; then
+        # Check if file ends with newline
+        if [ -n "$(tail -c 1 "$FILE")" ]; then
+            echo "❌ Missing final newline: $FILE"
+            echo "   Adding final newline..."
+            echo >> "$FILE"
+            git add "$FILE"
+        fi
+    fi
+done
+
+# Run autopep8 on Python files
+echo "🐍 Running autopep8 on Python files..."
+PY_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+
+if [ -n "$PY_FILES" ]; then
+    autopep8 --in-place --aggressive --aggressive --max-line-length=120 $PY_FILES
+    git add $PY_FILES
+fi
+
+# Run pycodestyle to check PEP 8
+echo "✅ Checking PEP 8 compliance..."
+if [ -n "$PY_FILES" ]; then
+    pycodestyle --max-line-length=120 --ignore=E501,W503 $PY_FILES
+    if [ $? -ne 0 ]; then
+        echo "❌ PEP 8 violations found. Please fix them before committing."
+        exit 1
+    fi
+fi
+
+echo "✅ All checks passed!"
+exit 0

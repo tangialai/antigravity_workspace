@@ -1,0 +1,6424 @@
+# ODOO DOCUMENTATION SUMMARY - CATEGORY: ODOO16DOCS_ADMINISTRATION
+
+
+
+--- SOURCE: administration/hosting.md ---
+
+# Hosting
+
+## Change hosting solution {#hosting/change-solution}
+
+The instructions to change the hosting type of a database depend on the
+current solution used and to which solution the database should be
+moved.
+
+## Transferring an on-premise database
+
+### To Odoo Online
+
+:::: important
+::: title
+Important
+:::
+
+\- Odoo Online is *not* compatible with **non-standard apps**. - The
+database\'s current version must be
+`supported <supported_versions>`{.interpreted-text role="doc"}.
+::::
+
+1.  Create a
+    `duplicate of the database <on-premise/duplicate>`{.interpreted-text
+    role="ref"}.
+2.  In this duplicate, uninstall all **non-standard apps**.
+3.  Use the database manager to grab a *dump with filestore*.
+4.  [Create a support ticket](https://www.odoo.com/help-form) including
+    the following:
+    - your **subscription number**,
+    - the **URL** you want to use for the database (e.g.,
+      [company.odoo.com]{.title-ref}), and
+    - the **dump** as an attachment or as a link to the file (required
+      for 60 MB+ files).
+5.  Odoo then makes sure the database is compatible before putting it
+    online. In case of technical issues during the process, Odoo might
+    contact you.
+
+:::: note
+::: title
+Note
+:::
+
+If you have time constraints, [create a support
+ticket](https://www.odoo.com/help-form) as soon as possible to schedule
+the transfer.
+::::
+
+### To Odoo.sh
+
+Follow the instructions found in `the Import your database section
+<odoo_sh_import_your_database>`{.interpreted-text role="ref"} of the
+Odoo.sh *Create your project* documentation.
+
+## Transferring an Odoo Online database
+
+::::::::: important
+::: title
+Important
+:::
+
+Odoo Online\'s
+`intermediary versions <supported_versions>`{.interpreted-text
+role="ref"} are not supported by Odoo.sh or on-premise. Therefore, if
+the database to transfer is running an intermediary version, it must be
+upgraded first to the next
+`major version <supported_versions>`{.interpreted-text role="ref"},
+waiting for its release if necessary.
+
+::: example
+Transferring an online database running on Odoo 16.3 would require first
+upgrading it to Odoo 17.0.
+:::
+
+:::: tip
+::: title
+Tip
+:::
+
+Click the `fa-gear`{.interpreted-text role="icon"}
+(`gear`{.interpreted-text role="guilabel"}) button next to the database
+name on the [Odoo Online database
+manager](https://www.odoo.com/my/databases/) to display its version
+number.
+::::
+
+:::: warning
+::: title
+Warning
+:::
+
+If there is an active Odoo subscription linked to the database being
+migrated, reach out to the Customer Service Manager or [contact Odoo
+support](https://www.odoo.com/help) to complete the subscription
+transfer.
+::::
+:::::::::
+
+### To on-premise
+
+1.  Download a database backup by signing in to [the Odoo Online
+    database manager](https://www.odoo.com/my/databases/), clicking the
+    `fa-gear`{.interpreted-text role="icon"} (`gear`{.interpreted-text
+    role="guilabel"}) button next to the database name, then selecting
+    `fa-cloud-download`{.interpreted-text role="icon"}
+    `Download`{.interpreted-text role="guilabel"}. If the download fails
+    due to the file being too large, [contact Odoo
+    support](https://www.odoo.com/help).
+2.  Restore the database from the database manager on your local server
+    using the backup.
+
+### To Odoo.sh
+
+1.  Download a database backup by signing in to [the Odoo Online
+    database manager](https://www.odoo.com/my/databases/), clicking the
+    `fa-gear`{.interpreted-text role="icon"} (`gear`{.interpreted-text
+    role="guilabel"}) button next to the database name, then selecting
+    `fa-cloud-download`{.interpreted-text role="icon"}
+    `Download`{.interpreted-text role="guilabel"}. If the download fails
+    due to the file being too large, [contact Odoo
+    support](https://www.odoo.com/help).
+2.  Follow the instructions found in `the Import your database section
+    <odoo_sh_import_your_database>`{.interpreted-text role="ref"} of the
+    Odoo.sh *Create your project* documentation.
+
+## Transferring an Odoo.sh database
+
+### To Odoo Online
+
+:::: important
+::: title
+Important
+:::
+
+Odoo Online is *not* compatible with **non-standard apps**.
+::::
+
+1.  Uninstall all **non-standard apps** in a staging build before doing
+    it in the production build.
+2.  [Create a support ticket](https://www.odoo.com/help-form) including
+    the following:
+    - your **subscription number**,
+    - the **URL** you want to use for the database (e.g.,
+      [company.odoo.com]{.title-ref}),
+    - which **branch** should be migrated,
+    - in which **region** you want the database to be hosted (Americas,
+      Europe, or Asia),
+    - which user(s) will be the **administrator(s)**, and
+    - **when** (and in which timezone) you want the database to be up
+      and running.
+3.  Odoo then makes sure the database is compatible before putting it
+    online. In case of technical issues during the process, Odoo might
+    contact you.
+
+:::: note
+::: title
+Note
+:::
+
+\- If you have time constraints, [create a support
+ticket](https://www.odoo.com/help-form) as soon as possible to schedule
+the transfer. - Select the **region** closest to most of your users to
+reduce latency. - Future **administrator(s)** must have an Odoo.com
+account. - The **date and time** you want the database to be up and
+running are helpful to organize the switch from the Odoo.sh server to
+the Odoo Online servers. - Databases are **not reachable** during their
+migration.
+::::
+
+### To on-premise
+
+1.  Download a
+    `backup of your Odoo.sh production database <odoo_sh_branches_backups>`{.interpreted-text
+    role="ref"}.
+2.  Restore the database from the database manager on your local server
+    using the backup.
+
+
+
+
+--- SOURCE: administration/mobile.md ---
+
+# Odoo mobile apps
+
+Two kind of Odoo mobile app exist: the progressive web app (PWA) and
+store apps. Using the PWA is recommended.
+
+## Progressive web app (PWA)
+
+PWAs are web-based applications designed to function across different
+devices and platforms, leveraging web browsers to deliver user
+experiences similar to native apps.
+
+The Odoo PWA features include:
+
+- Quick access by adding the PWA to a device\'s home screen
+- Seamless and borderless navigation experience
+- Push notifications
+- SSO authentication
+
+To install the Odoo PWA, launch a browser supporting PWAs, and sign in
+to an Odoo database. The instructions to install a PWA depend on the
+platform and browser used.
+
+:::::: tabs
+::: tab
+Android
+
+**Chrome**: open Chrome\'s menu (`⋮`{.interpreted-text
+role="guilabel"}), select `Install app`{.interpreted-text
+role="guilabel"}, and tap `Install`{.interpreted-text role="guilabel"}.
+
+**Firefox**: open Firefox\'s menu (`⋮`{.interpreted-text
+role="guilabel"}), select `Install`{.interpreted-text role="guilabel"},
+and either touch and hold the Odoo icon or tap
+`Add automatically`{.interpreted-text role="guilabel"}.
+
+The PWA can also be installed with **Samsung Internet**, **Edge**, and
+**Opera**.
+:::
+
+::: tab
+iOS
+
+**Safari**: open the **Share** menu by tapping the square with an arrow
+pointing upwards icon, select `Add to Home Screen`{.interpreted-text
+role="guilabel"}, edit the PWA details if desired, and tap
+`Add`{.interpreted-text role="guilabel"}.
+
+On iOS 16.4 and above, the PWA can also be installed with **Chrome**,
+**Firefox**, and **Edge**.
+:::
+
+::: tab
+Desktop
+
+**Chrome** and **Edge**: click the installation icon at the right of the
+address bar and click `Install`{.interpreted-text role="guilabel"}.
+:::
+::::::
+
+::: seealso
+\- [Google Chrome Help: Use progressive web
+apps](https://support.google.com/chrome/answer/9658361) - [MDN Web Docs:
+Installing and uninstalling web
+apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Installing) -
+[Microsoft Support: Install, manage, or uninstall apps in Microsoft
+Edge](https://support.microsoft.com/en-us/topic/install-manage-or-uninstall-apps-in-microsoft-edge-0c156575-a94a-45e4-a54f-3a84846f6113)
+:::
+
+## Store apps
+
+The Odoo mobile apps are available for download on the [Google Play
+Store](https://play.google.com/store/apps/details?id=com.odoo.mobile)
+and [Apple App Store](https://apps.apple.com/app/odoo/id1272543640).
+
+:::: important
+::: title
+Important
+:::
+
+The iOS app might not be updated and might be deprecated at some point
+in the future.
+::::
+
+While the store apps support multi-accounts, they are not compatible
+with SS0 authentication.
+
+
+
+
+--- SOURCE: administration/neutralized_database.md ---
+
+# Neutralized database
+
+A neutralized database is a non-production database on which several
+parameters are deactivated. This enables one to carry out tests without
+the risk of launching specific automated processes that could impact
+production data (e.g., sending emails to customers). Live access is
+removed and turned into a testing environment.
+
+:::: note
+::: title
+Note
+:::
+
+**Any testing database created is a neutralized database:**
+
+- testing backup databases
+- duplicate databases
+- for Odoo.sh: staging and development databases
+::::
+
+:::: important
+::: title
+Important
+:::
+
+A database can also be neutralized when upgrading, as it is vital to do
+some tests before switching to a new version.
+::::
+
+## Deactivated features
+
+Here is a non-exhaustive list of the deactivated features:
+
+- all planned actions (e.g., automatic invoicing of subscriptions, mass
+  mailing, etc.)
+- outgoing emails
+- bank synchronization
+- payment providers
+- delivery methods
+- `IAP (In-App Purchase)`{.interpreted-text role="abbr"} tokens
+- website visibility (prevent search engines from indexing your site)
+
+:::: note
+::: title
+Note
+:::
+
+**A red banner at the top of the screen is displayed on the neutralized
+database so that it can be seen immediately.**
+::::
+
+
+
+
+--- SOURCE: administration/odoo_accounts.md ---
+
+# Odoo.com accounts
+
+This documentation is dedicated to edits made to an Odoo.com account.
+The following processes describe how to delete an Odoo.com account, and
+how to change the password on an Odoo.com account.
+
+## Delete Odoo.com account
+
+To delete an Odoo.com account, start by clicking the profile icon in the
+upper-right corner (represented by the username and icon) to reveal a
+drop-down menu. From the drop-down menu, select
+`My Odoo.com account`{.interpreted-text role="guilabel"}, which reveals
+the user portal.
+
+From the user portal, the delete option can be accessed by going to
+`My Account -->
+Edit Security Settings --> Delete Account`{.interpreted-text
+role="menuselection"}. It can also be accessed by going to
+<https://www.odoo.com/my/home>.
+
+:::: danger
+::: title
+Danger
+:::
+
+Deleting an Odoo account is irreversible. Be careful performing this
+action, as the Odoo.com account is **not** retrievable once deleted.
+::::
+
+Upon clicking the `Delete Account`{.interpreted-text role="guilabel"}
+button, a pop-up window appears, requesting confirmation for the account
+deletion.
+
+![Clicking on the Delete Account button will populate a window verifying the change.](odoo_accounts/delete-account.png){.align-center}
+
+To confirm the deletion, enter the `Password`{.interpreted-text
+role="guilabel"} and the `Login`{.interpreted-text role="guilabel"} for
+the account being deleted. Then, click the
+`Delete Account`{.interpreted-text role="guilabel"} button to confirm
+the deletion.
+
+## Odoo.com account password change {#odoocom/change_password}
+
+To change an Odoo.com account password, first login into the Odoo.com
+user account from the Odoo.com login page. After logging-in, go to the
+upper-right corner of the screen, and click the `▼
+(down arrow)`{.interpreted-text role="guilabel"} icon next to the
+profile icon. Then, select `My Account`{.interpreted-text
+role="guilabel"}, and a portal dashboard appears.
+
+To change the Odoo.com password, click on the
+`Edit Security Settings`{.interpreted-text role="guilabel"} link, below
+the `Account Security`{.interpreted-text role="menuselection"} section.
+Next, make the necessary changes by typing in the current
+`Password`{.interpreted-text role="guilabel"},
+`New Password`{.interpreted-text role="guilabel"}, and verify the new
+password. Lastly, click on `Change Password`{.interpreted-text
+role="guilabel"} to complete the password change.
+
+:::: note
+::: title
+Note
+:::
+
+If a customer would like to change the login, contact Odoo support
+[here](https://www.odoo.com/help).
+::::
+
+:::: note
+::: title
+Note
+:::
+
+Passwords for Odoo.com users and portal users remain separate, even if
+the same email address is used.
+::::
+
+## Add two-factor authentication
+
+To add two-factor authentication, login into the Odoo.com user account
+from the Odoo.com login page. After logging-in, go to the upper-right
+corner of the screen, and click the `▼ (down
+arrow)`{.interpreted-text role="guilabel"} icon next to the
+`profile icon`{.interpreted-text role="guilabel"}. Then, select
+`My Account`{.interpreted-text role="guilabel"}, and a portal dashboard
+appears.
+
+If the user would like to turn on two-factor authentication (2FA) for
+Odoo.com access, click on the `Edit Security Settings`{.interpreted-text
+role="guilabel"} link below the `Account Security`{.interpreted-text
+role="menuselection"} section.
+
+Click on `Enable two-factor authentication`{.interpreted-text
+role="guilabel"} to turn on `2FA (two-factor
+authentication)`{.interpreted-text role="abbr"}. Then, confirm the
+current password in the `Password`{.interpreted-text role="guilabel"}
+field. Next, click on `Confirm Password`{.interpreted-text
+role="guilabel"}. Following that, activate
+`2FA (two-factor authentication)`{.interpreted-text role="abbr"} in a
+`2FA (two-factor authentication)`{.interpreted-text role="abbr"} app
+(Google Authenticator, Authy, etc.), by scanning the
+`QR code`{.interpreted-text role="guilabel"} or entering a
+`Verification Code`{.interpreted-text role="guilabel"}.
+
+Finally, click on `Enable two-factor authentication`{.interpreted-text
+role="guilabel"} to complete the setup.
+
+:::: note
+::: title
+Note
+:::
+
+Under `My Account`{.interpreted-text role="guilabel"} Odoo.com users can
+also access the following:
+
+- `My Partner dashboard`{.interpreted-text role="guilabel"}
+- `My In-App Services`{.interpreted-text role="guilabel"}
+- `My Apps Dashboard`{.interpreted-text role="guilabel"}
+::::
+
+
+
+
+--- SOURCE: administration/odoo_online.md ---
+
+# Odoo Online
+
+[Odoo Online](https://www.odoo.com/trial) provides private databases
+which are fully managed and hosted by Odoo. It can be used for long-term
+production or to test Odoo thoroughly, including customizations that
+don\'t require code.
+
+:::: note
+::: title
+Note
+:::
+
+Odoo Online is incompatible with custom modules or the Odoo App Store.
+::::
+
+Odoo Online databases are accessed using any web browser and do not
+require a local installation.
+
+To quickly try out Odoo, shared [demo](https://demo.odoo.com) instances
+are available. No registration is required, but each instance only lives
+for a few hours.
+
+## Database management
+
+To manage a database, go to the [database
+manager](https://www.odoo.com/my/databases) and sign in as the database
+administrator.
+
+All the main database management options are available by clicking the
+database name, except the upgrade option, which can be accessed by
+clicking the **arrow in a circle** icon next to the database name. It is
+only displayed if an upgrade is available.
+
+![Accessing the database management options](odoo_online/database-manager.png)
+
+- `odoo_online/upgrade`{.interpreted-text role="ref"}
+- `odoo_online/duplicate`{.interpreted-text role="ref"}
+- `odoo_online/rename`{.interpreted-text role="ref"}
+- `odoo_online/download`{.interpreted-text role="ref"}
+- `odoo_online/domains`{.interpreted-text role="ref"}
+- `odoo_online/tags`{.interpreted-text role="ref"}
+- `odoo_online/delete`{.interpreted-text role="ref"}
+- `odoo_online/contact-support`{.interpreted-text role="ref"}
+- `odoo_online/users`{.interpreted-text role="ref"}
+- `odoo_online/web-services`{.interpreted-text role="ref"}
+
+## Upgrade {#odoo_online/upgrade}
+
+Trigger a database upgrade.
+
+::: seealso
+For more information about the upgrade process, check out the
+`Odoo Online upgrade
+documentation <upgrade-request-test>`{.interpreted-text role="ref"}.
+:::
+
+## Duplicate {#odoo_online/duplicate}
+
+Create an exact copy of the database, which can be used to perform
+testing without compromising daily operations.
+
+:::: important
+::: title
+Important
+:::
+
+\- By checking `For testing purposes`{.interpreted-text
+role="guilabel"}, all external actions (emails, payments, delivery
+orders, etc.) are disabled by default on the duplicated database. -
+Duplicated databases expire automatically after 15 days. - A maximum of
+five duplicates can be made per database. Under extraordinary
+circumstances, contact [support](https://www.odoo.com/help) to raise the
+limit.
+::::
+
+## Rename {#odoo_online/rename}
+
+Rename the database and its URL.
+
+## Download {#odoo_online/download}
+
+Download a ZIP file containing a backup of the database.
+
+:::: note
+::: title
+Note
+:::
+
+Databases are backed up daily as per the [Odoo Cloud Hosting
+SLA](https://www.odoo.com/cloud-sla).
+::::
+
+## Domain names {#odoo_online/domains}
+
+Use a custom
+`domain name </applications/websites/website/configuration/domain_names>`{.interpreted-text
+role="doc"} to access the database via another URL.
+
+:::: tip
+::: title
+Tip
+:::
+
+You can
+`register a domain name for free <domain-name/register>`{.interpreted-text
+role="ref"}.
+::::
+
+## Tags {#odoo_online/tags}
+
+Add tags to easily identify and sort your databases.
+
+:::: tip
+::: title
+Tip
+:::
+
+You can search for tags in the search bar.
+::::
+
+## Delete {#odoo_online/delete}
+
+Delete a database instantly.
+
+:::: danger
+::: title
+Danger
+:::
+
+Deleting a database means that all data is permanently lost. The
+deletion is instant and applies to all users. It is recommended to
+create a backup of the database before deleting it.
+::::
+
+Carefully read the warning message and only proceed if the implications
+of deleting a database are fully understood.
+
+![The warning message displayed before deleting a database](odoo_online/delete.png)
+
+:::: note
+::: title
+Note
+:::
+
+\- Only an administrator can delete a database. - The database name is
+immediately made available to anyone. - Deleting a database if it has
+expired or is linked to a subscription is impossible. In that case,
+contact [Odoo Support](https://www.odoo.com/help).
+::::
+
+## Contact us {#odoo_online/contact-support}
+
+Access the [Odoo.com support page](https://www.odoo.com/help) with the
+database\'s details already pre-filled.
+
+## Invite / remove users {#odoo_online/users}
+
+To invite users, fill out the new user\'s email address and click
+`Invite`{.interpreted-text role="guilabel"}. To add multiple users,
+click `Add more users`{.interpreted-text role="guilabel"}.
+
+![Inviting a user on a database](odoo_online/invite-users.png)
+
+To remove users, select them and click `Remove`{.interpreted-text
+role="guilabel"}.
+
+::: seealso
+\- `/applications/general/users`{.interpreted-text role="doc"} -
+`odoo_accounts`{.interpreted-text role="doc"}
+:::
+
+## Web Services {#odoo_online/web-services}
+
+In order to programmatically retrieve the list of the databases
+displayed in the [database manager](https://www.odoo.com/my/databases),
+call the method [list]{.title-ref} of the model
+[odoo.database]{.title-ref} via a
+`Web Service </developer/howtos/web_services>`{.interpreted-text
+role="doc"} call.
+
+Inspired from the examples provided in the
+`Web Services </developer/howtos/web_services>`{.interpreted-text
+role="doc"} section, this is how to retrieve this list with the library
+`xmlrpc.client`:
+
+    import xmlrpc.client
+
+    USER = 'user@domain.tld'
+    APIKEY = 'your_apikey'
+
+    root = 'https://www.odoo.com/xmlrpc/'
+    uid = xmlrpc.client.ServerProxy(root + 'common').login('openerp', USER, APIKEY)
+    sock = xmlrpc.client.ServerProxy(root + 'object')
+    databases_list = sock.execute('openerp', uid, APIKEY, 'odoo.database', 'list')
+
+And here is the equivalent example with JSON-RPC:
+
+    import json
+    import random
+    import urllib.request
+
+    USER = 'user@domain.tld'
+    APIKEY = 'your_apikey'
+
+    def json_rpc(url, method, params):
+        data = {
+            'jsonrpc': '2.0',
+            'method': method,
+            'params': params,
+            'id': random.randint(0, 1000000000),
+        }
+        req = urllib.request.Request(url=url, data=json.dumps(data).encode(), headers={
+            "Content-Type": "application/json",
+        })
+        reply = json.loads(urllib.request.urlopen(req).read().decode('UTF-8'))
+        if reply.get('error'):
+            raise Exception(reply['error'])
+        return reply['result']
+
+    def call(url, service, method, *args):
+        return json_rpc(url, 'call', {'service': service, 'method': method, 'args': args})
+
+    url = 'https://www.odoo.com/jsonrpc'
+    uid = call(url, 'common', 'login', 'openerp', USER, APIKEY)
+    databases_list = call(url, 'object', 'execute', 'openerp', uid, APIKEY, 'odoo.database', 'list')
+
+
+
+
+--- SOURCE: administration/odoo_sh/advanced/containers.md ---
+
+# Containers
+
+## Overview
+
+Each build is isolated within its own container (Linux namespaced
+container).
+
+The base is an Ubuntu system, where all of Odoo\'s required
+dependencies, as well as common useful packages, are installed.
+
+If your project requires additional Python dependencies, or more recent
+releases, you can define a `requirements.txt`{.interpreted-text
+role="file"} file in the root of your branches listing them. The
+platform will take care to install these dependencies in your
+containers. [The pip requirements
+specifiers](https://pip.pypa.io/en/stable/reference/pip_install/#requirement-specifiers)
+documentation can help you write a `requirements.txt`{.interpreted-text
+role="file"} file. To have a concrete example, check out the
+[requirements.txt file of Odoo]({GITHUB_PATH}/requirements.txt).
+
+The `requirements.txt`{.interpreted-text role="file"} files of
+submodules are taken into account as well. The platform looks for
+`requirements.txt`{.interpreted-text role="file"} files in each folder
+containing Odoo modules: Not in the module folder itself, but in their
+parent folder.
+
+## Directory structure
+
+As the containers are Ubuntu based, their directory structure follows
+the linux Filesystem Hierarchy Standard. [Ubuntu\'s filesystem tree
+overview](https://help.ubuntu.com/community/LinuxFilesystemTreeOverview#Main_directories)
+explains the main directories.
+
+Here are the Odoo.sh pertinent directories:
+
+    .
+    ├── home
+    │    └── odoo
+    │         ├── src
+    │         │    ├── odoo                Odoo Community source code
+    │         │    │    └── odoo-bin       Odoo server executable
+    │         │    ├── enterprise          Odoo Enterprise source code
+    │         │    ├── themes              Odoo Themes source code
+    │         │    └── user                Your repository branch source code
+    │         ├── data
+    │         │    ├── filestore           database attachments, as well as the files of binary fields
+    │         │    └── sessions            visitors and users sessions
+    │         └── logs
+    │              ├── install.log         Database installation logs
+    │              ├── odoo.log            Running server logs
+    │              ├── update.log          Database updates logs
+    │              └── pip.log             Python packages installation logs
+    └── usr
+         ├── lib
+         │    ├── python2.7
+         │         └── dist-packages       Python 2.7 standard libraries
+         │    ├── python3
+         │         └── dist-packages       Python 3 standard libraries
+         │    └── python3.5
+         │         └── dist-packages       Python 3.5 standard libraries
+         ├── local
+         │    └── lib
+         │         ├── python2.7
+         │         │    └── dist-packages  Python 2.7 third-party libraries
+         │         └── python3.5
+         │              └── dist-packages  Python 3.5 third-party libraries
+         └── usr
+              └── bin
+                   ├── python2.7           Python 2.7 executable
+                   └── python3.5           Python 3.5 executable
+
+Both Python 2.7 and 3.5 are installed in the containers. However:
+
+- If your project is configured to use Odoo 10.0, the Odoo server runs
+  with Python 2.7.
+- If your project is configured to use Odoo 11.0 or above, the Odoo
+  server runs with Python 3.5.
+
+## Database shell
+
+While accessing a container with the shell, you can access the database
+using *psql*.
+
+``` bash
+odoo@odoo-addons-master-1.odoo.sh:~$ psql
+psql (9.5.2, server 9.5.11)
+SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+odoo-addons-master-1=>
+```
+
+**Be careful !** [Use
+transactions](https://www.postgresql.org/docs/current/static/sql-begin.html)
+(*BEGIN\...COMMIT/ROLLBACK*) for every *sql* statements leading to
+changes (*UPDATE*, *DELETE*, *ALTER*, \...), especially for your
+production database.
+
+The transaction mechanism is your safety net in case of mistake. You
+simply have to rollback your changes to revert your database to its
+previous state.
+
+For example, it may happen that you forget to set your *WHERE*
+condition.
+
+``` sql
+odoo-addons-master-1=> BEGIN;
+BEGIN
+odoo-addons-master-1=> UPDATE res_users SET password = '***';
+UPDATE 457
+odoo-addons-master-1=> ROLLBACK;
+ROLLBACK
+```
+
+In such a case, you can rollback to revert the unwanted changes that you
+just mistakenly did, and rewrite the statement:
+
+``` sql
+odoo-addons-master-1=> BEGIN;
+BEGIN
+odoo-addons-master-1=> UPDATE res_users SET password = '***' WHERE id = 1;
+UPDATE 1
+odoo-addons-master-1=> COMMIT;
+COMMIT
+```
+
+However, do not forget to either commit or rollback your transaction
+after having done it. Open transactions may lock records in your tables
+and your running database may wait for them to be released. It can cause
+a server to hang indefinitely.
+
+In addition, when possible, use your staging databases to test your
+statements first. It gives you an extra safety net.
+
+## Run an Odoo server
+
+You can start an Odoo server instance from a container shell. You won\'t
+be able to access it from the outside world with a browser, but you can
+for instance:
+
+- use the Odoo shell,
+
+``` bash
+$  odoo-bin shell
+>>> partner = env['res.partner'].search([('email', '=', 'asusteK@yourcompany.example.com')], limit=1)
+>>> partner.name
+'ASUSTeK'
+>>> partner.name = 'Odoo'
+>>> env['res.partner'].search([('email', '=', 'asusteK@yourcompany.example.com')], limit=1).name
+'Odoo'
+```
+
+- install a module,
+
+``` bash
+$  odoo-bin -i sale --without-demo=all --stop-after-init
+```
+
+- update a module,
+
+``` bash
+$  odoo-bin -u sale --stop-after-init
+```
+
+- run the tests for a module,
+
+``` bash
+$  odoo-bin -i sale --test-enable --log-level=test --stop-after-init
+```
+
+In the above commands, the argument:
+
+- `--without-demo=all` prevents demo data to be loaded for all modules
+- `--stop-after-init` will immediately shutdown the server instance
+  after it completed the operations you asked.
+
+More options are available and detailed in the
+`CLI documentation </developer/reference/cli>`{.interpreted-text
+role="doc"}.
+
+You can find in the logs (*\~/logs/odoo.log*) the addons path used by
+Odoo.sh to run your server. Look for \"\*odoo: addons paths\*\":
+
+    2018-02-19 10:51:39,267 4 INFO ? odoo: Odoo version {BRANCH}
+    2018-02-19 10:51:39,268 4 INFO ? odoo: Using configuration file at /home/odoo/.config/odoo/odoo.conf
+    2018-02-19 10:51:39,268 4 INFO ? odoo: addons paths: ['/home/odoo/data/addons/{BRANCH}', '/home/odoo/src/user', '/home/odoo/src/enterprise', '/home/odoo/src/themes', '/home/odoo/src/odoo/addons', '/home/odoo/src/odoo/odoo/addons']
+
+**Be careful**, especially with your production database. Operations
+that you perform running this Odoo server instance are not isolated:
+Changes will be effective in the database. Always, make your tests in
+your staging databases.
+
+## Debugging in Odoo.sh
+
+Debugging an Odoo.sh build is not really different than another Python
+app. This article only explains the specificities and limitations of the
+Odoo.sh platform, and assumes that you already know how to use a
+debugger.
+
+:::: note
+::: title
+Note
+:::
+
+If you don\'t know how to debug a Python application yet, there are
+multiple introductory courses that can be easily found on the Internet.
+::::
+
+You can use `pdb`, `pudb` or `ipdb` to debug your code on Odoo.sh. As
+the server is run outside a shell, you cannot launch the debugger
+directly from your Odoo instance backend as the debugger needs a shell
+to operate.
+
+- [pdb](https://docs.python.org/3/library/pdb.html) is installed by
+  default in every container.
+
+- If you want to use [pudb](https://pypi.org/project/pudb/) or
+  [ipdb](https://pypi.org/project/ipdb/) you have to install it before.
+
+  To do so, you have two options:
+
+  > - temporary (only in the current build):
+  >
+  >   ``` bash
+  >   $  pip install pudb --user
+  >   ```
+  >
+  >   or
+  >
+  >   ``` bash
+  >   $  pip install ipdb --user
+  >   ```
+  >
+  > - permanent: add `pudb` or `ipdb` to your project `requirements.txt`
+  >   file.
+
+Then edit the code where you want to trigger the debugger and add this:
+
+``` python
+import sys
+if sys.__stdin__.isatty():
+    import pdb; pdb.set_trace()
+```
+
+The condition `sys.__stdin__.isatty()` is a hack that detects if you run
+Odoo from a shell.
+
+Save the file and then run the Odoo Shell:
+
+``` bash
+$ odoo-bin shell
+```
+
+Finally, *via* the Odoo Shell, you can trigger the piece of
+code/function/method you want to debug.
+
+![Console screenshot showing \`\`pdb\`\` running in an Odoo.sh shell.](containers/pdb_sh.png){.align-center}
+
+
+
+
+--- SOURCE: administration/odoo_sh/advanced/frequent_technical_questions.md ---
+
+# Frequent Technical Questions {#odoosh-advanced-frequent_technical_questions}
+
+## \"Scheduled actions do not run at the exact time they were expected\"
+
+On the Odoo.sh platform, we cannot guarantee an exact running time for
+scheduled actions.
+
+This is due to the fact that there might be multiple customers on the
+same server, and we must guarantee a fair share of the server for every
+customer. Scheduled actions are therefore implemented slightly
+differently than on a regular Odoo server, and are run on a *best
+effort* policy.
+
+:::: warning
+::: title
+Warning
+:::
+
+Do not expect any scheduled action to be run more often than every 5
+min.
+::::
+
+## Are there \"best practices\" regarding scheduled actions?
+
+**Odoo.sh always limits the execution time of scheduled actions (\*aka\*
+crons).** Therefore, you must keep this fact in mind when developing
+your own crons.
+
+We advise that:
+
+- Your scheduled actions should work on small batches of records.
+- Your scheduled actions should commit their work after processing each
+  batch; this way, if they get interrupted by the time-limit, there is
+  no need to start over.
+- Your scheduled actions should be
+  [idempotent](https://stackoverflow.com/a/1077421/3332416): they must
+  not cause side-effects if they are started more often than expected.
+
+## How can I automate tasks when an IP address change occurs? {#ip-address-change}
+
+**Odoo.sh notifies project administrators of IP address changes.**
+Additionally, when the IP address of a production instance changes, an
+HTTP [GET]{.title-ref} request is made to the path
+[/\_odoo.sh/ip-change]{.title-ref} with the new IP address included as a
+query string parameter ([new]{.title-ref}), along with the previous IP
+address as an additional parameter ([old]{.title-ref}).
+
+This mechanism allows custom actions to be applied in response to the IP
+address change (e.g., sending an email, contacting a firewall API,
+configuring database objects, etc.)
+
+For security reasons, the [/\_odoo.sh/ip-change]{.title-ref} route is
+accessible only internally by the platform itself and returns a
+[403]{.title-ref} response if accessed through any other means.
+
+Here is a pseudo-implementation example:
+
+``` python
+class IPChangeController(http.Controller):
+
+    @http.route('/_odoo.sh/ip-change', auth='public')
+    def ip_change(self, old=None, new=None):
+        _logger.info("IP address changed from %s to %s", old, new)
+        # Then perform whatever action required for your use case, e.g., update an
+        # ir.config_parameter, send an email, contact an external firewall service's API, ...
+        return 'ok'
+```
+
+
+
+
+--- SOURCE: administration/odoo_sh/advanced/submodules.md ---
+
+# Submodules {#odoosh-advanced-submodules}
+
+## Overview
+
+A [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+allows you to integrate other Git projects into your code, without the
+need to copy-paste all their code.
+
+Indeed, your custom modules can depend on modules from other
+repositories. Regarding Odoo, this feature allows you to add modules
+from other Git repositories into the branches of your repository. Adding
+these dependencies in your branch through submodules makes the
+deployment of your code and servers easier, as you can clone the
+repositories added as submodules at the same time you clone your own
+repository.
+
+Besides, you can choose the branch of the repository added as submodule
+and you have the control of the revision you want. It\'s up to you to
+decide whether you want to pin the submodule to a specific revision and
+when you want to update to a newer revision.
+
+In Odoo.sh, the submodules give you the possibility to use and depend on
+modules available in other repositories. The platform will detect that
+you added modules through submodules in your branches and add them to
+your addons path automatically so you can install them in your
+databases.
+
+If you add private repositories as submodules in your branches, you need
+to configure a deploy key in your Odoo.sh project settings and in your
+repository settings. Otherwise Odoo.sh won\'t be allowed to download
+them. The procedure is detailed in the chapter
+`Settings > Submodules <odoosh-gettingstarted-settings-submodules>`{.interpreted-text
+role="ref"}.
+
+## Adding a submodule
+
+### With Odoo.sh (simple)
+
+:::: warning
+::: title
+Warning
+:::
+
+For now it is not possible to add **private** repositories with this
+method. You can nevertheless do so
+`with Git <odoosh-advanced-submodules-withgit>`{.interpreted-text
+role="ref"}.
+::::
+
+On Odoo.sh, in the branches view of your project, choose the branch in
+which you want to add a submodule.
+
+In the upper right corner, click on the *Submodule* button, and then on
+*Run*.
+
+![image](submodules/advanced-submodules-button.png){.align-center}
+
+A dialog with a form is shown. Fill the inputs as follows:
+
+- Repository URL: The SSH URL of the repository.
+- Branch: The branch you want to use.
+- Path: The folder in which you want to add this submodule in your
+  branch.
+
+![image](submodules/advanced-submodules-dialog.png){.align-center}
+
+On Github, you can get the repository URL with the *Clone or download*
+button of the repository. Make sure to *use SSH*.
+
+![image](submodules/advanced-submodules-github-sshurl.png){.align-center}
+
+### With Git (advanced) {#odoosh-advanced-submodules-withgit}
+
+In a terminal, in the folder where your Git repository is cloned,
+checkout the branch in which you want to add a submodule:
+
+``` bash
+$ git checkout <branch>
+```
+
+Then, add the submodule using the command below:
+
+``` bash
+$ git submodule add -b <branch> <git@yourprovider.com>:<username/repository.git> <path>
+```
+
+Replace
+
+- *\<git@yourprovider.com\>:\<username/repository.git\>* by the SSH URL
+  of the repository you want to add as submodule,
+- *\<branch\>* by the branch you want to use in the above repository,
+- *\<path\>* by the folder in which you want to add this submodule.
+
+Commit and push your changes:
+
+``` bash
+$ git commit -a && git push -u <remote> <branch>
+```
+
+Replace
+
+- \<remote\> by the repository on which you want to push your changes.
+  For a standard Git setup, this is *origin*.
+- \<branch\> by the branch on which you want to push your changes. Most
+  likely the branch you used `git checkout` on in the first step.
+
+You can read the [git-scm.com
+documentation](https://git-scm.com/book/en/v2/Git-Tools-Submodules) for
+more details about the Git submodules. For instance, if you would like
+to update your submodules to have their latest revision, you can follow
+the chapter [Pulling in Upstream
+changes](https://git-scm.com/book/en/v2/Git-Tools-Submodules#_pulling_in_upstream_changes_from_the_submodule_remote).
+
+## Ignore modules
+
+If you\'re adding a repository that contains a lot of modules, you may
+want to ignore some of them in case there are any that are installed
+automatically. To do so, you can prefix your submodule folder with a
+`.`. The platform will ignore this folder and you can hand pick your
+modules by creating symlinks to them from another folder.
+
+
+
+
+--- SOURCE: administration/odoo_sh/advanced.md ---
+
+nosearch
+
+:   
+
+# Advanced
+
+::: {.toctree titlesonly=""}
+advanced/containers advanced/submodules
+advanced/frequent_technical_questions
+:::
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/branches.md ---
+
+# Branches
+
+## Overview
+
+The branches view gives you an overview of the different branches your
+repository has.
+
+![image](branches/interface-branches.png){.align-center}
+
+## Stages {#odoosh-gettingstarted-branches-stages}
+
+Odoo.sh offers three different stages for your branches: production,
+staging and development.
+
+You can change the stage of a branch by drag and dropping it into the
+stage section title.
+
+![image](branches/interface-branches-stagechange.png){.align-center}
+
+### Production {#stage_production}
+
+This is the branch holding the code on which your production database
+runs. There can be only one production branch.
+
+When you push a new commit in this branch, your production server is
+updated with the code of the new revision and is then restarted.
+
+If your changes require the update of a module, such as a change in a
+form view, and you want it to be performed automatically, increase the
+version number of the module in its manifest (*\_\_manifest\_\_.py*).
+The platform will then take care to perform the update during which the
+instance will be held temporarily unavailable for maintenance reason.
+
+This method is equivalent to perform an upgrade of the module through
+the Apps menu, or through the `-u` switch of
+`the command line </developer/reference/cli>`{.interpreted-text
+role="doc"}.
+
+In the case the changes in the commit prevent the server to restart, or
+if the modules update fails, the server is automatically reverted to the
+previous successful code revision and the database is roll-backed as it
+was before the update. You still have access to the log of the failed
+update, so you can troubleshoot it.
+
+The demo data is not loaded, as it is not meant to be used in a
+production database. The unit tests are not performed, as it would
+increase the unavailability time of the production database during the
+updates.
+
+Partners using trial projects should be aware their production branch,
+along with all the staging branches, will automatically be set back to
+the development stage after 30 days.
+
+### Staging
+
+Staging branches are meant to test your new features using the
+production data without compromising the actual production database with
+test records. They will create databases that are neutralized duplicates
+of the production database.
+
+The neutralization includes:
+
+- Disabling scheduled actions. If you want to test them, you can trigger
+  their action manually or re-enable them. Be aware that the platform
+  will trigger them less often if no one is using the database in order
+  to save up resources.
+- Disabling outgoing emails by intercepting them with a mailcatcher. An
+  `interface to view <odoosh-gettingstarted-branches-tabs-mails>`{.interpreted-text
+  role="ref"} the emails sent by your database is provided. That way,
+  you do not have to worry about sending test emails to your contacts.
+- Setting payment providers and shipping providers in test mode.
+- Disabling IAP services
+
+The latest database will be kept alive indefinitely, older ones from the
+same branch may get garbage collected to make room for new ones. It will
+be valid for 3 months, after which you will be expected to rebuild the
+branch. If you make configuration or view changes in these databases,
+make sure to document them or write them directly in the modules of the
+branch, using XML data files overriding the default configuration or
+views.
+
+The unit tests are not performed as, in Odoo, they currently rely on the
+demo data, which is not loaded in the production database. In the
+future, if Odoo supports to run the unit tests without the demo data,
+Odoo.sh will then consider running the tests on staging databases.
+
+### Development
+
+Development branches create new databases using the demo data to run the
+unit tests. The installed modules are the ones included in your
+branches. You can change this list of modules to install in your
+`project Settings <odoosh-gettingstarted-settings-modules-installation>`{.interpreted-text
+role="ref"}.
+
+When you push a new commit in one of these branches, a new server is
+started, with a database created from scratch and the new revision of
+the branch. The demo data is loaded, and the unit tests are performed by
+default. This verifies your changes do not break any of the features
+tested by them. If you wish, you can disable the tests or allow specific
+tests to be run with custom tags in the `branch's settings
+<odoosh-gettingstarted-branches-tabs-settings>`{.interpreted-text
+role="ref"}.
+
+Similar to staging branches, the emails are not sent but are intercepted
+by a mailcatcher and scheduled actions are not triggered as long as the
+database is not in use.
+
+The databases created for development branches are meant to live around
+three days. After that, they can be automatically garbage collected to
+make room for new databases without prior notice.
+
+### Merging your branches {#odoosh-gettingstarted-branches-mergingbranches}
+
+You can merge your branches easily by drag and dropping them into each
+other.
+
+![image](branches/interface-branches-merge.png){.align-center}
+
+When you want to test the changes of your development branches with the
+production data, you can either:
+
+- merge the development branch into your staging branch, by drag and
+  dropping it onto the desired staging branch,
+- drag and dropping the development branch on the staging section title,
+  to make it become a staging branch.
+
+When your latest changes are ready for production, you can drag and drop
+your staging branch onto your production branch to merge and deploy in
+production your newest features.
+
+If you are bold enough, you can merge your development branches into
+your production branch as well. It just means you skip the validation of
+your changes with the production data through a staging branch.
+
+You can merge your development branches into each other, and your
+staging branches into each other.
+
+Of course, you can also use `git merge` directly on your workstation to
+merge your branches. Odoo.sh will be notified when new revisions have
+been pushed in your branches.
+
+Merging a staging branch in the production branch only merges the source
+code: Any configuration changes you made in the staging databases are
+not passed to the production database.
+
+If you test configuration changes in staging branches, and want them to
+be applied in the production, you have to either:
+
+- write the configuration changes in XML data files overriding the
+  default configuration or views in your branches, and then increase the
+  version of your module in its manifest (*\_\_manifest\_\_.py*) to
+  trigger the update of the module when you merge your staging branch in
+  your production branch. This is the best practice for a better
+  scalability of your developments as you will use the Git versioning
+  features for all your configuration changes, and therefore have a
+  traceability for your changes.
+- pass them manually from your staging to your production database, by
+  copy/pasting them.
+
+## Tabs {#odoosh-gettingstarted-branches-tabs}
+
+### History
+
+An overview of your branch history:
+
+- The messages of the commits and their authors,
+- The various events linked to the platform, such as stage changes,
+  database imports, backup restores.
+
+![image](branches/interface-branches-history.png){.align-center}
+
+For each event, a status is displayed in the top right-hand corner. It
+can provide information about the ongoing operation on the database
+(installation, update, backup import, \...), or its result (tests
+feedback, successful backup import, \...). When an operation is
+successful, you can access the database thanks to the *connect* button.
+
+### Mails {#odoosh-gettingstarted-branches-tabs-mails}
+
+This tab contains the mail catcher. It displays an overview of the
+emails sent by your database. The mail catcher is available for your
+development and staging branches as the emails of your production
+database are really sent instead of being intercepted.
+
+![image](branches/interface-branches-mails.png){.align-center}
+
+### Shell
+
+A shell access to your container. You can perform basic linux commands
+(`ls`, `top`) and open a shell on your database by typing `psql`.
+
+![image](branches/interface-branches-shell.png){.align-center}
+
+You can open multiple tabs and drag-and-drop them to arrange the layout
+as you wish, for instance side by side.
+
+:::: note
+::: title
+Note
+:::
+
+Long running shell instances are not guaranteed. Idle shells can be
+disconnected at anytime in order to free up resources.
+::::
+
+### Editor
+
+An online integrated development environment (IDE) to edit the source
+code. You can also open terminals, Python consoles and even Odoo Shell
+consoles.
+
+![image](branches/interface-branches-editor.png){.align-center}
+
+You can open multiple tabs and drag-and-drop them to arrange the layout
+as you wish, for instance side by side.
+
+### Monitoring
+
+This link contains various monitoring metrics of the current build.
+
+![image](branches/interface-branches-monitoring.png){.align-center}
+
+You can zoom, change the time range or select a specific metric on each
+graph. On the graphs, annotations help you relate to changes on the
+build (database import, git push, etc\...).
+
+### Logs {#odoosh/logs}
+
+A viewer to have a look to your server logs.
+
+![image](branches/interface-branches-logs.png){.align-center}
+
+Different logs are available:
+
+- install.log: The logs of the database installation. In a development
+  branch, the logs of the tests are included.
+- pip.log: The logs of the Python dependencies installation.
+- odoo.log: The logs of the running server.
+- update.log: The logs of the database updates.
+- pg_long_queries.log: The logs of psql queries that take an unusual
+  amount of time.
+
+If new lines are added in the logs, they will be displayed
+automatically. If you scroll to the bottom, the browser will scroll
+automatically each time a new line is added.
+
+You can pause the logs fetching by clicking on the according button in
+the upper right corner of the view. The fetching is automatically
+stopped after 5 minutes. You can restart it using the play button.
+
+### Backups {#odoo_sh_branches_backups}
+
+A list of the backups available for download and restore, the ability to
+perform a manual backup and to import a database.
+
+![image](branches/interface-branches-backups.png){.align-center}
+
+Odoo.sh makes daily backups of the production database. It keeps 7
+daily, 4 weekly and 3 monthly backups. Each backup includes the database
+dump, the filestore (attachments, binary fields), logs and sessions.
+
+Staging and development databases are not backed up. You nevertheless
+have the possibility to restore a backup of the production database in
+your staging branches, for testing purposes, or to manually recover data
+that has been deleted by accident from the production database.
+
+The list contains the backups kept on the server your production
+database is hosted on. This server only keeps one month of backups: 7
+daily and 4 weekly backups.
+
+Dedicated backup servers keep the same backups, as well as 3 additional
+monthly backups. To restore or download one of these monthly backups,
+please [contact us](https://www.odoo.com/help).
+
+If you merge a commit updating the version of one or several modules (in
+`__manifest__.py`{.interpreted-text role="file"}), or their linked
+python dependencies (in `requirements.txt`{.interpreted-text
+role="file"}), then Odoo.sh performs a backup automatically (flagged
+with type Update in the list), as either the container will be changed
+by the installation of new pip packages, either the database itself will
+be changed with the module update triggered afterwards. In these two
+cases, we are doing a backup as it may potentially break things.
+
+If you merge a commit that only changes some code without the
+above-mentioned modifications, then no backup is done by Odoo.sh, as
+neither the container nor the database is modified so the platform
+considers this safe enough. Of course, as an extra precaution, you can
+make a backup manually before making big changes in your production
+sources in case something goes wrong (those manual backups are available
+for about one week). To avoid abuse, we limit manual backups to 5 per
+day.
+
+The *import database* feature accepts database archives in the format
+provided by:
+
+- the standard Odoo databases manager, (available for on-premise Odoo
+  servers under `/web/database/manager`)
+- the Odoo online databases manager,
+- the Odoo.sh backup download button of this *Backups* tab,
+- the Odoo.sh dump download button in the
+  `Builds view <odoosh-gettingstarted-builds>`{.interpreted-text
+  role="ref"}.
+
+### Upgrade {#odoo_sh/upgrade}
+
+Available for production and staging branches for valid projects.
+
+::: seealso
+`Upgrade documentation <../../upgrade>`{.interpreted-text role="doc"}
+:::
+
+### Settings {#odoosh-gettingstarted-branches-tabs-settings}
+
+Here you can find a couple of settings that only apply to the currently
+selected branch.
+
+![image](branches/interface-branches-settings.jpg){.align-center}
+
+**Behaviour upon new commit**
+
+For development and staging branches, you can change the branch\'s
+behavior upon receiving a new commit. By default, a development branch
+will create a new build and a staging branch will update the previous
+build (see the `Production Stage <stage_production>`{.interpreted-text
+role="ref"}). This is especially useful should the feature you\'re
+working on require a particular setup or configuration, to avoid having
+to manually set it up again on every commit. If you choose new build for
+a staging branch, it will make a fresh copy from the production build
+every time a commit is pushed. A branch that is put back from staging to
+development will automatically be set to \'Do nothing\'.
+
+**Modules installation**
+
+Choose the modules to install automatically for your development builds.
+
+![image](branches/interface-settings-modulesinstallation.png){.align-center}
+
+- *Install only my modules* will install the modules of the branch only.
+  This is the default option. The
+  `submodules <odoosh-advanced-submodules>`{.interpreted-text
+  role="ref"} are excluded.
+- *Full installation (all modules)* will install the modules of the
+  branch, the modules included in the submodules and all standard
+  modules of Odoo. When running the full installation, the test suite is
+  disabled.
+- *Install a list of modules* will install the modules specified in the
+  input just below this option. The names are the technical name of the
+  modules, and they must be comma-separated.
+
+If the tests are enabled, the standard Odoo modules suite can take up to
+1 hour. This setting applies to development builds only. Staging builds
+duplicate the production build and the production build only installs
+base.
+
+**Test suite**
+
+For development branches, you can choose to enable or disable the test
+suite. It\'s enabled by default. When the test suite is enabled, you can
+restrict them by specifying test tags `test tags
+<developer/reference/testing/selection>`{.interpreted-text role="ref"}.
+
+**Odoo Version**
+
+For development branches only, you can change the version of Odoo,
+should you want to test upgraded code or develop features while your
+production database is in the process of being upgraded to a newer
+version.
+
+In addition, for each version you have two options regarding the code
+update.
+
+- You can choose to benefit from the latest bug, security and
+  performance fixes automatically. The sources of your Odoo server will
+  be updated weekly. This is the \'Latest\' option.
+- You can choose to pin the Odoo sources to a specific revision by
+  selecting them from a list of dates. Revisions will expire after 3
+  months. You will be notified by mail when the expiration date
+  approaches and if you don\'t take action afterwards, you will
+  automatically be set to the latest revision.
+
+**Custom domains**
+
+Here you can configure additional domains for the selected branch. It\'s
+possible to add other *\<name\>.odoo.com* domains or your own custom
+domains. For the latter you have to:
+
+- own or purchase the domain name,
+- add the domain name in this list,
+- in your registrar\'s domain name manager, configure the domain name
+  with a `CNAME` record set to your production database domain name.
+
+For instance, to associate *www.mycompany.com* to your database
+*mycompany.odoo.com*:
+
+- in Odoo.sh, add *www.mycompany.com* in the custom domains of your
+  project settings,
+- in your domain name manager (e.g. *godaddy.com*, *gandi.net*,
+  *ovh.com*), configure *www.mycompany.com* with a `CNAME` record with
+  as value *mycompany.odoo.com*.
+
+Bare domains (e.g. *mycompany.com*) are not accepted:
+
+- they can only be configured using `A` records,
+- `A` records only accept IP addresses as value,
+- the IP address of your database can change, following an upgrade, a
+  hardware failure or your wish to host your database in another country
+  or continent.
+
+Therefore, bare domains could suddenly no longer work because of this
+change of IP address.
+
+In addition, if you would like both *mycompany.com* and
+*www.mycompany.com* to work with your database, having the first
+redirecting to the second is amongst the [SEO best
+practices](https://support.google.com/webmasters/answer/7451184?hl=en)
+(See *Provide one version of a URL to reach a document*) in order to
+have one dominant URL. You can therefore just configure *mycompany.com*
+to redirect to *www.mycompany.com*. Most domain managers have the
+feature to configure this redirection. This is commonly called a web
+redirection.
+
+**HTTPS/SSL**
+
+If the redirection is correctly set up, the platform will automatically
+generate an SSL certificate with [Let\'s
+Encrypt](https://letsencrypt.org/about/) within the hour and your domain
+will be accessible through HTTPS.
+
+While it is currently not possible to configure your own SSL
+certificates on the Odoo.sh platform we are considering the feature if
+there is enough demand.
+
+**SPF and DKIM compliance**
+
+In case the domain of your users email addresses use SPF (Sender Policy
+Framework) or DKIM (DomainKeys Identified Mail), don\'t forget to
+authorize Odoo as a sending host in your domain name settings to
+increase the deliverability of your outgoing emails. The configuration
+steps are explained in the documentation about `SPF
+<email_communication/spf_compliant>`{.interpreted-text role="ref"} and
+`DKIM <email_communication/dkim_compliant>`{.interpreted-text
+role="ref"}.
+
+:::: warning
+::: title
+Warning
+:::
+
+Forgetting to configure your SPF or DKIM to authorize Odoo as a sending
+host can lead to the delivery of your emails as spam in your contacts
+inbox.
+::::
+
+## Shell commands
+
+In the top right-hand corner of the view, different shell commands are
+available.
+
+![image](branches/interface-branches-shellcommands.png){.align-center}
+
+Each command can be copied in the clipboard to be used in a terminal,
+and some of them can be used directly from Odoo.sh by clicking the *run*
+button in such case a popup will prompt the user in order to define
+eventual placeholders such as `<URL>`, `<PATH>`, \...
+
+### Clone
+
+Download the Git repository.
+
+``` bash
+$ git clone --recurse-submodules --branch master git@github.com:odoo/odoo.git
+```
+
+Clones the repository *odoo/odoo*.
+
+- `--recurse-submodules`: Downloads the submodules of your repository.
+  Submodules included in the submodules are downloaded as well.
+- `--branch`: checks out a specific branch of the repository, in this
+  case *master*.
+
+The *run* button is not available for this command, as it is meant to be
+used on your machines.
+
+### Fork
+
+Create a new branch based on the current branch.
+
+``` bash
+$ git checkout -b feature-1 master
+```
+
+Creates a new branch called *feature-1* based on the branch *master*,
+and then checkouts it.
+
+``` bash
+$ git push -u origin feature-1
+```
+
+Uploads the new branch *feature-1* on your remote repository.
+
+### Merge
+
+Merge the current branch in another branch.
+
+``` bash
+$ git merge staging-1
+```
+
+Merges the branch *staging-1* in the current branch.
+
+``` bash
+$ git push -u origin master
+```
+
+Uploads the changes you just added in the *master* branch on your remote
+repository.
+
+### SSH
+
+#### Setup
+
+In order to use SSH, you have to set up your profile SSH public key (if
+it is not already done). To do so, follow these steps:
+
+1.  [Generate a new SSH
+    key](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
+
+2.  [Copy the SSH key to your
+    clipboard](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+    (only apply the step 1)
+
+3.  Paste the copied content to your profile SSH keys and press \"Add\"
+
+    ![image](branches/SSH-key-pasting.png){.align-center}
+
+4.  The key should appear below
+
+    ![image](branches/SSH-key-appearing.png){.align-center}
+
+#### Connection
+
+To connect to your builds using ssh use the following command in a
+terminal:
+
+``` bash
+$ ssh <build_id>@<domain>
+```
+
+You will find a shortcut for this command into the SSH tab in the upper
+right corner.
+
+![image](branches/SSH-panel.png){.align-center}
+
+Provided you have the
+`correct access rights <odoosh-gettingstarted-settings-collaborators>`{.interpreted-text
+role="ref"} on the project, you\'ll be granted ssh access to the build.
+
+:::: note
+::: title
+Note
+:::
+
+Long running ssh connections are not guaranteed. Idle connections will
+be disconnected in order to free up resources.
+::::
+
+### Submodule
+
+Add a branch from another repository in your current branch as a
+*submodule*.
+
+*Submodules* allows you to use modules from other repositories in your
+project.
+
+The submodules feature is detailed in the chapter
+`Submodules <odoosh-advanced-submodules>`{.interpreted-text role="ref"}
+of this documentation.
+
+``` bash
+$ git submodule add -b master <URL> <PATH>
+```
+
+Adds the branch *master* of the repository *\<URL\>* as a submodule
+under the path *\<PATH\>* in your current branch.
+
+``` bash
+$ git commit -a
+```
+
+Commits all your current changes.
+
+``` bash
+$ git push -u origin master
+```
+
+Uploads the changes you just added in the *master* branch on your remote
+repository.
+
+### Delete
+
+Delete a branch from your repository.
+
+``` bash
+$ git push origin :master
+```
+
+Deletes the branch in your remote repository.
+
+``` bash
+$ git branch -D master
+```
+
+Deletes the branch in your local copy of the repository.
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/builds.md ---
+
+# Builds {#odoosh-gettingstarted-builds}
+
+## Overview
+
+In Odoo.sh, a build is considered as a database loaded by an Odoo server
+([odoo/odoo](https://github.com/odoo/odoo) &
+[odoo/enterprise](https://github.com/odoo/enterprise)) running on a
+specific revision of your project repository in a containerized
+environment. Its purpose is to test the well-behavior of the server, the
+database and the features with this revision.
+
+![image](builds/interface-builds.png){.align-center}
+
+In this view, a row represents a branch, and a cell of a row represents
+a build of this branch.
+
+Most of the time, builds are created following pushes on your Github
+repository branches. They can be created as well when you do other
+operations, such as importing a database on Odoo.sh or asking a rebuild
+for a branch in your project.
+
+A build is considered successful if no errors or warnings come up during
+its creation. A successful build is highlighted in green.
+
+A build is considered failed if errors come up during its creation. A
+failed build is highlighted in red.
+
+If warnings come up during the creation, but there are no errors, the
+build is considered almost successful. It is highlighted in yellow to
+notify the developer warnings were raised.
+
+Builds do not always create a database from scratch. For instance, when
+pushing a change on the production branch, the build created just starts
+the server with your new revision and tries to load the current
+production database on it. If no errors come up, the build is considered
+successful, and otherwise failed.
+
+## Stages
+
+### Production
+
+The first build of a production branch creates a database from scratch.
+If this build is successful, this database is considered as the
+production database of your project.
+
+From then, pushes on the production branch will create new builds that
+attempt to load the database using a server running with the new
+revision.
+
+If the build is successful, or has warnings but no errors, the
+production database will now run with this build, along with the
+revision associated to this build.
+
+If the build fails to load or update the database, then the previous
+successful build is re-used to load the database, and therefore the
+database will run using a server running with the previous successful
+revision.
+
+The build used to run the production database is always the first of the
+builds list. If a build fails, it is put after the build currently
+running the production database.
+
+### Staging
+
+Staging builds duplicate the production database, and try to load this
+duplicate with the revisions of the staging branches.
+
+Each time you push a new revision on a staging branch, the build created
+uses a new copy of the production database. The databases are not
+re-used between builds of the same branch. This ensures:
+
+- staging builds use databases that are close to what the production
+  looks like, so you do not make your tests with outdated data,
+- you can play around as much as you want in the same staging database,
+  and you can then ask for a rebuild when you want to restart with a new
+  copy of the production.
+
+Nevertheless, this means that if you make configuration changes in
+staging databases and do not apply them in the production, they will not
+be passed on the next build of the same staging branch.
+
+### Development
+
+Development builds create new databases, load the demo data and run the
+unit tests.
+
+A build will be considered failed and highlighted in red if tests fail
+during the installation, as they are meant to raise errors if something
+wrong occurs.
+
+If all tests pass, and there is no error, the build will be considered
+successful.
+
+According to the list of modules to install and test, a development
+build can take up to 1 hour to be ready. This is due to the large number
+of tests set in the default Odoo modules suite.
+
+## Features
+
+The production branch will always appear first, and then the other
+branches are ordered by last build created. You can filter out the
+branches.
+
+![image](builds/interface-builds-branches.png){.align-center}
+
+For each branch, you can access the last build\'s database using the
+*Connect* link and jump to the branch code using the *Github* link. For
+other branches than the production, you can create a new build which
+will use the latest revision of the branch using the link *rebuild*.
+This last link is not available when there is already a build in
+progress for the branch.
+
+![image](builds/interface-builds-build.png){.align-center}
+
+For each build, you can access the revision changes using the button
+with the Github icon. You can access the build\'s database as the
+administrator using the *Connect* button. Also, you can access the
+database with another user using the *Connect as* button, in the
+dropdown menu of the *Connect* button.
+
+::: {#odoosh-gettingstarted-builds-download-dump}
+![image](builds/interface-builds-build-dropdown.png){.align-center}
+:::
+
+::: {#odoosh-gettingstarted-builds-dropdown-menu}
+In the dropdown menu of the build, you can access the same features than
+in `the branches view
+<odoosh-gettingstarted-branches-tabs>`{.interpreted-text role="ref"}:
+*Logs*, *Web Shell*, *Editor*, *Outgoing e-mails*. You also have the
+possibility to *Download a dump* of the build\'s database.
+:::
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/create.md ---
+
+# Create your project {#odoosh-gettingstarted-create}
+
+## Deploy your platform
+
+Go to [Odoo.sh](https://www.odoo.sh/) and hit the *Deploy your platform*
+button.
+
+![image](create/deploy.png){.align-center}
+
+## Sign in with Github
+
+Sign in with your Github account. If you do not have an account yet, hit
+the *Create an account* link.
+
+![image](create/github-signin.png){.align-center}
+
+## Authorize Odoo.sh
+
+Grant Odoo.sh the required accesses to your account by clicking the
+*Authorize* button.
+
+![image](create/github-authorize.png){.align-center}
+
+Odoo.sh basically needs:
+
+- to know your Github login and email,
+- to create a new repository in case you decide to start from scratch,
+- to read your existing repositories, including the ones of your
+  organizations, in case you want to start from an existing repository,
+- to create a webhook to be notified each time you push changes,
+- to commit changes to make your deployment easier, merging branches or
+  adding new
+  [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) for
+  example.
+
+## Submit your project
+
+Choose if you want to start from scratch by creating a new repository,
+or if you want to use an existing repository.
+
+Then, choose a name or select the repository you want to use.
+
+Choose the Odoo version you want to use. If you plan to import an
+existing database or an existing set of applications, you might need to
+choose the according version. If you start from scratch, use the latest
+version.
+
+Enter your *subscription code*. This is also called *subscription
+referral*, *contract number* or *activation code*.
+
+It should be the code of your Enterprise subscription that includes
+Odoo.sh.
+
+Partners can use their partnership codes to start a trial. Should their
+clients start a project, they ought to get an Enterprise subscription
+including Odoo.sh and use its subscription code. The partner will get
+50% of the amount back as commission. Contact your sales representative
+or account manager in order to get it.
+
+When submitting the form, if you are notified your subscription is not
+valid, it either means:
+
+- it is not an existing subscription,
+- it is not a partnership subscription,
+- it is an enterprise subscription, but which does not include Odoo.sh,
+- it is neither a partnership subscription or an enterprise subscription
+  (e.g. an online subscription).
+
+In case of doubt with your subscription, please contact the [Odoo
+support](https://www.odoo.com/help).
+
+![image](create/deploy-form.png){.align-center}
+
+## You\'re done !
+
+You can start using Odoo.sh. Your first build is about to be created.
+You will soon be able to connect to your first database.
+
+![image](create/deploy-done.png){.align-center}
+
+## Import your database {#odoo_sh_import_your_database}
+
+You can import your database in your Odoo.sh project as long as it is in
+a `supported version
+</administration/supported_versions>`{.interpreted-text role="doc"} of
+Odoo.
+
+### Push your modules in production
+
+If you use community or custom modules, add them in a branch in your
+Github repository. Databases hosted on the Odoo.com online platform do
+not have any custom modules. Users of these databases can therefore skip
+this step.
+
+You can structure your modules as you wish, Odoo.sh will automatically
+detect the folders containing Odoo addons. For instance, you can put all
+your modules folder in the root directory of your repository, or group
+the modules in folders by categories that you define (accounting,
+project, \...).
+
+For community modules available in public Git repositories, you can also
+consider to add them using
+`Submodules <odoosh-advanced-submodules>`{.interpreted-text role="ref"}.
+
+Then, either
+`make this branch the production branch <odoosh-gettingstarted-branches-stages>`{.interpreted-text
+role="ref"}, or
+`merge it into your production branch <odoosh-gettingstarted-branches-mergingbranches>`{.interpreted-text
+role="ref"}.
+
+### Download a backup
+
+#### On-premise databases
+
+Access the URL `/web/database/manager`{.interpreted-text role="file"} of
+your on-premise database and download a backup.
+
+:::: warning
+::: title
+Warning
+:::
+
+If you cannot access the database manager, it may have been disabled by
+your system administrator. See the
+`database manager security documentation <db_manager_security>`{.interpreted-text
+role="ref"}.
+::::
+
+You will need the master password of your database server. If you do not
+have it, contact your system administrator.
+
+![image](create/create-import-onpremise-backup.png){.align-center}
+
+Choose a zip including the filestore as the backup format.
+
+![image](create/create-import-onpremise-backup-dialog.png){.align-center}
+
+#### Odoo Online databases
+
+[Access your databases
+manager](https://accounts.odoo.com/my/databases/manage) and download a
+backup of your database.
+
+![image](create/create-import-online-backup.png){.align-center}
+
+:::: warning
+::: title
+Warning
+:::
+
+Online versions (e.g. *saas-*\*) are not supported on Odoo.sh.
+::::
+
+### Upload the backup
+
+Then, in your Odoo.sh project, in the backups tab of your production
+branch, import the backup you just downloaded.
+
+![image](create/create-import-production.png){.align-center}
+
+Once the backup imported, you can access the database using the
+*Connect* button in the history of the branch.
+
+![image](create/create-import-production-done.png){.align-center}
+
+### Check your outgoing email servers
+
+There is a default mail server provided with Odoo.sh. To use it, there
+must be no enabled outgoing mail server configured in your database in
+`Settings --> Technical --> Outgoing Mail Servers`{.interpreted-text
+role="menuselection"} (`Developer mode
+<developer-mode>`{.interpreted-text role="ref"} must be activated).
+
+After the import of your database, all outgoing email servers are
+disabled so you use the Odoo.sh email server provided by default.
+
+:::: warning
+::: title
+Warning
+:::
+
+Port 25 is (and will stay) closed. If you want to connect to an external
+SMTP server, you should use ports 465 and 587.
+::::
+
+### Check your scheduled actions
+
+All scheduled actions are disabled after the import.
+
+This is to prevent your newly imported database to perform actions that
+could impact your running production, such as sending the mails
+remaining in the queue, processing mass mailings, or third-party
+services synchronization (Calendars, files hosting, \...).
+
+If you plan to make the imported database your production, enable the
+scheduled actions you need. You can check what is enabled in the
+database of origin and enable the same actions in the imported database.
+Scheduled actions are located under
+`Settings --> Technical --> Automation
+--> Scheduled Actions`{.interpreted-text role="menuselection"}.
+
+### Register your subscription
+
+Your subscription is unlinked after the import.
+
+The imported database is considered a duplicate by default and the
+enterprise subscription is therefore removed, as you can only have one
+database linked per subscription.
+
+If you plan to make it your production, unlink your former database from
+the subscription, and register the newly imported database. Read the
+`database registration documentation
+<../../on_premise>`{.interpreted-text role="doc"} for instructions.
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/first_module.md ---
+
+# Your first module
+
+## Overview
+
+This chapter helps you to create your first Odoo module and deploy it in
+your Odoo.sh project.
+
+This tutorial requires
+`you created a project on Odoo.sh <odoosh-gettingstarted-create>`{.interpreted-text
+role="ref"}, and you know your Github repository\'s URL.
+
+Basic use of Git and Github is explained.
+
+The below assumptions are made:
+
+- *\~/src* is the directory where are located the Git repositories
+  related to your Odoo projects,
+- *odoo* is the Github user,
+- *odoo-addons* is the Github repository,
+- *feature-1* is the name of a development branch,
+- *master* is the name of the production branch,
+- *my_module* is the name of the module.
+
+Replace these by the values of your choice.
+
+## Create the development branch
+
+### From Odoo.sh
+
+In the branches view:
+
+- hit the `+` button next to the development stage,
+
+- choose the branch *master* in the *Fork* selection,
+
+- type *feature-1* in the *To* input.
+
+  ![pic1](first_module/firstmodule-development-+.png){width="45.0%"}
+  ![pic2](first_module/firstmodule-development-fork.png){width="45.0%"}
+
+Once the build created, you can access the editor and browse to the
+folder *\~/src/user* to access to the code of your development branch.
+
+![image](first_module/firstmodule-development-editor.png){.align-center}
+
+![image](first_module/firstmodule-development-editor-interface.png){.align-center}
+
+### From your computer
+
+Clone your Github repository on your computer:
+
+``` bash
+$ mkdir ~/src
+$ cd ~/src
+$ git clone https://github.com/odoo/odoo-addons.git
+$ cd ~/src/odoo-addons
+```
+
+Create a new branch:
+
+``` bash
+$ git checkout -b feature-1 master
+```
+
+## Create the module structure
+
+### Scaffolding the module
+
+While not necessary, scaffolding avoids the tedium of setting the basic
+Odoo module structure. You can scaffold a new module using the
+executable *odoo-bin*.
+
+From the Odoo.sh editor, in a terminal:
+
+``` bash
+$ odoo-bin scaffold my_module ~/src/user/
+```
+
+Or, from your computer, if you have an
+`installation of Odoo <../../on_premise/source>`{.interpreted-text
+role="doc"}:
+
+``` bash
+$ ./odoo-bin scaffold my_module ~/src/odoo-addons/
+```
+
+If you do not want to bother installing Odoo on your computer, you can
+also
+`download this module structure template <first_module/my_module.zip>`{.interpreted-text
+role="download"} in which you replace every occurrences of *my_module*
+to the name of your choice.
+
+The below structure will be generated:
+
+    my_module
+    ├── __init__.py
+    ├── __manifest__.py
+    ├── controllers
+    │   ├── __init__.py
+    │   └── controllers.py
+    ├── demo
+    │   └── demo.xml
+    ├── models
+    │   ├── __init__.py
+    │   └── models.py
+    ├── security
+    │   └── ir.model.access.csv
+    └── views
+        ├── templates.xml
+        └── views.xml
+
+:::: warning
+::: title
+Warning
+:::
+
+Do not use special characters other than the underscore ( \_ ) for your
+module name, not even an hyphen ( - ). This name is used for the Python
+classes of your module, and having classes name with special characters
+other than the underscore is not valid in Python.
+::::
+
+Uncomment the content of the files:
+
+- *models/models.py*, an example of model with its fields,
+
+- *views/views.xml*, a tree and a form view, with the menus opening
+  them,
+
+- *demo/demo.xml*, demo records for the above example model,
+
+- *controllers/controllers.py*, an example of controller implementing
+  some routes,
+
+- *views/templates.xml*, two example qweb views used by the above
+  controller routes,
+
+- *\_\_manifest\_\_.py*, the manifest of your module, including for
+  instance its title, description and data files to load. You just need
+  to uncomment the access control list data file:
+
+  ``` python
+  # 'security/ir.model.access.csv',
+  ```
+
+### Manually
+
+If you want to create your module structure manually, you can follow the
+`/developer/tutorials/getting_started`{.interpreted-text role="doc"}
+tutorial to understand the structure of a module and the content of each
+file.
+
+## Push the development branch
+
+Stage the changes to be committed
+
+``` bash
+$ git add my_module
+```
+
+Commit your changes
+
+``` bash
+$ git commit -m "My first module"
+```
+
+Push your changes to your remote repository
+
+From an Odoo.sh editor terminal:
+
+``` bash
+$ git push https HEAD:feature-1
+```
+
+The above command is explained in the section
+`Commit & Push your changes
+<odoosh-gettingstarted-online-editor-push>`{.interpreted-text
+role="ref"} of the
+`Online Editor <odoosh-gettingstarted-online-editor>`{.interpreted-text
+role="ref"} chapter. It includes the explanation regarding the fact you
+will be prompted to type your username and password, and what to do if
+you use the two-factor authentication.
+
+Or, from your computer terminal:
+
+``` bash
+$ git push -u origin feature-1
+```
+
+You need to specify *-u origin feature-1* for the first push only. From
+that point, to push your future changes from your computer, you can
+simply use
+
+``` bash
+$ git push
+```
+
+## Test your module
+
+Your branch should appear in your development branches in your project.
+
+![image](first_module/firstmodule-test-branch.png){.align-center}
+
+In the branches view of your project, you can click on your branch name
+in the left navigation panel to access its history.
+
+![image](first_module/firstmodule-test-branch-history.png){.align-center}
+
+You can see here the changes you just pushed, including the comment you
+set. Once the database ready, you can access it by clicking the
+*Connect* button.
+
+![image](first_module/firstmodule-test-database.png){.align-center}
+
+If your Odoo.sh project is configured to install your module
+automatically, you will directly see it amongst the database apps.
+Otherwise, it will be available in the apps to install.
+
+You can then play around with your module, create new records and test
+your features and buttons.
+
+## Test with the production data
+
+You need to have a production database for this step. You can create it
+if you do not have it yet.
+
+Once you tested your module in a development build with the demo data
+and believe it is ready, you can test it with the production data using
+a staging branch.
+
+You can either:
+
+- Make your development branch a staging branch, by drag and dropping it
+  onto the *staging* section title.
+
+  ![image](first_module/firstmodule-test-devtostaging.png){.align-center}
+
+- Merge it in an existing staging branch, by drag and dropping it onto
+  the given staging branch.
+
+  ![image](first_module/firstmodule-test-devinstaging.png){.align-center}
+
+You can also use the `git merge` command to merge your branches.
+
+This will create a new staging build, which will duplicate the
+production database and make it run using a server updated with your
+latest changes of your branch.
+
+![image](first_module/firstmodule-test-mergedinstaging.png){.align-center}
+
+Once the database ready, you can access it using the *Connect* button.
+
+### Install your module {#odoosh-gettingstarted-firstmodule-productiondata-install}
+
+Your module will not be installed automatically, you have to install it
+from the apps menu. Indeed, the purpose of the staging build is to test
+the behavior of your changes as it would be on your production, and on
+your production you would not like your module to be installed
+automatically, but on demand.
+
+Your module may not appear directly in your apps to install either, you
+need to update your apps list first:
+
+- Activate the `developer mode <developer-mode>`{.interpreted-text
+  role="ref"}
+
+- in the apps menu, click the *Update Apps List* button,
+
+- in the dialog that appears, click the *Update* button.
+
+  ![image](first_module/firstmodule-test-updateappslist.png){.align-center}
+
+Your module will then appear in the list of available apps.
+
+![image](first_module/firstmodule-test-mymoduleinapps.png){.align-center}
+
+## Deploy in production
+
+Once you tested your module in a staging branch with your production
+data, and believe it is ready for production, you can merge your branch
+in the production branch.
+
+Drag and drop your staging branch on the production branch.
+
+![image](first_module/firstmodule-test-mergeinproduction.png){.align-center}
+
+You can also use the `git merge` command to merge your branches.
+
+This will merge the latest changes of your staging branch in the
+production branch, and update your production server with these latest
+changes.
+
+![image](first_module/firstmodule-test-mergedinproduction.png){.align-center}
+
+Once the database ready, you can access it using the *Connect* button.
+
+### Install your module
+
+Your module will not be installed automatically, you have to install it
+manually as explained in the
+`above section about installing your module in staging databases
+<odoosh-gettingstarted-firstmodule-productiondata-install>`{.interpreted-text
+role="ref"}.
+
+## Add a change
+
+This section explains how to add a change in your module by adding a new
+field in a model and deploy it.
+
+From the Odoo.sh editor,
+
+:   - browse to your module folder *\~/src/user/my_module*,
+    - then, open the file *models/models.py*.
+
+Or, from your computer,
+
+:   - use the file browser of your choice to browse to your module
+      folder *\~/src/odoo-addons/my_module*,
+    - then, open the file *models/models.py* using the editor of your
+      choice, such as *Atom*, *Sublime Text*, *PyCharm*, *vim*, \...
+
+Then, after the description field
+
+``` python
+description = fields.Text()
+```
+
+Add a datetime field
+
+``` python
+start_datetime = fields.Datetime('Start time', default=lambda self: fields.Datetime.now())
+```
+
+Then, open the file *views/views.xml*.
+
+After
+
+``` xml
+<field name="value2"/>
+```
+
+Add
+
+``` xml
+<field name="start_datetime"/>
+```
+
+These changes alter the database structure by adding a column in a
+table, and modify a view stored in database.
+
+In order to be applied in existing databases, such as your production
+database, these changes requires the module to be updated.
+
+If you would like the update to be performed automatically by the
+Odoo.sh platform when you push your changes, increase your module
+version in its manifest.
+
+Open the module manifest *\_\_manifest\_\_.py*.
+
+Replace
+
+``` python
+'version': '0.1',
+```
+
+with
+
+``` python
+'version': '0.2',
+```
+
+The platform will detect the change of version and trigger the update of
+the module upon the new revision deployment.
+
+Browse to your Git folder.
+
+Then, from an Odoo.sh terminal:
+
+``` bash
+$ cd ~/src/user/
+```
+
+Or, from your computer terminal:
+
+``` bash
+$ cd ~/src/odoo-addons/
+```
+
+Then, stage your changes to be committed
+
+``` bash
+$ git add my_module
+```
+
+Commit your changes
+
+``` bash
+$ git commit -m "[ADD] my_module: add the start_datetime field to the model my_module.my_module"
+```
+
+Push your changes:
+
+From an Odoo.sh terminal:
+
+``` bash
+$ git push https HEAD:feature-1
+```
+
+Or, from your computer terminal:
+
+``` bash
+$ git push
+```
+
+The platform will then create a new build for the branch *feature-1*.
+
+![image](first_module/firstmodule-test-addachange-build.png){.align-center}
+
+Once you tested your changes, you can merge your changes in the
+production branch, for instance by drag-and-dropping the branch on the
+production branch in the Odoo.sh interface. As you increased the module
+version in the manifest, the platform will update the module
+automatically and your new field will be directly available. Otherwise
+you can manually update the module within the apps list.
+
+## Use an external Python library
+
+If you would like to use an external Python library which is not
+installed by default, you can define a *requirements.txt* file listing
+the external libraries your modules depends on.
+
+:::: note
+::: title
+Note
+:::
+
+\- It is not possible to install or upgrade system packages on an
+Odoo.sh database (e.g., apt packages). However, under specific
+conditions, packages can be considered for installation. This also
+applies to **Python modules** requiring system packages for their
+compilation, and **third-party Odoo modules**. - **PostgreSQL
+extensions** are not supported on Odoo.sh. - For more information,
+consult our [FAQ](https://www.odoo.sh/faq#install_dependencies).
+::::
+
+The platform will use this file to automatically install the Python
+libraries your project needs.
+
+The feature is explained in this section by using the [Unidecode
+library](https://pypi.python.org/pypi/Unidecode) in your module.
+
+Create a file *requirements.txt* in the root folder of your repository
+
+From the Odoo.sh editor, create and open the file
+\~/src/user/requirements.txt.
+
+Or, from your computer, create and open the file
+\~/src/odoo-addons/requirements.txt.
+
+Add
+
+``` text
+unidecode
+```
+
+Then use the library in your module, for instance to remove accents from
+characters in the name field of your model.
+
+Open the file *models/models.py*.
+
+Before
+
+``` python
+from odoo import models, fields, api
+```
+
+Add
+
+``` python
+from unidecode import unidecode
+```
+
+After
+
+``` python
+start_datetime = fields.Datetime('Start time', default=lambda self: fields.Datetime.now())
+```
+
+Add
+
+``` python
+@api.model
+def create(self, values):
+    if 'name' in values:
+        values['name'] = unidecode(values['name'])
+    return super(my_module, self).create(values)
+
+def write(self, values):
+    if 'name' in values:
+        values['name'] = unidecode(values['name'])
+    return super(my_module, self).write(values)
+```
+
+Adding a Python dependency requires a module version increase for the
+platform to install it.
+
+Edit the module manifest *\_\_manifest\_\_.py*
+
+Replace
+
+``` python
+'version': '0.2',
+```
+
+with
+
+``` python
+'version': '0.3',
+```
+
+Stage and commit your changes:
+
+``` bash
+$ git add requirements.txt
+$ git add my_module
+$ git commit -m "[IMP] my_module: automatically remove special chars in my_module.my_module name field"
+```
+
+Then, push your changes:
+
+In an Odoo.sh terminal:
+
+``` bash
+$ git push https HEAD:feature-1
+```
+
+In your computer terminal:
+
+``` bash
+$ git push
+```
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/online-editor.md ---
+
+# Online Editor {#odoosh-gettingstarted-online-editor}
+
+## Overview
+
+The online editor allows you to edit the source code of your builds from
+a web browser. It also gives you the possibility to open terminals,
+Python consoles, Odoo Shell consoles and
+[Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html).
+
+![image](online-editor/interface-editor.png){.align-center}
+
+You can access the editor of a build through
+`the branches tabs <odoosh-gettingstarted-branches-tabs>`{.interpreted-text
+role="ref"},
+`the builds dropdown menu <odoosh-gettingstarted-builds-dropdown-menu>`{.interpreted-text
+role="ref"} or by adding */odoo-sh/editor* to your build domain name
+(e.g. *https://odoo-addons-master-1.dev.odoo.com/odoo-sh/editor*).
+
+## Edit the source code
+
+The working directory is composed of the following folders:
+
+    .
+    ├── home
+    │    └── odoo
+    │         ├── src
+    │         │    ├── odoo                Odoo Community source code
+    │         │    │    └── odoo-bin       Odoo server executable
+    │         │    ├── enterprise          Odoo Enterprise source code
+    │         │    ├── themes              Odoo Themes source code
+    │         │    └── user                Your repository branch source code
+    │         ├── data
+    │         │    ├── filestore           database attachments, as well as the files of binary fields
+    │         │    └── sessions            visitors and users sessions
+    │         └── logs
+    │              ├── install.log         Database installation logs
+    │              ├── odoo.log            Running server logs
+    │              ├── update.log          Database updates logs
+    │              └── pip.log             Python packages installation logs
+
+You can edit the source code (files under */src*) in development and
+staging builds.
+
+:::: note
+::: title
+Note
+:::
+
+Your changes won\'t be propagated to a new build, you must commit them
+in your source code if you want to make them persist.
+::::
+
+For production builds, the source code is read-only, because applying
+local changes on a production server is not a good practice.
+
+- The source code of your Github repository is located under
+  */src/user*,
+- The source code of Odoo is located under
+  - */src/odoo* ([odoo/odoo](https://github.com/odoo/odoo)),
+  - */src/enterprise*
+    ([odoo/enterprise](https://github.com/odoo/enterprise)),
+  - */src/themes*
+    ([odoo/design-themes](https://github.com/odoo/design-themes)).
+
+To open a file in the editor, just double-click on it in the file
+browser panel on the left.
+
+![image](online-editor/interface-editor-open-file.png){.align-center}
+
+You can then begin to make your changes. You can save your changes with
+the menu `File --> Save .. File`{.interpreted-text role="menuselection"}
+or by hitting the `Ctrl+S`{.interpreted-text role="kbd"} shortcut.
+
+![image](online-editor/interface-editor-save-file.png){.align-center}
+
+If you save a Python file which is under your Odoo server addons path,
+Odoo will detect it and reload automatically so your changes are
+reflected immediately, without having to restart the server manually.
+
+![image](online-editor/interface-editor-automaticreload.gif){.align-center}
+
+However, if the change is a data stored in database, such as the label
+of a field, or a view, you have to update the according module to apply
+the change. You can update the module of the currently opened file by
+using the menu `Odoo --> Update current module`{.interpreted-text
+role="menuselection"}. Note that the file considered as currently opened
+is the file focused in the text editor, not the file highlighted in the
+file browser.
+
+![image](online-editor/interface-editor-update-current-module.png){.align-center}
+
+You can also open a terminal and execute the command:
+
+``` bash
+$ odoo-bin -u <comma-separated module names> --stop-after-init
+```
+
+## Commit & Push your changes {#odoosh-gettingstarted-online-editor-push}
+
+You have the possibility to commit and push your changes to your Github
+repository.
+
+- Open a terminal (`File --> New --> Terminal`{.interpreted-text
+  role="menuselection"}),
+- Change the directory to *\~/src/user* using `cd ~/src/user`,
+- Stage your changes using `git add`,
+- Commit your changes using `git commit`,
+- Push your changes using `git push https HEAD:<branch>`.
+
+In this last command,
+
+- *https* is the name of your *HTTPS* Github remote repository (e.g.
+  <https://github.com/username/repository.git>),
+- HEAD is the reference to the latest revision you committed,
+- \<branch\> must be replaced by the name of the branch to which you
+  want to push the changes, most-likely the current branch if you work
+  in a development build.
+
+![image](online-editor/interface-editor-commit-push.png){.align-center}
+
+:::: note
+::: title
+Note
+:::
+
+The SSH Github remote is not used because your SSH private key is not
+hosted in your build containers (for obvious security concerns) nor
+forwarded through an SSH Agent (as you access this editor through a web
+browser) and you therefore cannot authenticate yourself to Github using
+SSH. You have to use the HTTPS remote of your Github repository to push
+your changes, which is added automatically named as *https* in your Git
+remotes. You will be prompted to enter your Github username and
+password. If you activated the two-factor authentication on Github, you
+can create a [personal access
+token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+and use it as password. Granting the `repo` permission suffices.
+::::
+
+:::: note
+::: title
+Note
+:::
+
+The Git source folder *\~/src/user* is not checked out on a branch but
+rather on a detached revision: This is because builds work on specific
+revisions rather than branches. In other words, this means you can have
+multiple builds on the same branch, but on different revisions.
+::::
+
+Once your changes are pushed, according to your
+`branch push behavior <odoosh-gettingstarted-branches-tabs-settings>`{.interpreted-text
+role="ref"}, a new build may be created. You can continue to work in the
+editor you pushed from, as it will have the same revision as the new
+build that was created, but always make sure to be in an editor of a
+build using the latest revision of your branch.
+
+## Consoles
+
+You can open Python consoles, which are [IPython interactive
+shells](https://ipython.readthedocs.io/en/stable/interactive/tutorial.html).
+One of the most interesting addition to use a Python console rather than
+a IPython shell within a terminal is the [rich
+display](https://ipython.readthedocs.io/en/stable/config/integrating.html#rich-display)
+capabilities. Thanks to this, you will be able to display objects in
+HTML.
+
+You can for instance display cells of a CSV file using
+[pandas](https://pandas.pydata.org/pandas-docs/stable/tutorials.html).
+
+![image](online-editor/interface-editor-console-python-read-csv.png){.align-center}
+
+You can also open an Odoo Shell console to play around with the Odoo
+registry and model methods of your database. You can also directly read
+or write on your records.
+
+:::: warning
+::: title
+Warning
+:::
+
+In an Odoo Console, transactions are automatically committed. This
+means, for instance, that changes in records are applied effectively in
+the database. If you change the name of a user, the name of the user is
+changed in your database as well. You therefore should use Odoo consoles
+carefully on production databases.
+::::
+
+You can use *env* to invoke models of your database registry, e.g.
+`env['res.users']`.
+
+``` python
+env['res.users'].search_read([], ['name', 'email', 'login'])
+[{'id': 2,
+'login': 'admin',
+'name': 'Administrator',
+'email': 'admin@example.com'}]
+```
+
+The class `Pretty` gives you the possibility to easily display lists and
+dicts in a pretty way, using the [rich
+display](https://ipython.readthedocs.io/en/stable/config/integrating.html#rich-display)
+mentioned above.
+
+![image](online-editor/interface-editor-console-odoo-pretty.png){.align-center}
+
+You can also use
+[pandas](https://pandas.pydata.org/pandas-docs/stable/tutorials.html) to
+display graphs.
+
+![image](online-editor/interface-editor-console-odoo-graph.png){.align-center}
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/settings.md ---
+
+# Settings
+
+## Overview
+
+The settings allow you to manage the configuration of your project.
+
+![image](settings/interface-settings.png){.align-center}
+
+## Project name
+
+The name of your project.
+
+![image](settings/interface-settings-projectname.png){.align-center}
+
+This defines the address that will be used to access your production
+database.
+
+Addresses of your staging and development builds are derived from this
+name and assigned automatically. However, when you change your project
+name, only future builds will use the new name.
+
+## Collaborators {#odoosh-gettingstarted-settings-collaborators}
+
+Manage the Github users who can access your project.
+
+![image](settings/interface-settings-collaborators.png){.align-center}
+
+There are three levels of users:
+
+- `Admin`{.interpreted-text role="guilabel"}: has access to all features
+  of an Odoo.sh project.
+- `Tester`{.interpreted-text role="guilabel"}: has access to the
+  *Staging* and *Development* databases and their tooling. This role is
+  for users conducting User Acceptance Tests. Testers can work with
+  copies of production data but cannot access the production database
+  through the Odoo.sh tooling.
+- `Developer`{.interpreted-text role="guilabel"}: has access only to the
+  *Development* databases and their tooling. This role is for developers
+  who propose code modifications but are not allowed to access
+  production and staging databases through the Odoo.sh tooling.
+
+:::: warning
+::: title
+Warning
+:::
+
+Those roles only apply to the usage of Odoo.sh. It is important to
+reflect the user roles attribution within the repository on GitHub.
+Please refer to the GitHub documentation section on [Managing a branch
+protection
+rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
+for detailed guidance.
+::::
+
+## Public Access
+
+Allow public access to your development builds.
+
+![image](settings/interface-settings-public.png){.align-center}
+
+If activated, this option exposes the Builds page publicly, allowing
+visitors to view logs of development builds.
+
+Production and staging builds are excluded, visitors can only see their
+status.
+
+## GitHub commit statuses {#odoosh-gettingstarted-settings-modules-installation}
+
+This option enables Odoo.sh to push commit statuses to your GitHub
+repository when a build is created or updated. It requires a GitHub
+token with permissions to push commit statuses to the repository. Refer
+to [GitHub\'s documentation on personal access
+tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+for instructions to create yours.
+
+:::: note
+::: title
+Note
+:::
+
+GitHub\'s **fine-grained personal tokens** have an expiration date and
+will be disabled if they fail to update the commit status. You can
+replace the token at any time on Odoo.sh.
+::::
+
+The commit statuses pushed to GitHub can have the following contexts:
+
+- `ci/odoo.sh (dev)`{.interpreted-text role="guilabel"}: status of a
+  development build
+- `ci/odoo.sh (staging)`{.interpreted-text role="guilabel"}: status of a
+  staging build
+- `ci/odoo.sh (production)`{.interpreted-text role="guilabel"}: status
+  of a production build
+- `ci/odoo.sh (test_ci)`{.interpreted-text role="guilabel"}: testing the
+  token from the Settings page will push a test status on the last
+  commit of your repository
+
+## Custom domains
+
+To configure additional domains please refer to the corresponding
+branch\'s `settings tab
+<odoosh-gettingstarted-branches-tabs-settings>`{.interpreted-text
+role="ref"}.
+
+## Submodules {#odoosh-gettingstarted-settings-submodules}
+
+Configure the deploy keys for the private repositories you use as
+submodules in your branches to allow Odoo.sh to download them.
+
+:::: warning
+::: title
+Warning
+:::
+
+These settings are required for **private repositories** only. If you
+are looking on how to set up your submodules, instructions are available
+in the chapter `Submodules
+<odoosh-advanced-submodules>`{.interpreted-text role="ref"} of this
+documentation.
+::::
+
+![image](settings/interface-settings-submodules.png){.align-center}
+
+When a repository is private, it is not possible to publicly download
+its branches and revisions. For that reason, you need to configure a
+deploy key for Odoo.sh, so the remote Git server allows our platform to
+download the revisions of this private repository.
+
+To configure the deploy key for a private repository, proceed as
+follows:
+
+- in the input, paste the SSH URL of your private sub-repository and
+  click on *Add*,
+  - e.g. *git@github.com:USERNAME/REPOSITORY.git*
+  - it can be another Git server than Github, such as Bitbucket, Gitlab
+    or even your own self-hosted server
+- copy the public key,
+  - it should look like *ssh-rsa
+    some\...random\...characters\...here\...==*
+- in the settings of the private sub-repository, add the public key
+  amongst the deploy keys.
+  - Github.com:
+    `Settings --> Deploy keys --> Add deploy key`{.interpreted-text
+    role="menuselection"}
+  - Bitbucket.com:
+    `Settings --> Access keys --> Add key`{.interpreted-text
+    role="menuselection"}
+  - Gitlab.com:
+    `Settings --> Repository --> Deploy Keys`{.interpreted-text
+    role="menuselection"}
+  - Self-hosted: append the key to the git user's authorized_keys file
+    in its .ssh directory
+
+## Storage Size
+
+This section shows the storage size used by your project.
+
+![image](settings/interface-settings-storage.png){.align-center}
+
+Storage size is computed as follows:
+
+- the size of the PostgreSQL database
+- the size of the disk files available in your container: database
+  filestore, sessions storage directory\...
+
+:::: warning
+::: title
+Warning
+:::
+
+In case you want to analyze disk usage, you can run the tool
+[ncdu](https://dev.yorhel.nl/ncdu/man) in your Web Shell.
+::::
+
+Should your production database size grow to exceed what\'s provisioned
+in your subscription, it will automatically be synchronized with it.
+
+## Database Workers
+
+Additional database workers can be configured here. More workers help
+increase the load your production database is able to handle. If you add
+more, it will automatically be synchronized with your subscription.
+
+![image](settings/interface-settings-workers.png){.align-center}
+
+:::: warning
+::: title
+Warning
+:::
+
+Adding more workers will not magically solve all performance issues. It
+only allows the server to handle more connections at the same time. If
+some operations are unusually slow, it\'s most likely a problem with the
+code, if it\'s not due to your own customizations you can open a ticket
+[here](https://www.odoo.com/help).
+::::
+
+## Staging Branches
+
+Additional staging branches allow you to develop and test more features
+at the same time. If you add more, it will automatically be synchronized
+with your subscription.
+
+![image](settings/interface-settings-staging-branches.png){.align-center}
+
+## Activation
+
+Shows the status of the project\'s activation. You can change the
+project\'s activation code if needed.
+
+![image](settings/interface-settings-activation.png){.align-center}
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started/status.md ---
+
+# Status
+
+## Overview
+
+The status page shows statistics regarding the servers your project
+uses. It includes the servers availability.
+
+![image](status/interface-status.png){.align-center}
+
+
+
+
+--- SOURCE: administration/odoo_sh/getting_started.md ---
+
+nosearch
+
+:   
+
+# Get started
+
+::: {.toctree titlesonly=""}
+getting_started/create getting_started/branches getting_started/builds
+getting_started/status getting_started/settings
+getting_started/online-editor getting_started/first_module
+:::
+
+
+
+
+--- SOURCE: administration/odoo_sh/overview/introduction.md ---
+
+# Introduction to Odoo.sh
+
+::: {.youtube align="right" width="700" height="394"}
+QuNsa9n9PMg
+:::
+
+The documentation will help you go live with your Odoo.sh project in no
+time.
+
+
+
+
+--- SOURCE: administration/odoo_sh/overview.md ---
+
+nosearch
+
+:   
+
+# Overview
+
+::: {.toctree titlesonly=""}
+overview/introduction
+:::
+
+
+
+
+--- SOURCE: administration/odoo_sh.md ---
+
+nosearch
+
+:   
+
+# Odoo.sh
+
+::: toctree
+odoo_sh/overview odoo_sh/getting_started odoo_sh/advanced
+:::
+
+
+
+
+--- SOURCE: administration/on_premise/community_to_enterprise.md ---
+
+# Switch from Community to Enterprise {#setup/enterprise}
+
+Depending on your current installation, there are multiple ways to
+upgrade your community version. In any case the basic guidelines are:
+
+- Backup your community database
+
+  ![image](community_to_enterprise/db_manager.png){.img-fluid
+  .img-fluid}
+
+- Shutdown your server
+
+- Install the web_enterprise module
+
+- Restart your server
+
+- Enter your Odoo Enterprise Subscription code
+
+![image](community_to_enterprise/enterprise_code.png){.img-fluid
+.img-fluid}
+
+## On Linux, using an installer
+
+- Backup your community database
+
+- Stop the odoo service
+
+  ``` console
+  $ sudo service odoo stop
+  ```
+
+- Install the enterprise .deb (it should install over the community
+  package)
+
+  ``` console
+  $ sudo dpkg -i <path_to_enterprise_deb>
+  ```
+
+- Update your database to the enterprise packages using
+
+  ``` console
+  $ python3 /usr/bin/odoo-bin -d <database_name> -i web_enterprise --stop-after-init
+  ```
+
+- You should be able to connect to your Odoo Enterprise instance using
+  your usual mean of identification. You can then link your database
+  with your Odoo Enterprise Subscription by entering the code you
+  received by e-mail in the form input
+
+## On Linux, using the source code
+
+There are many ways to launch your server when using sources, and you
+probably have your own favourite. You may need to adapt sections to your
+usual workflow.
+
+- Shutdown your server
+
+- Backup your community database
+
+- Update the `--addons-path` parameter of your launch command (see
+  `../on_premise/source`{.interpreted-text role="doc"})
+
+- Install the web_enterprise module by using
+
+  ``` console
+  $ -d <database_name> -i web_enterprise --stop-after-init
+  ```
+
+  Depending on the size of your database, this may take some time.
+
+- Restart your server with the updated addons path of point 3. You
+  should be able to connect to your instance. You can then link your
+  database with your Odoo Enterprise Subscription by entering the code
+  you received by e-mail in the form input
+
+## On Windows
+
+- Backup your community database
+
+- Uninstall Odoo Community (using the Uninstall executable in the
+  installation folder) -PostgreSQL will remain installed
+
+  ![image](community_to_enterprise/windows_uninstall.png){.img-fluid
+  .img-fluid}
+
+- Launch the Odoo Enterprise Installer and follow the steps normally.
+  When choosing the installation path, you can set the folder of the
+  Community installation (this folder still contains the PostgreSQL
+  installation). Uncheck `Start Odoo` at the end of the installation
+
+  ![image](community_to_enterprise/windows_setup.png){.img-fluid
+  .img-fluid}
+
+- Using a command window, update your Odoo Database using this command
+  (from the Odoo installation path, in the server subfolder)
+
+  ``` console
+  $ ..\python\python.exe odoo-bin -d <database_name> -i web_enterprise --stop-after-init
+  ```
+
+- No need to manually launch the server, the service is running. You
+  should be able to connect to your Odoo Enterprise instance using your
+  usual mean of identification. You can then link your database with
+  your Odoo Enterprise Subscription by entering the code you received by
+  e-mail in the form input
+
+
+
+
+--- SOURCE: administration/on_premise/deploy.md ---
+
+# System configuration
+
+This document describes basic steps to set up Odoo in production or on
+an internet-facing server. It follows
+`installation <../on_premise>`{.interpreted-text role="doc"}, and is not
+generally necessary for a development systems that is not exposed on the
+internet.
+
+:::: warning
+::: title
+Warning
+:::
+
+If you are setting up a public server, be sure to check our
+`security`{.interpreted-text role="ref"} recommendations!
+::::
+
+## dbfilter {#db_filter}
+
+Odoo is a multi-tenant system: a single Odoo system may run and serve a
+number of database instances. It is also highly customizable, with
+customizations (starting from the modules being loaded) depending on the
+\"current database\".
+
+This is not an issue when working with the backend (web client) as a
+logged-in company user: the database can be selected when logging in,
+and customizations loaded afterwards.
+
+However it is an issue for non-logged users (portal, website) which
+aren\'t bound to a database: Odoo needs to know which database should be
+used to load the website page or perform the operation. If multi-tenancy
+is not used that is not an issue, there\'s only one database to use, but
+if there are multiple databases accessible Odoo needs a rule to know
+which one it should use.
+
+That is one of the purposes of
+`--db-filter <odoo-bin --db-filter>`{.interpreted-text role="option"}:
+it specifies how the database should be selected based on the hostname
+(domain) that is being requested. The value is a [regular
+expression](https://docs.python.org/3/library/re.html), possibly
+including the dynamically injected hostname (`%h`) or the first
+subdomain (`%d`) through which the system is being accessed.
+
+For servers hosting multiple databases in production, especially if
+`website` is used, dbfilter **must** be set, otherwise a number of
+features will not work correctly.
+
+### Configuration samples
+
+- Show only databases with names beginning with \'mycompany\'
+
+in
+`the configuration file <reference/cmdline/config_file>`{.interpreted-text
+role="ref"} set:
+
+``` ini
+[options]
+dbfilter = ^mycompany.*$
+```
+
+- Show only databases matching the first subdomain after `www`: for
+  example the database \"mycompany\" will be shown if the incoming
+  request was sent to `www.mycompany.com` or `mycompany.co.uk`, but not
+  for `www2.mycompany.com` or `helpdesk.mycompany.com`.
+
+in
+`the configuration file <reference/cmdline/config_file>`{.interpreted-text
+role="ref"} set:
+
+``` ini
+[options]
+dbfilter = ^%d$
+```
+
+:::: note
+::: title
+Note
+:::
+
+Setting a proper `--db-filter <odoo-bin --db-filter>`{.interpreted-text
+role="option"} is an important part of securing your deployment. Once it
+is correctly working and only matching a single database per hostname,
+it is strongly recommended to block access to the database manager
+screens, and to use the `--no-database-list` startup parameter to
+prevent listing your databases, and to block access to the database
+management screens. See also [security](#security).
+::::
+
+## PostgreSQL
+
+By default, PostgreSQL only allows connection over UNIX sockets and
+loopback connections (from \"localhost\", the same machine the
+PostgreSQL server is installed on).
+
+UNIX socket is fine if you want Odoo and PostgreSQL to execute on the
+same machine, and is the default when no host is provided, but if you
+want Odoo and PostgreSQL to execute on different machines[^1] it will
+need to [listen to network
+interfaces](https://www.postgresql.org/docs/12/static/runtime-config-connection.html)[^2],
+either:
+
+- Only accept loopback connections and [use an SSH
+  tunnel](https://www.postgresql.org/docs/12/static/ssh-tunnels.html)
+  between the machine on which Odoo runs and the one on which PostgreSQL
+  runs, then configure Odoo to connect to its end of the tunnel
+- Accept connections to the machine on which Odoo is installed, possibly
+  over ssl (see [PostgreSQL connection
+  settings](https://www.postgresql.org/docs/12/static/runtime-config-connection.html)
+  for details), then configure Odoo to connect over the network
+
+### Configuration sample
+
+- Allow tcp connection on localhost
+- Allow tcp connection from 192.168.1.x network
+
+in `/etc/postgresql/<YOUR POSTGRESQL VERSION>/main/pg_hba.conf` set:
+
+``` text
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+host    all             all             192.168.1.0/24          md5
+```
+
+in `/etc/postgresql/<YOUR POSTGRESQL VERSION>/main/postgresql.conf` set:
+
+``` text
+listen_addresses = 'localhost,192.168.1.2'
+port = 5432
+max_connections = 80
+```
+
+### Configuring Odoo {#setup/deploy/odoo}
+
+Out of the box, Odoo connects to a local postgres over UNIX socket via
+port 5432. This can be overridden using `the database options
+<reference/cmdline/server/database>`{.interpreted-text role="ref"} when
+your Postgres deployment is not local and/or does not use the
+installation defaults.
+
+The `packaged installers <packages>`{.interpreted-text role="doc"} will
+automatically create a new user (`odoo`) and set it as the database
+user.
+
+- The database management screens are protected by the `admin_passwd`
+  setting. This setting can only be set using configuration files, and
+  is simply checked before performing database alterations. It should be
+  set to a randomly generated value to ensure third parties can not use
+  this interface.
+
+- All database operations use the `database options
+  <reference/cmdline/server/database>`{.interpreted-text role="ref"},
+  including the database management screen. For the database management
+  screen to work requires that the PostgreSQL user have `createdb`
+  right.
+
+- Users can always drop databases they own. For the database management
+  screen to be completely non-functional, the PostgreSQL user needs to
+  be created with `no-createdb` and the database must be owned by a
+  different PostgreSQL user.
+
+  :::: warning
+  ::: title
+  Warning
+  :::
+
+  the PostgreSQL user *must not* be a superuser
+  ::::
+
+#### Configuration sample
+
+- connect to a PostgreSQL server on 192.168.1.2
+- port 5432
+- using an \'odoo\' user account,
+- with \'pwd\' as a password
+- filtering only db with a name beginning with \'mycompany\'
+
+in
+`the configuration file <reference/cmdline/config_file>`{.interpreted-text
+role="ref"} set:
+
+``` ini
+[options]
+admin_passwd = mysupersecretpassword
+db_host = 192.168.1.2
+db_port = 5432
+db_user = odoo
+db_password = pwd
+dbfilter = ^mycompany.*$
+```
+
+### SSL Between Odoo and PostgreSQL {#postgresql_ssl_connect}
+
+Since Odoo 11.0, you can enforce ssl connection between Odoo and
+PostgreSQL. in Odoo the db_sslmode control the ssl security of the
+connection with value chosen out of \'disable\', \'allow\', \'prefer\',
+\'require\', \'verify-ca\' or \'verify-full\'
+
+[PostgreSQL
+Doc](https://www.postgresql.org/docs/12/static/libpq-ssl.html)
+
+## Builtin server {#builtin_server}
+
+Odoo includes built-in HTTP, cron, and live-chat servers, using either
+multi-threading or multi-processing.
+
+The **multi-threaded** server is a simpler server primarily used for
+development, demonstrations, and its compatibility with various
+operating systems (including Windows). A new thread is spawned for every
+new HTTP request, even for long-lived connections such as websocket.
+Extra daemonic cron threads are spawned too. Due to a Python limitation
+(GIL), it doesn\'t make the best use of the hardware.
+
+The multi-threaded server is the default server, also for docker
+containers. It is selected by leaving the
+`--workers <odoo-bin --workers>`{.interpreted-text role="option"} option
+out or setting it to `0`.
+
+The **multi-processing** server is a full-blown server primarily used
+for production. It is not liable to the same Python limitation (GIL) on
+resource usage and hence makes the best use of the hardware. A pool of
+workers is created upon server startup. New HTTP requests are queued by
+the OS until there are workers ready to process them. An extra
+event-driven HTTP worker for the live chat is spawned on an alternative
+port. Extra cron workers are spawned too. A configurable process reaper
+monitors resource usage and can kill/restart failed workers.
+
+The multi-processing server is opt-in. It is selected by setting the
+`--workers
+<odoo-bin --workers>`{.interpreted-text role="option"} option to a
+non-null integer.
+
+:::: note
+::: title
+Note
+:::
+
+Because it is highly customized for Linux servers, the multi-processing
+server is not available on Windows.
+::::
+
+### Worker number calculation
+
+- Rule of thumb : (#CPU \* 2) + 1
+- Cron workers need CPU
+- 1 worker \~= 6 concurrent users
+
+### memory size calculation
+
+- We consider 20% of the requests are heavy requests, while 80% are
+  simpler ones
+- A heavy worker, when all computed field are well designed, SQL
+  requests are well designed, \... is estimated to consume around 1GB of
+  RAM
+- A lighter worker, in the same scenario, is estimated to consume around
+  150MB of RAM
+
+Needed RAM = #worker \* ( (light_worker_ratio \*
+light_worker_ram_estimation) + (heavy_worker_ratio \*
+heavy_worker_ram_estimation) )
+
+### LiveChat
+
+In multi-processing, a dedicated LiveChat worker is automatically
+started and listens on the
+`--gevent-port <odoo-bin --gevent-port>`{.interpreted-text
+role="option"}. By default, the HTTP requests will keep accessing the
+normal HTTP workers instead of the LiveChat one. You must deploy a proxy
+in front of Odoo and redirect incoming requests whose path starts with
+`/websocket/` to the LiveChat worker. You must also start Odoo in
+`--proxy-mode <odoo-bin --proxy-mode>`{.interpreted-text role="option"}
+so it uses the real client headers (such as hostname, scheme, and IP)
+instead of the proxy ones.
+
+### Configuration sample
+
+- Server with 4 CPU, 8 Thread
+- 60 concurrent users
+- 60 users / 6 = 10 \<- theoretical number of worker needed
+- (4 \* 2) + 1 = 9 \<- theoretical maximal number of worker
+- We\'ll use 8 workers + 1 for cron. We\'ll also use a monitoring system
+  to measure cpu load, and check if it\'s between 7 and 7.5 .
+- RAM = 9 \* ((0.8\*150) + (0.2\*1024)) \~= 3GB RAM for Odoo
+
+in
+`the configuration file <reference/cmdline/config_file>`{.interpreted-text
+role="ref"}:
+
+``` ini
+[options]
+limit_memory_hard = 1677721600
+limit_memory_soft = 629145600
+limit_request = 8192
+limit_time_cpu = 600
+limit_time_real = 1200
+max_cron_threads = 1
+workers = 8
+```
+
+## HTTPS {#https_proxy}
+
+Whether it\'s accessed via website/web client or web service, Odoo
+transmits authentication information in cleartext. This means a secure
+deployment of Odoo must use HTTPS[^3]. SSL termination can be
+implemented via just about any SSL termination proxy, but requires the
+following setup:
+
+- Enable Odoo\'s `proxy mode <odoo-bin --proxy-mode>`{.interpreted-text
+  role="option"}. This should only be enabled when Odoo is behind a
+  reverse proxy
+- Set up the SSL termination proxy ([Nginx termination
+  example](https://nginx.com/resources/admin-guide/nginx-ssl-termination/))
+- Set up the proxying itself ([Nginx proxying
+  example](https://nginx.com/resources/admin-guide/reverse-proxy/))
+- Your SSL termination proxy should also automatically redirect
+  non-secure connections to the secure port
+
+### Configuration sample
+
+- Redirect http requests to https
+- Proxy requests to odoo
+
+in
+`the configuration file <reference/cmdline/config_file>`{.interpreted-text
+role="ref"} set:
+
+``` ini
+proxy_mode = True
+```
+
+in `/etc/nginx/sites-enabled/odoo.conf` set:
+
+``` nginx
+#odoo server
+upstream odoo {
+  server 127.0.0.1:8069;
+}
+upstream odoochat {
+  server 127.0.0.1:8072;
+}
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  ''      close;
+}
+
+# http -> https
+server {
+  listen 80;
+  server_name odoo.mycompany.com;
+  rewrite ^(.*) https://$host$1 permanent;
+}
+
+server {
+  listen 443 ssl;
+  server_name odoo.mycompany.com;
+  proxy_read_timeout 720s;
+  proxy_connect_timeout 720s;
+  proxy_send_timeout 720s;
+
+  # SSL parameters
+  ssl_certificate /etc/ssl/nginx/server.crt;
+  ssl_certificate_key /etc/ssl/nginx/server.key;
+  ssl_session_timeout 30m;
+  ssl_protocols TLSv1.2;
+  ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+  ssl_prefer_server_ciphers off;
+
+  # log
+  access_log /var/log/nginx/odoo.access.log;
+  error_log /var/log/nginx/odoo.error.log;
+
+  # Redirect websocket requests to odoo gevent port
+  location /websocket {
+    proxy_pass http://odoochat;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+    proxy_set_header X-Forwarded-Host $http_host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    proxy_cookie_flags session_id samesite=lax secure;  # requires nginx 1.19.8
+  }
+
+  # Redirect requests to odoo backend server
+  location / {
+    # Add Headers for odoo proxy mode
+    proxy_set_header X-Forwarded-Host $http_host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_redirect off;
+    proxy_pass http://odoo;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    proxy_cookie_flags session_id samesite=lax secure;  # requires nginx 1.19.8
+  }
+
+  # common gzip
+  gzip_types text/css text/scss text/plain text/xml application/xml application/json application/javascript;
+  gzip on;
+}
+```
+
+### HTTPS Hardening
+
+Add the [Strict-Transport-Security]{.title-ref} header to all requests,
+in order to prevent browsers from ever sending a plain HTTP request to
+this domain. You will need to maintain a working HTTPS service with a
+valid certificate on this domain at all times, otherwise your users will
+see security alerts or be entirely unable to access it.
+
+Force HTTPS connections during a year for every visitor in NGINX with
+the line:
+
+``` nginx
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+```
+
+Additional configuration can be defined for the [session_id]{.title-ref}
+cookie. The [Secure]{.title-ref} flag can be added to ensure it is never
+transmitted over HTTP and [SameSite=Lax]{.title-ref} to prevent
+authenticated
+[CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery).
+
+``` nginx
+# requires nginx 1.19.8
+proxy_cookie_flags session_id samesite=lax secure;
+```
+
+## Odoo as a WSGI Application
+
+It is also possible to mount Odoo as a standard
+[WSGI](https://wsgi.readthedocs.org/) application. Odoo provides the
+base for a WSGI launcher script as `odoo-wsgi.example.py`. That script
+should be customized (possibly after copying it from the setup
+directory) to correctly set the configuration directly in
+`odoo.tools.config`{.interpreted-text role="mod"} rather than through
+the command-line or a configuration file.
+
+However the WSGI server will only expose the main HTTP endpoint for the
+web client, website and webservice API. Because Odoo does not control
+the creation of workers anymore it can not setup cron or livechat
+workers
+
+### Cron Workers
+
+Starting one of the built-in Odoo servers next to the WSGI server is
+required to process cron jobs. That server must be configured to only
+process crons and not HTTP requests using the
+`--no-http <odoo-bin --no-http>`{.interpreted-text role="option"} cli
+option or the `http_enable = False` configuration file setting.
+
+On Linux-like systems, using the multi-processing server over the
+multi-threading one is recommended to benefit from better hardware usage
+and increased stability, i.e., using the
+`--workers=-1 <odoo-bin --workers>`{.interpreted-text role="option"} and
+`--max-cron-threads=n
+<odoo-bin --max-cron-threads>`{.interpreted-text role="option"} cli
+options.
+
+### LiveChat
+
+Using a gevent-compatible WSGI server is required for the correct
+operation of the live chat feature. That server should be able to handle
+many simultaneous long-lived connections but doesn\'t need a lot of
+processing power. All requests whose path starts with `/websocket/`
+should be directed to that server. A regular (thread/process-based) WSGI
+server should be used for all other requests.
+
+The Odoo cron server can also be used to serve the live chat requests.
+Just drop the `--no-http <odoo-bin --no-http>`{.interpreted-text
+role="option"} cli option from the cron server and make sure requests
+whose path starts with `/websocket/` are directed to this server, either
+on the `--http-port <odoo-bin --http-port>`{.interpreted-text
+role="option"} (multi-threading server) or on the
+`--gevent-port <odoo-bin --gevent-port>`{.interpreted-text
+role="option"} (multi-processing server).
+
+## Serving static files and attachments {#deploy/streaming}
+
+For development convenience, Odoo directly serves all static files and
+attachments in its modules. This may not be ideal when it comes to
+performances, and static files should generally be served by a static
+HTTP server.
+
+### Serving static files
+
+Odoo static files are located in each module\'s
+`static/`{.interpreted-text role="file"} folder, so static files can be
+served by intercepting all requests to
+`/{MODULE}/static/{FILE}`{.interpreted-text role="samp"}, and looking up
+the right module (and file) in the various addons paths.
+
+It is recommended to set the
+`Content-Security-Policy: default-src 'none'` header on all images
+delivered by the web server. It is not strictly necessary as users
+cannot modify/inject content inside of modules\'
+`static/`{.interpreted-text role="file"} folder and existing images are
+final (they do not fetch new resources by themselves). However, it is
+good practice.
+
+Using the above NGINX (https) configuration, the following `map` and
+`location` blocks should be added to serve static files via NGINX.
+
+``` nginx
+map $sent_http_content_type $content_type_csp {
+    default "";
+    ~image/ "default-src 'none'";
+}
+
+server {
+    # the rest of the configuration
+
+    location @odoo {
+        # copy-paste the content of the / location block
+    }
+
+    # Serve static files right away
+    location ~ ^/[^/]+/static/.+$ {
+        # root and try_files both depend on your addons paths
+        root ...;
+        try_files ... @odoo;
+        expires 24h;
+        add_header Content-Security-Policy $content_type_csp;
+    }
+}
+```
+
+The actual `root` and `try_files` directives are dependant on your
+installation, specifically on your
+`--addons-path <odoo-bin --addons-path>`{.interpreted-text
+role="option"}.
+
+:::::: example
+::::: tabs
+::: group-tab
+Debian package
+
+Say Odoo has been installed via the **debian packages** for Community
+and Enterprise, and that the
+`--addons-path <odoo-bin --addons-path>`{.interpreted-text
+role="option"} is `'/usr/lib/python3/dist-packages/odoo/addons'`.
+
+The `root` and `try_files` should be:
+
+``` nginx
+root /usr/lib/python3/dist-packages/odoo/addons;
+try_files $uri @odoo;
+```
+:::
+
+::: group-tab
+Git sources
+
+Say Odoo has been installed via the **sources**, that both the Community
+and Enterprise git repositories were cloned in
+`/opt/odoo/community`{.interpreted-text role="file"} and
+`/opt/odoo/enterprise`{.interpreted-text role="file"} respectively, and
+that the `--addons-path <odoo-bin --addons-path>`{.interpreted-text
+role="option"} is
+`'/opt/odoo/community/odoo/addons,/opt/odoo/community/addons,/opt/odoo/enterprise'`.
+
+The `root` and `try_files` should be:
+
+``` nginx
+root /opt/odoo;
+try_files /community/odoo/addons$uri /community/addons$uri /enterprise$uri @odoo;
+```
+:::
+:::::
+::::::
+
+### Serving attachments
+
+Attachments are files stored in the filestore which access is regulated
+by Odoo. They cannot be directly accessed via a static web server as
+accessing them requires multiple lookups in the database to determine
+where the files are stored and whether the current user can access them
+or not.
+
+Nevertheless, once the file has been located and the access rights
+verified by Odoo, it is a good idea to serve the file using the static
+web server instead of Odoo. For Odoo to delegate serving files to the
+static web server, the [X-Sendfile](https://tn123.org/mod_xsendfile/)
+(apache) or
+[X-Accel](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/)
+(nginx) extensions must be enabled and configured on the static web
+server. Once it is set up, start Odoo with the
+`--x-sendfile <odoo-bin --x-sendfile>`{.interpreted-text role="option"}
+CLI flag (this unique flag is used for both X-Sendfile and X-Accel).
+
+:::: note
+::: title
+Note
+:::
+
+\- The X-Sendfile extension for apache (and compatible web servers) does
+not require any supplementary configuration. - The X-Accel extension for
+NGINX **does** require the following additionnal configuration:
+
+``` nginx
+location /web/filestore {
+    internal;
+    alias /path/to/odoo/data-dir/filestore;
+}
+```
+
+In case you don\'t know what is the path to your filestore, start Odoo
+with the `--x-sendfile <odoo-bin --x-sendfile>`{.interpreted-text
+role="option"} option and navigate to the `/web/filestore` URL directly
+via Odoo (don\'t navigate to the URL via NGINX). This logs a warnings,
+the message contains the configuration you need.
+::::
+
+## Security
+
+For starters, keep in mind that securing an information system is a
+continuous process, not a one-shot operation. At any moment, you will
+only be as secure as the weakest link in your environment.
+
+So please do not take this section as the ultimate list of measures that
+will prevent all security problems. It\'s only intended as a summary of
+the first important things you should be sure to include in your
+security action plan. The rest will come from best security practices
+for your operating system and distribution, best practices in terms of
+users, passwords, and access control management, etc.
+
+When deploying an internet-facing server, please be sure to consider the
+following security-related topics:
+
+- Always set a strong super-admin admin password, and restrict access to
+  the database management pages as soon as the system is set up. See
+  `db_manager_security`{.interpreted-text role="ref"}.
+
+- Choose unique logins and strong passwords for all administrator
+  accounts on all databases. Do not use \'admin\' as the login. Do not
+  use those logins for day-to-day operations, only for
+  controlling/managing the installation. *Never* use any default
+  passwords like admin/admin, even for test/staging databases.
+
+- Do **not** install demo data on internet-facing servers. Databases
+  with demo data contain default logins and passwords that can be used
+  to get into your systems and cause significant trouble, even on
+  staging/dev systems.
+
+- Use appropriate database filters (
+  `--db-filter <odoo-bin --db-filter>`{.interpreted-text role="option"})
+  to restrict the visibility of your databases according to the
+  hostname. See `db_filter`{.interpreted-text role="ref"}. You may also
+  use `-d <odoo-bin -d>`{.interpreted-text role="option"} to provide
+  your own (comma-separated) list of available databases to filter from,
+  instead of letting the system fetch them all from the database
+  backend.
+
+- Once your `db_name` and `db_filter` are configured and only match a
+  single database per hostname, you should set `list_db` configuration
+  option to `False`, to prevent listing databases entirely, and to block
+  access to the database management screens (this is also exposed as the
+  `--no-database-list <odoo-bin --no-database-list>`{.interpreted-text
+  role="option"} command-line option)
+
+- Make sure the PostgreSQL user
+  (`--db_user <odoo-bin --db_user>`{.interpreted-text role="option"}) is
+  *not* a super-user, and that your databases are owned by a different
+  user. For example they could be owned by the `postgres` super-user if
+  you are using a dedicated non-privileged `db_user`. See also
+  `setup/deploy/odoo`{.interpreted-text role="ref"}.
+
+- Keep installations updated by regularly installing the latest builds,
+  either via GitHub or by downloading the latest version from
+  <https://www.odoo.com/page/download> or <http://nightly.odoo.com>
+
+- Configure your server in multi-process mode with proper limits
+  matching your typical usage (memory/CPU/timeouts). See also
+  `builtin_server`{.interpreted-text role="ref"}.
+
+- Run Odoo behind a web server providing HTTPS termination with a valid
+  SSL certificate, in order to prevent eavesdropping on cleartext
+  communications. SSL certificates are cheap, and many free options
+  exist. Configure the web proxy to limit the size of requests, set
+  appropriate timeouts, and then enable the
+  `proxy mode <odoo-bin --proxy-mode>`{.interpreted-text role="option"}
+  option. See also `https_proxy`{.interpreted-text role="ref"}.
+
+- If you need to allow remote SSH access to your servers, make sure to
+  set a strong password for **all** accounts, not just
+  [root]{.title-ref}. It is strongly recommended to entirely disable
+  password-based authentication, and only allow public key
+  authentication. Also consider restricting access via a VPN, allowing
+  only trusted IPs in the firewall, and/or running a brute-force
+  detection system such as [fail2ban]{.title-ref} or equivalent.
+
+- Consider installing appropriate rate-limiting on your proxy or
+  firewall, to prevent brute-force attacks and denial of service
+  attacks. See also `login_brute_force`{.interpreted-text role="ref"}
+  for specific measures.
+
+  Many network providers provide automatic mitigation for Distributed
+  Denial of Service attacks (DDOS), but this is often an optional
+  service, so you should consult with them.
+
+- Whenever possible, host your public-facing demo/test/staging instances
+  on different machines than the production ones. And apply the same
+  security precautions as for production.
+
+- If your public-facing Odoo server has access to sensitive internal
+  network resources or services (e.g. via a private VLAN), implement
+  appropriate firewall rules to protect those internal resources. This
+  will ensure that the Odoo server cannot be used accidentally (or as a
+  result of malicious user actions) to access or disrupt those internal
+  resources. Typically this can be done by applying an outbound default
+  DENY rule on the firewall, then only explicitly authorizing access to
+  internal resources that the Odoo server needs to access. [Systemd IP
+  traffic access
+  control](http://0pointer.net/blog/ip-accounting-and-access-lists-with-systemd.html)
+  may also be useful to implement per-process network access control.
+
+- If your public-facing Odoo server is behind a Web Application
+  Firewall, a load-balancer, a transparent DDoS protection service (like
+  CloudFlare) or a similar network-level device, you may wish to avoid
+  direct access to the Odoo system. It is generally difficult to keep
+  the endpoint IP addresses of your Odoo servers secret. For example
+  they can appear in web server logs when querying public systems, or in
+  the headers of emails posted from Odoo. In such a situation you may
+  want to configure your firewall so that the endpoints are not
+  accessible publicly except from the specific IP addresses of your WAF,
+  load-balancer or proxy service. Service providers like CloudFlare
+  usually maintain a public list of their IP address ranges for this
+  purpose.
+
+- If you are hosting multiple customers, isolate customer data and files
+  from each other using containers or appropriate \"jail\" techniques.
+
+- Setup daily backups of your databases and filestore data, and copy
+  them to a remote archiving server that is not accessible from the
+  server itself.
+
+- Deploying Odoo on Linux is strongly recommended over Windows. Should
+  you choose nevertheless to deploy on a Windows platform, a thorough
+  security hardening review of the server should be conducted and is
+  outside of the scope of this guide.
+
+### Blocking Brute Force Attacks {#login_brute_force}
+
+For internet-facing deployments, brute force attacks on user passwords
+are very common, and this threat should not be neglected for Odoo
+servers. Odoo emits a log entry whenever a login attempt is performed,
+and reports the result: success or failure, along with the target login
+and source IP.
+
+The log entries will have the following form.
+
+Failed login:
+
+    2018-07-05 14:56:31,506 24849 INFO db_name odoo.addons.base.res.res_users: Login failed for db:db_name login:admin from 127.0.0.1
+
+Successful login:
+
+    2018-07-05 14:56:31,506 24849 INFO db_name odoo.addons.base.res.res_users: Login successful for db:db_name login:admin from 127.0.0.1
+
+These logs can be easily analyzed by an intrusion prevention system such
+as [fail2ban]{.title-ref}.
+
+For example, the following fail2ban filter definition should match a
+failed login:
+
+    [Definition]
+    failregex = ^ \d+ INFO \S+ \S+ Login failed for db:\S+ login:\S+ from <HOST>
+    ignoreregex =
+
+This could be used with a jail definition to block the attacking IP on
+HTTP(S).
+
+Here is what it could look like for blocking the IP for 15 minutes when
+10 failed login attempts are detected from the same IP within 1 minute:
+
+    [odoo-login]
+    enabled = true
+    port = http,https
+    bantime = 900  ; 15 min ban
+    maxretry = 10  ; if 10 attempts
+    findtime = 60  ; within 1 min  /!\ Should be adjusted with the TZ offset
+    logpath = /var/log/odoo.log  ;  set the actual odoo log path here
+
+### Database Manager Security {#db_manager_security}
+
+`setup/deploy/odoo`{.interpreted-text role="ref"} mentioned
+`admin_passwd` in passing.
+
+This setting is used on all database management screens (to create,
+delete, dump or restore databases).
+
+If the management screens must not be accessible at all, you should set
+`list_db` configuration option to `False`, to block access to all the
+database selection and management screens.
+
+:::: warning
+::: title
+Warning
+:::
+
+It is strongly recommended to disable the Database Manager for any
+internet-facing system! It is meant as a development/demo tool, to make
+it easy to quickly create and manage databases. It is not designed for
+use in production, and may even expose dangerous features to attackers.
+It is also not designed to handle large databases, and may trigger
+memory limits.
+
+On production systems, database management operations should always be
+performed by the system administrator, including provisioning of new
+databases and automated backups.
+::::
+
+Be sure to setup an appropriate `db_name` parameter (and optionally,
+`db_filter` too) so that the system can determine the target database
+for each request, otherwise users will be blocked as they won\'t be
+allowed to choose the database themselves.
+
+If the management screens must only be accessible from a selected set of
+machines, use the proxy server\'s features to block access to all routes
+starting with `/web/database` except (maybe) `/web/database/selector`
+which displays the database-selection screen.
+
+If the database-management screen should be left accessible, the
+`admin_passwd` setting must be changed from its `admin` default: this
+password is checked before allowing database-alteration operations.
+
+It should be stored securely, and should be generated randomly e.g.
+
+``` console
+$ python3 -c 'import base64, os; print(base64.b64encode(os.urandom(24)))'
+```
+
+which generates a 32-character pseudorandom printable string.
+
+### Reset the master password
+
+There may be instances where the master password is misplaced, or
+compromised, and needs to be reset. The following process is for system
+administrators of an Odoo on-premise database detailing how to manually
+reset and re-encrypt the master password.
+
+::: seealso
+For more information about changing an Odoo.com account password, see
+this documentation: `odoocom/change_password`{.interpreted-text
+role="ref"}.
+:::
+
+When creating a new on-premise database, a random master password is
+generated. Odoo recommends using this password to secure the database.
+This password is implemented by default, so there is a secure master
+password for any Odoo on-premise deployment.
+
+:::: warning
+::: title
+Warning
+:::
+
+When creating an Odoo on-premise database the installation is accessible
+to anyone on the internet, until this password is set to secure the
+database.
+::::
+
+The master password is specified in the Odoo configuration file
+([odoo.conf]{.title-ref} or [odoorc]{.title-ref} (hidden file)). The
+Odoo master password is needed to modify, create, or delete a database
+through the graphical user interface (GUI).
+
+#### Locate configuration file
+
+First, open the Odoo configuration file ([odoo.conf]{.title-ref} or
+[odoorc]{.title-ref} (hidden file)).
+
+::::: tabs
+::: tab
+Windows
+
+The configuration file is located at:
+[c:ProgramFilesOdoo{VERSION}serverodoo.conf]{.title-ref}
+:::
+
+::: tab
+Linux
+
+Depending on how Odoo is installed on the Linux machine, the
+configuration file is located in one of two different places:
+
+- Package installation: [/etc/odoo.conf]{.title-ref}
+- Source installation: [\~/.odoorc]{.title-ref}
+:::
+:::::
+
+#### Change old password
+
+Once the appropriate file has been opened, proceed to modify the old
+password in the configuration file to a temporary password.
+
+::::::: tabs
+:::: group-tab
+Graphical user interface
+
+After locating the configuration file, open it using a
+(`GUI (graphical user
+interface)`{.interpreted-text role="abbr"}). This can be achieved by
+simply double clicking on the file. Then, the device should have a
+default `GUI (graphical user interface)`{.interpreted-text role="abbr"}
+to open the file with.
+
+Next, modify the master password line [admin_passwd =
+\$pbkdf2-sha...]{.title-ref} to [admin_passwd =
+newpassword1234]{.title-ref}, for example. This password can be
+anything, as long as it is saved temporarily. Make sure to modify all
+characters after the [=]{.title-ref}.
+
+::: example
+The line appears like this: [admin_passwd =
+\$pbkdf2-sh39dji295.59mptrfW.9z6HkA\$w9j9AMVmKAP17OosCqDxDv2hjsvzlLpF8Rra8I7p/b573hji540mk/.3ek0lg%kvkol6k983mkf/40fjki79m]{.title-ref}
+
+The modified line appears like this: [admin_passwd =
+newpassword1234]{.title-ref}
+:::
+::::
+
+:::: group-tab
+Command-line interface
+
+Modify the master password line using the following Unix command
+detailed below.
+
+Connect to the Odoo server\'s terminal via Secure Shell (SSH) protocol,
+and edit the configuration file. To modify the configuration file, enter
+the following command: `sudo nano /etc/odoo.conf`{.interpreted-text
+role="command"}
+
+After opening the configuration file, modify the master password line
+[admin_passwd = \$pbkdf2-sha...]{.title-ref} to [admin_passwd =
+newpassword1234]{.title-ref}. This password can be anything, as long as
+it is saved temporarily. Make sure to modify all characters after the
+[=]{.title-ref}.
+
+::: example
+The line appears like this: [admin_passwd =
+\$pbkdf2-sh39dji295.59mptrfW.9z6HkA\$w9j9AMVmKAP17OosCqDxDv2hjsvzlLpF8Rra8I7p/b573hji540mk/.3ek0lg%kvkol6k983mkf/40fjki79m]{.title-ref}
+
+The modified line appears like this: [admin_passwd =
+newpassword1234]{.title-ref}
+:::
+::::
+:::::::
+
+:::: important
+::: title
+Important
+:::
+
+It is essential that the password is changed to something else, rather
+than triggering a new password reset by adding a semicolon
+[;]{.title-ref} at the beginning of the line. This ensures the database
+is secure throughout the entire password reset process.
+::::
+
+#### Restart Odoo server
+
+After setting the temporary password, a restart of the Odoo server is
+**required**.
+
+::::::: tabs
+::: group-tab
+Graphical user interface
+
+To restart the Odoo server, first, type [services]{.title-ref} into the
+Windows `Search`{.interpreted-text role="guilabel"} bar. Then, select
+the `Services`{.interpreted-text role="guilabel"} application, and
+scroll down to the `Odoo`{.interpreted-text role="guilabel"} service.
+
+Next, right click on `Odoo`{.interpreted-text role="guilabel"}, and
+select `Start`{.interpreted-text role="guilabel"} or
+`Restart`{.interpreted-text role="guilabel"}. This action manually
+restarts the Odoo server.
+:::
+
+::::: group-tab
+Command-line interface
+
+Restart the Odoo server by typing the command:
+`sudo service odoo15 restart`{.interpreted-text role="command"}
+
+:::: note
+::: title
+Note
+:::
+
+Change the number after [odoo]{.title-ref} to fit the specific version
+the server is running on.
+::::
+:::::
+:::::::
+
+#### Use web interface to re-encrypt password
+
+First, navigate to [/web/database/manager]{.title-ref} or
+[http://server_ip:port/web/database/manager]{.title-ref} in a browser.
+
+:::: note
+::: title
+Note
+:::
+
+Replace [server_ip]{.title-ref} with the IP address of the database.
+Replace [port]{.title-ref} with the numbered port the database is
+accessible from.
+::::
+
+Next, click `Set Master Password`{.interpreted-text role="guilabel"},
+and type in the previously-selected temporary password into the
+`Master Password`{.interpreted-text role="guilabel"} field. Following
+this step, type in a `New Master
+Password`{.interpreted-text role="guilabel"}. The
+`New Master Password`{.interpreted-text role="guilabel"} is hashed (or
+encrypted), once the `Continue`{.interpreted-text role="guilabel"}
+button is clicked.
+
+At this point, the password has been successfully reset, and a hashed
+version of the new password now appears in the configuration file.
+
+::: seealso
+For more information on Odoo database security, see this documentation:
+`db_manager_security`{.interpreted-text role="ref"}.
+:::
+
+## Supported Browsers
+
+Odoo supports the latest version of the following browsers.
+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Apple Safari
+
+[^1]: to have multiple Odoo installations use the same PostgreSQL
+    database, or to provide more computing resources to both software.
+
+[^2]: technically a tool like [socat](##REF##socat) can be used to proxy
+    UNIX sockets across networks, but that is mostly for software which
+    can only be used over UNIX sockets
+
+[^3]: or be accessible only over an internal packet-switched network,
+    but that requires secured switches, protections against [ARP
+    spoofing](##REF##ARP spoofing) and precludes usage of WiFi. Even
+    over secure packet-switched networks, deployment over HTTPS is
+    recommended, and possible costs are lowered as \"self-signed\"
+    certificates are easier to deploy on a controlled environment than
+    over the internet.
+
+
+
+
+--- SOURCE: administration/on_premise/email_gateway.md ---
+
+# Email gateway
+
+The Odoo mail gateway allows you to inject directly all the received
+emails in Odoo.
+
+Its principle is straightforward: your SMTP server executes the
+\"mailgate\" script for every new incoming email.
+
+The script takes care of connecting to your Odoo database through
+XML-RPC, and send the emails via the
+[MailThread.message_process()]{.title-ref} feature.
+
+## Prerequisites
+
+- Administrator access to the Odoo database.
+- Your own mail server such as Postfix or Exim.
+- Technical knowledge on how to configure an email server.
+
+## For Postfix
+
+In you alias config (`/etc/aliases`{.interpreted-text role="file"}):
+
+``` text
+email@address: "|/odoo-directory/addons/mail/static/scripts/odoo-mailgate.py -d <database-name> -u <userid> -p <password>"
+```
+
+:::: note
+::: title
+Note
+:::
+
+Resources
+
+- [Postfix](http://www.postfix.org/documentation.html)
+- [Postfix aliases](http://www.postfix.org/aliases.5.html)
+- [Postfix virtual](http://www.postfix.org/virtual.8.html)
+::::
+
+## For Exim
+
+``` text
+*: |/odoo-directory/addons/mail/static/scripts/odoo-mailgate.py -d <database-name> -u <userid> -p <password>
+```
+
+:::: note
+::: title
+Note
+:::
+
+Resources
+
+- [Exim](https://www.exim.org/docs.html)
+::::
+
+:::: tip
+::: title
+Tip
+:::
+
+If you don\'t have access/manage your email server, use
+`inbound messages
+<email_communication/inbound_messages>`{.interpreted-text role="ref"}.
+::::
+
+
+
+
+--- SOURCE: administration/on_premise/geo_ip.md ---
+
+# Geo IP
+
+:::: note
+::: title
+Note
+:::
+
+This documentation only applies to On-premise databases.
+::::
+
+## Installation
+
+:::: warning
+::: title
+Warning
+:::
+
+Please note that the installation depends on your computer\'s operating
+system and distribution. We will assume that a Linux operating system is
+being used.
+::::
+
+1.  
+
+    Install [geoip2](https://pypi.org/project/geoip2/) Python library
+
+    :   ``` bash
+        pip install geoip2
+        ```
+
+2.  Download the [GeoLite2 City
+    database](https://dev.maxmind.com/geoip/geoip2/geolite2/). You
+    should end up with a file called `GeoLite2-City.mmdb`
+
+3.  
+
+    Move the file to the folder `/usr/share/GeoIP/`
+
+    :   ``` bash
+        mv ~/Downloads/GeoLite2-City.mmdb /usr/share/GeoIP/
+        ```
+
+4.  Restart the server
+
+::::: note
+::: title
+Note
+:::
+
+If you can\'t/don\'t want to locate the geoip database in
+`/usr/share/GeoIP/`, you can use the `--geoip-db` option of the Odoo
+command line interface. This option takes the absolute path to the GeoIP
+database file and uses it as the GeoIP database. For example:
+
+``` bash
+./odoo-bin --geoip-db= ~/Downloads/GeoLite2-City.mmdb
+```
+
+::: seealso
+\- `CLI documentation </developer/reference/cli>`{.interpreted-text
+role="doc"}.
+:::
+:::::
+
+:::: warning
+::: title
+Warning
+:::
+
+`GeoIP` Python library can also be used. However this version is
+discontinued since January 1. See [GeoLite Legacy databases are now
+discontinued](https://support.maxmind.com/geolite-legacy-discontinuation-notice/)
+::::
+
+## How to test GeoIP geolocation in your Odoo website
+
+1.  Go to your website. Open the web page that you want to test `GeoIP`.
+2.  Choose `Customize --> HTML/CSS/JS Editor`{.interpreted-text
+    role="menuselection"}.
+3.  Add the following piece of XML in the page :
+
+``` xml
+<h1 class="text-center" t-esc="request.session.get('geoip')"/>
+```
+
+You should end up with a dictionary indicating the location of the IP
+address.
+
+![image](geo_ip/on-premise_geo-ip-installation01.png){.align-center}
+
+:::: note
+::: title
+Note
+:::
+
+If the curly braces are empty `{}`, it can be for any of the following
+reasons :
+
+- The browsing IP address is the localhost (`127.0.0.1`) or a local area
+  network one (`192.168.*.*`)
+- If a reversed proxy is used, make sure to configure it correctly. See
+  `proxy mode
+  <odoo-bin --proxy-mode>`{.interpreted-text role="option"}
+- `geoip2` is not installed or the GeoIP database file wasn\'t found
+- The GeoIP database was unable to resolve the given IP address
+::::
+
+
+
+
+--- SOURCE: administration/on_premise/packages.md ---
+
+# Packaged installers
+
+Odoo provides packaged installers for Debian-based Linux distributions
+(Debian, Ubuntu, etc.), RPM-based Linux distributions (Fedora, CentOS,
+RHEL, etc.), and Windows for the Community and Enterprise editions.
+
+Official **Community** nightly packages with all relevant dependency
+requirements are available on the [nightly
+server](https://nightly.odoo.com).
+
+:::: note
+::: title
+Note
+:::
+
+Nightly packages may be difficult to keep up to date.
+::::
+
+Official **Community** and **Enterprise** packages can be downloaded
+from the [Odoo download page](https://www.odoo.com/page/download).
+
+:::: note
+::: title
+Note
+:::
+
+It is required to be logged in as a paying on-premise customer or
+partner to download the Enterprise packages.
+::::
+
+## Linux {#install/packages/linux}
+
+### Prepare
+
+Odoo needs a [PostgreSQL](https://www.postgresql.org/) server to run
+properly.
+
+::::: tabs
+::: group-tab
+Debian/Ubuntu
+
+The default configuration for the Odoo \'deb\' package is to use the
+PostgreSQL server on the same host as the Odoo instance. Execute the
+following command to install the PostgreSQL server:
+
+``` console
+$ sudo apt install postgresql -y
+```
+:::
+
+::: group-tab
+Fedora
+
+Make sure that the [sudo]{.title-ref} command is available and well
+configured and, only then, execute the following command to install the
+PostgreSQL server:
+
+``` console
+$ sudo dnf install -y postgresql-server
+$ sudo postgresql-setup --initdb --unit postgresql
+$ sudo systemctl enable postgresql
+$ sudo systemctl start postgresql
+```
+:::
+:::::
+
+:::: warning
+::: title
+Warning
+:::
+
+[wkhtmltopdf]{.title-ref} is not installed through **pip** and must be
+installed manually in [version
+0.12.6](https://github.com/wkhtmltopdf/packaging/releases/tag/0.12.6.1-3)
+for it to support headers and footers. Check out the [wkhtmltopdf
+wiki](https://github.com/odoo/odoo/wiki/Wkhtmltopdf) for more details on
+the various versions.
+::::
+
+### Repository
+
+Odoo S.A. provides a repository that can be used to install the
+**Community** edition by executing the following commands:
+
+::::: tabs
+::: group-tab
+Debian/Ubuntu
+
+``` console
+$ wget -q -O - https://nightly.odoo.com/odoo.key | sudo gpg --dearmor -o /usr/share/keyrings/odoo-archive-keyring.gpg
+$ echo 'deb [signed-by=/usr/share/keyrings/odoo-archive-keyring.gpg] https://nightly.odoo.com/{CURRENT_MAJOR_BRANCH}/nightly/deb/ ./' | sudo tee /etc/apt/sources.list.d/odoo.list
+$ sudo apt-get update && sudo apt-get install odoo
+```
+
+Use the usual [apt-get upgrade]{.title-ref} command to keep the
+installation up-to-date.
+:::
+
+::: group-tab
+Fedora
+
+``` console
+$ sudo dnf config-manager --add-repo=https://nightly.odoo.com/{CURRENT_MAJOR_BRANCH}/nightly/rpm/odoo.repo
+$ sudo dnf install -y odoo
+$ sudo systemctl enable odoo
+$ sudo systemctl start odoo
+```
+:::
+:::::
+
+:::: note
+::: title
+Note
+:::
+
+Currently, there is no nightly repository for the Enterprise edition.
+::::
+
+### Distribution package
+
+Instead of using the repository, packages for both the **Community** and
+**Enterprise** editions can be downloaded from the [Odoo download
+page](https://www.odoo.com/page/download).
+
+::::::::::: tabs
+::::::: group-tab
+Debian/Ubuntu
+
+:::: note
+::: title
+Note
+:::
+
+Odoo {CURRENT_MAJOR_VERSION} \'deb\' package currently supports [Debian
+Buster](https://www.debian.org/releases/buster/) and [Ubuntu
+18.04](https://releases.ubuntu.com/18.04) or above.
+::::
+
+Once downloaded, execute the following commands **as root** to install
+Odoo as a service, create the necessary PostgreSQL user, and
+automatically start the server:
+
+``` console
+# dpkg -i <path_to_installation_package> # this probably fails with missing dependencies
+# apt-get install -f # should install the missing dependencies
+# dpkg -i <path_to_installation_package>
+```
+
+:::: warning
+::: title
+Warning
+:::
+
+\- The [python3-xlwt]{.title-ref} Debian package, needed to export into
+the XLS format, does not exist in Debian Buster nor Ubuntu 18.04. If
+needed, install it manually with the following:
+
+``` console
+$ sudo pip3 install xlwt
+```
+
+\- The [num2words]{.title-ref} Python package - needed to render textual
+amounts - does not exist in Debian Buster nor Ubuntu 18.04, which could
+cause problems with the [l10n_mx_edi]{.title-ref} module. If needed,
+install it manually with the following:
+
+``` console
+$ sudo pip3 install num2words
+```
+::::
+:::::::
+
+::::: group-tab
+Fedora
+
+:::: note
+::: title
+Note
+:::
+
+Odoo {CURRENT_MAJOR_VERSION} \'rpm\' package supports Fedora 36.
+::::
+
+Once downloaded, the package can be installed using the \'dnf\' package
+manager:
+
+``` console
+$ sudo dnf localinstall odoo_{CURRENT_MAJOR_BRANCH}.latest.noarch.rpm
+$ sudo systemctl enable odoo
+$ sudo systemctl start odoo
+```
+:::::
+:::::::::::
+
+## Windows {#install/packages/windows}
+
+> :::: warning
+> ::: title
+> Warning
+> :::
+>
+> Windows packaging is offered for the convenience of testing or running
+> single-user local instances but production deployment is discouraged
+> due to a number of limitations and risks associated with deploying
+> Odoo on a Windows platform.
+> ::::
+
+1.  Download the installer from the [nightly
+    server](https://nightly.odoo.com) (Community only) or the Windows
+    installer from the [Odoo download
+    page](https://www.odoo.com/page/download) (any edition.
+
+2.  Execute the downloaded file.
+
+    :::: warning
+    ::: title
+    Warning
+    :::
+
+    On Windows 8 and later, a warning titled *Windows protected your PC*
+    may be displayed. Click **More Info** and then **Run anyway** to
+    proceed.
+    ::::
+
+3.  Accept the [UAC](https://en.wikipedia.org/wiki/User_Account_Control)
+    prompt.
+
+4.  Go through the installation steps.
+
+Odoo launches automatically at the end of the installation.
+
+
+
+
+--- SOURCE: administration/on_premise/source.md ---
+
+# Source install
+
+The source \'installation\' is not about installing Odoo but running it
+directly from the source instead.
+
+Using the Odoo source can be more convenient for module developers as it
+is more easily accessible than using packaged installers.
+
+It makes starting and stopping Odoo more flexible and explicit than the
+services set up by the packaged installers. Also, it allows overriding
+settings using `command-line parameters
+<reference/cmdline>`{.interpreted-text role="ref"} without needing to
+edit a configuration file.
+
+Finally, it provides greater control over the system\'s setup and allows
+to more easily keep (and run) multiple versions of Odoo side-by-side.
+
+## Fetch the sources
+
+There are two ways to obtain the source code of Odoo: as a ZIP
+**archive** or through **Git**.
+
+### Archive
+
+Community edition:
+
+- [Odoo download page](https://www.odoo.com/page/download)
+- [GitHub Community repository](https://github.com/odoo/odoo)
+- [Nightly server](https://nightly.odoo.com)
+
+Enterprise edition:
+
+- [Odoo download page](https://www.odoo.com/page/download)
+- [GitHub Enterprise repository](https://github.com/odoo/enterprise)
+
+### Git {#install/source/git}
+
+:::: note
+::: title
+Note
+:::
+
+It is required to have [Git](https://git-scm.com/) installed, and it is
+recommended to have a basic knowledge of Git commands to proceed.
+::::
+
+To clone a Git repository, choose between cloning with HTTPS or SSH. In
+most cases, the best option is HTTPS. However, choose SSH to contribute
+to Odoo source code or when following the `Getting
+Started developer tutorial </developer/tutorials/getting_started>`{.interpreted-text
+role="doc"}.
+
+::::::::::::::: tabs
+:::::: group-tab
+Linux
+
+::::: tabs
+::: tab
+Clone with HTTPS
+
+``` console
+$ git clone https://github.com/odoo/odoo.git
+$ git clone https://github.com/odoo/enterprise.git
+```
+:::
+
+::: tab
+Clone with SSH
+
+``` console
+$ git clone git@github.com:odoo/odoo.git
+$ git clone git@github.com:odoo/enterprise.git
+```
+:::
+:::::
+::::::
+
+:::::: group-tab
+Windows
+
+::::: tabs
+::: tab
+Clone with HTTPS
+
+``` doscon
+C:\> git clone https://github.com/odoo/odoo.git
+C:\> git clone https://github.com/odoo/enterprise.git
+```
+:::
+
+::: tab
+Clone with SSH
+
+``` doscon
+C:\> git clone git@github.com:odoo/odoo.git
+C:\> git clone git@github.com:odoo/enterprise.git
+```
+:::
+:::::
+::::::
+
+:::::: group-tab
+Mac OS
+
+::::: tabs
+::: tab
+Clone with HTTPS
+
+``` console
+$ git clone https://github.com/odoo/odoo.git
+$ git clone https://github.com/odoo/enterprise.git
+```
+:::
+
+::: tab
+Clone with SSH
+
+``` console
+$ git clone git@github.com:odoo/odoo.git
+$ git clone git@github.com:odoo/enterprise.git
+```
+:::
+:::::
+::::::
+:::::::::::::::
+
+:::: note
+::: title
+Note
+:::
+
+**The Enterprise git repository does not contain the full Odoo source
+code**. It is only a collection of extra add-ons. The main server code
+is in the Community edition. Running the Enterprise version means
+running the server from the Community version with the
+[addons-path]{.title-ref} option set to the folder with the Enterprise
+edition. It is required to clone both the Community and Enterprise
+repositories to have a working Odoo Enterprise installation.
+::::
+
+## Prepare {#install/source/prepare}
+
+### Python
+
+Odoo requires **Python 3.7** or later to run.
+
+:::::: tabs
+::: group-tab
+Linux
+
+Use a package manager to download and install Python 3 if needed.
+:::
+
+::: group-tab
+Windows
+
+[Download the latest version of Python
+3](https://www.python.org/downloads/windows/) and install it.
+
+During installation, check **Add Python 3 to PATH**, then click
+**Customize Installation** and make sure that **pip** is checked.
+:::
+
+::: group-tab
+Mac OS
+
+Use a package manager ([Homebrew](https://brew.sh/),
+[MacPorts](https://www.macports.org)) to download and install Python 3
+if needed.
+:::
+::::::
+
+:::::::::::: note
+::: title
+Note
+:::
+
+If Python 3 is already installed, make sure that the version is 3.7 or
+above, as previous versions are not compatible with Odoo.
+
+:::::: tabs
+::: group-tab
+Linux
+
+``` console
+$ python3 --version
+```
+:::
+
+::: group-tab
+Windows
+
+``` doscon
+C:\> python --version
+```
+:::
+
+::: group-tab
+Mac OS
+
+``` console
+$ python3 --version
+```
+:::
+::::::
+
+Verify that [pip](https://pip.pypa.io) is also installed for this
+version.
+
+:::::: tabs
+::: group-tab
+Linux
+
+``` console
+$ pip3 --version
+```
+:::
+
+::: group-tab
+Windows
+
+``` doscon
+C:\> pip --version
+```
+:::
+
+::: group-tab
+Mac OS
+
+``` console
+$ pip3 --version
+```
+:::
+::::::
+::::::::::::
+
+### PostgreSQL
+
+Odoo uses PostgreSQL as its database management system.
+
+:::::::: tabs
+::: group-tab
+Linux
+
+Use a package manager to download and install PostgreSQL (supported
+versions: 12.0 or above). It can be achieved by executing the following:
+
+``` console
+$ sudo apt install postgresql postgresql-client
+```
+:::
+
+::: group-tab
+Windows
+
+[Download PostgreSQL](https://www.postgresql.org/download/windows)
+(supported versions: 12.0 or above) and install it.
+:::
+
+::::: group-tab
+Mac OS
+
+Use [Postgres.app](https://postgresapp.com) to download and install
+PostgreSQL (supported version: 12.0 or above).
+
+:::: tip
+::: title
+Tip
+:::
+
+To make the command line tools bundled with Postgres.app available, make
+sure to set up the [\$PATH]{.title-ref} variable by following the
+[Postgres.app CLI tools
+instructions](https://postgresapp.com/documentation/cli-tools.html).
+::::
+:::::
+::::::::
+
+By default, the only user is [postgres]{.title-ref}. As Odoo forbids
+connecting as [postgres]{.title-ref}, create a new PostgreSQL user.
+
+:::::::::: tabs
+::::: group-tab
+Linux
+
+``` console
+$ sudo -u postgres createuser -d -R -S $USER
+$ createdb $USER
+```
+
+:::: note
+::: title
+Note
+:::
+
+Because the PostgreSQL user has the same name as the Unix login, it is
+possible to connect to the database without a password.
+::::
+:::::
+
+::: group-tab
+Windows
+
+1.  Add PostgreSQL\'s [bin]{.title-ref} directory (by default:
+    `C:\\Program Files\\PostgreSQL\\<version>\\bin`{.interpreted-text
+    role="file"}) to the [PATH]{.title-ref}.
+2.  Create a postgres user with a password using the pg admin gui:
+    1.  Open **pgAdmin**.
+    2.  Double-click the server to create a connection.
+    3.  Select
+        `Object --> Create --> Login/Group Role`{.interpreted-text
+        role="menuselection"}.
+    4.  Enter the username in the **Role Name** field (e.g.,
+        [odoo]{.title-ref}).
+    5.  Open the **Definition** tab, enter a password (e.g.,
+        [odoo]{.title-ref}), and click **Save**.
+    6.  Open the **Privileges** tab and switch **Can login?** to
+        [Yes]{.title-ref} and **Create database?** to [Yes]{.title-ref}.
+:::
+
+::::: group-tab
+Mac OS
+
+``` console
+$ sudo -u postgres createuser -d -R -S $USER
+$ createdb $USER
+```
+
+:::: note
+::: title
+Note
+:::
+
+Because the PostgreSQL user has the same name as the Unix login, it is
+possible to connect to the database without a password.
+::::
+:::::
+::::::::::
+
+### Dependencies {#install/dependencies}
+
+::::::::::::::::: tabs
+:::::::::::: group-tab
+Linux
+
+Using **distribution packages** is the preferred way of installing
+dependencies. Alternatively, install the Python dependencies with
+**pip**.
+
+::::::::::: tabs
+::: tab
+Debian/Ubuntu
+
+On Debian/Ubuntu, the following commands should install the required
+packages:
+
+``` console
+$ cd odoo #CommunityPath
+$ sudo ./setup/debinstall.sh
+```
+
+The [setup/debinstall.sh]{.title-ref} script will parse the
+[debian/control]({GITHUB_PATH}/debian/control) file and install the
+found packages.
+:::
+
+::::::::: tab
+Install with pip
+
+:::: warning
+::: title
+Warning
+:::
+
+Using pip may lead to security issues and broken dependencies; only do
+this if you know what you are doing.
+::::
+
+As some of the Python packages need a compilation step, they require
+system libraries to be installed.
+
+On Debian/Ubuntu, the following command should install these required
+libraries:
+
+``` console
+$ sudo apt install python3-pip libldap2-dev libpq-dev libsasl2-dev
+```
+
+Odoo dependencies are listed in the `requirements.txt`{.interpreted-text
+role="file"} file located at the root of the Odoo Community directory.
+
+:::: note
+::: title
+Note
+:::
+
+The Python packages in `requirements.txt`{.interpreted-text role="file"}
+are based on their stable/LTS Debian/Ubuntu corresponding version at the
+moment of the Odoo release. For example, for Odoo 15.0, the
+[python3-babel]{.title-ref} package version is 2.8.0 in Debian Bullseye
+and 2.6.0 in Ubuntu Focal. The lowest version is then chosen in the
+`requirements.txt`{.interpreted-text role="file"}.
+::::
+
+:::: tip
+::: title
+Tip
+:::
+
+It can be preferable not to mix Python module packages between different
+instances of Odoo or with the system. However, it is possible to use
+[virtualenv](https://pypi.org/project/virtualenv/) to create isolated
+Python environments.
+::::
+
+Navigate to the path of the Odoo Community installation
+(`CommunityPath`{.interpreted-text role="file"}) and run **pip** on the
+requirements file to install the requirements for the current user.
+
+``` console
+$ cd /CommunityPath
+$ pip install -r requirements.txt
+```
+:::::::::
+:::::::::::
+::::::::::::
+
+::: group-tab
+Windows
+
+Before installing the dependencies, download and install the [Build
+Tools for Visual Studio](https://visualstudio.microsoft.com/downloads/).
+Select **C++ build tools** in the **Workloads** tab and install them
+when prompted.
+
+Odoo dependencies are listed in the [requirements.txt]{.title-ref} file
+located at the root of the Odoo Community directory.
+
+> :::: tip
+> ::: title
+> Tip
+> :::
+>
+> It can be preferable not to mix Python module packages between
+> different instances of Odoo or with the system. However, it is
+> possible to use [virtualenv](https://pypi.org/project/virtualenv/) to
+> create isolated Python environments.
+> ::::
+
+Navigate to the path of the Odoo Community installation
+([CommunityPath]{.title-ref}) and run **pip** on the requirements file
+in a terminal **with Administrator privileges**:
+
+``` doscon
+C:\> cd \CommunityPath
+C:\> pip install setuptools wheel
+C:\> pip install -r requirements.txt
+```
+:::
+
+::::: group-tab
+Mac OS
+
+Odoo dependencies are listed in the [requirements.txt]{.title-ref} file
+located at the root of the Odoo Community directory.
+
+> :::: tip
+> ::: title
+> Tip
+> :::
+>
+> It can be preferable not to mix Python module packages between
+> different instances of Odoo or with the system. However, it is
+> possible to use [virtualenv](https://pypi.org/project/virtualenv/) to
+> create isolated Python environments.
+> ::::
+
+Navigate to the path of the Odoo Community installation
+([CommunityPath]{.title-ref}) and run **pip** on the requirements file:
+
+``` console
+$ cd /CommunityPath
+$ pip3 install setuptools wheel
+$ pip3 install -r requirements.txt
+```
+
+:::: warning
+::: title
+Warning
+:::
+
+Non-Python dependencies must be installed with a package manager
+([Homebrew](https://brew.sh/), [MacPorts](https://www.macports.org)).
+
+1.  Download and install the **Command Line Tools**:
+
+    ``` console
+    $ xcode-select --install
+    ```
+
+2.  Use the package manager to install non-Python dependencies.
+::::
+:::::
+:::::::::::::::::
+
+:::::::: note
+::: title
+Note
+:::
+
+For languages using a **right-to-left interface** (such as Arabic or
+Hebrew), the [rtlcss]{.title-ref} package is required.
+
+:::::: tabs
+::: group-tab
+Linux
+
+1.  Download and install **nodejs** and **npm** with a package manager.
+
+2.  Install \`rtlcss\`:
+
+    ``` console
+    $ sudo npm install -g rtlcss
+    ```
+:::
+
+::: group-tab
+Windows
+
+1.  Download and install [nodejs](https://nodejs.org/en/download).
+
+2.  Install \`rtlcss\`:
+
+    ``` doscon
+    C:\> npm install -g rtlcss
+    ```
+
+3.  Edit the system environment\'s variable [PATH]{.title-ref} to add
+    the folder where [rtlcss.cmd]{.title-ref} is located (typically:
+    `C:\\Users\\<user>\\AppData\\Roaming\\npm\\`{.interpreted-text
+    role="file"}).
+:::
+
+::: group-tab
+Mac OS
+
+1.  Download and install **nodejs** with a package manager
+    ([Homebrew](https://brew.sh/),
+    [MacPorts](https://www.macports.org)).
+
+2.  Install \`rtlcss\`:
+
+    ``` console
+    $ sudo npm install -g rtlcss
+    ```
+:::
+::::::
+::::::::
+
+:::: warning
+::: title
+Warning
+:::
+
+[wkhtmltopdf]{.title-ref} is not installed through **pip** and must be
+installed manually in [version
+0.12.6](https://github.com/wkhtmltopdf/packaging/releases/tag/0.12.6.1-3)
+for it to support headers and footers. Check out the [wkhtmltopdf
+wiki](https://github.com/odoo/odoo/wiki/Wkhtmltopdf) for more details on
+the various versions.
+::::
+
+## Running Odoo {#install/source/running_odoo}
+
+Once all dependencies are set up, Odoo can be launched by running
+[odoo-bin]{.title-ref}, the command-line interface of the server. It is
+located at the root of the Odoo Community directory.
+
+To configure the server, either specify
+`command-line arguments <reference/cmdline/server>`{.interpreted-text
+role="ref"} or a
+`configuration file <reference/cmdline/config>`{.interpreted-text
+role="ref"}.
+
+:::: tip
+::: title
+Tip
+:::
+
+For the Enterprise edition, add the path to the [enterprise]{.title-ref}
+add-ons to the [addons-path]{.title-ref} argument. Note that it must
+come before the other paths in [addons-path]{.title-ref} for add-ons to
+be loaded correctly.
+::::
+
+Common necessary configurations are:
+
+- PostgreSQL user and password.
+- Custom addon paths beyond the defaults to load custom modules.
+
+A typical way to run the server would be:
+
+:::::: tabs
+::: group-tab
+Linux
+
+``` console
+$ cd /CommunityPath
+$ python3 odoo-bin --addons-path=addons -d mydb
+```
+
+Where [CommunityPath]{.title-ref} is the path of the Odoo Community
+installation, and [mydb]{.title-ref} is the name of the PostgreSQL
+database.
+:::
+
+::: group-tab
+Windows
+
+``` doscon
+C:\> cd CommunityPath/
+C:\> python odoo-bin -r dbuser -w dbpassword --addons-path=addons -d mydb
+```
+
+Where [CommunityPath]{.title-ref} is the path of the Odoo Community
+installation, [dbuser]{.title-ref} is the PostgreSQL login,
+[dbpassword]{.title-ref} is the PostgreSQL password, and
+[mydb]{.title-ref} is the name of the PostgreSQL database.
+:::
+
+::: group-tab
+Mac OS
+
+``` console
+$ cd /CommunityPath
+$ python3 odoo-bin --addons-path=addons -d mydb
+```
+
+Where [CommunityPath]{.title-ref} is the path of the Odoo Community
+installation, and [mydb]{.title-ref} is the name of the PostgreSQL
+database.
+:::
+::::::
+
+After the server has started (the INFO log [odoo.modules.loading:
+Modules loaded.]{.title-ref} is printed), open <http://localhost:8069>
+in a web browser and log into the Odoo database with the base
+administrator account: use [admin]{.title-ref} as the email and, again,
+[admin]{.title-ref} as the password.
+
+:::: tip
+::: title
+Tip
+:::
+
+\- From there, create and manage new
+`users <../../applications/general/users>`{.interpreted-text
+role="doc"}. - The user account used to log into Odoo\'s web interface
+differs from the `--db_user
+<odoo-bin -r>`{.interpreted-text role="option"} CLI argument.
+::::
+
+::: seealso
+`The list of CLI arguments for odoo-bin </developer/reference/cli>`{.interpreted-text
+role="doc"}
+:::
+
+
+
+
+--- SOURCE: administration/on_premise/update.md ---
+
+# Bugfix updates {#setup/update}
+
+## Introduction
+
+In order to benefit from the latest improvements, security fixes, bug
+corrections and performance boosts, you may need to update your Odoo
+installation from time to time.
+
+This guide only applies when are using Odoo on your own hosting
+infrastructure. If you are using one of the Odoo Cloud solutions,
+updates are automatically performed for you.
+
+The terminology surrounding software updates is often confusing, so here
+are some preliminary definitions:
+
+Updating (an Odoo installation)
+
+:   Refers to the process of obtaining the latest revision of the source
+    code for your current Odoo Edition. For example, updating your Odoo
+    Enterprise 13.0 to the latest revision. This does not directly cause
+    any change to the contents of your Odoo database, and can be undone
+    by reinstalling the previous revision of the source code.
+
+Upgrading (an Odoo database)
+
+:   Refers to a complex data processing operation where the structure
+    and contents of your database is permanently altered to make it
+    compatible with a new release of Odoo. This operation is
+    irreversible and typically accomplished via Odoo\'s [database
+    upgrade service](https://upgrade.odoo.com), when you decide to
+    switch to a newer release of Odoo. Historically, this process has
+    also been known as a \"migration\" because it involves moving data
+    around inside the database, even though the database may end up at
+    the same physical location after the upgrade.
+
+This page describes the typical steps needed to *update* an Odoo
+installation to the latest version. If you\'d like more information
+about upgrading a database, please visit the [Odoo Upgrade
+page](https://upgrade.odoo.com) instead.
+
+## In a nutshell
+
+Updating Odoo is accomplished by simply reinstalling the latest version
+of your Odoo Edition on top of your current installation. This will
+preserve your data without any alteration, as long as you do not
+uninstall PostgreSQL (the database engine that comes with Odoo).
+
+The main reference for updating is logically our
+`installation guide <../on_premise>`{.interpreted-text role="doc"},
+which explains the common installation methods.
+
+Updating is also most appropriately accomplished by the person who
+deployed Odoo initially, because the procedure is very similar.
+
+:::: note
+::: title
+Note
+:::
+
+We always recommend to download a complete new up-to-date Odoo version,
+rather than manually applying patches, such as the security patches that
+come with Security Advisories. The patches are mainly provided for
+installations that are heavily customized, or for technical personnel
+who prefer to apply minimal changes temporarily while testing a complete
+update.
+::::
+
+## Step 1: Download an updated Odoo version
+
+The central download page is <https://www.odoo.com/page/download>. If
+you see a \"Buy\" link for the Odoo Enterprise download, make sure you
+are logged into Odoo.com with the same login that is linked to your Odoo
+Enterprise subscription.
+
+Alternatively, you can use the unique download link that was included
+with your Odoo Enterprise purchase confirmation email.
+
+:::: note
+::: title
+Note
+:::
+
+Downloading an updated version is not necessary if you installed via
+Github (see below)
+::::
+
+## Step 2: Make a backup of your database
+
+The update procedure is quite safe and should not alter you data.
+However it\'s always best to take a full database backup before
+performing any change on your installation, and to store it somewhere
+safe, on a different computer.
+
+If you have not disabled the database manager screen (see
+`here <security>`{.interpreted-text role="ref"} why you should), you can
+use it (link at bottom of your database selection screen) to download a
+backup of your database(s). If you disabled it, use the same procedure
+than for your usual backups.
+
+## Step 3: Install the updated version
+
+Choose the method that matches your current installation:
+
+### Packaged Installers
+
+If you installed Odoo with an installation package downloaded on our
+website (the recommended method), updating is very simple. All you have
+to do is download the installation package corresponding to your system
+(see step #1) and install it on your server. They are updated daily and
+include the latest security fixes. Usually, you can simply double-click
+the package to install it on top of the current installation. After
+installing the package, be sure to restart the Odoo service or reboot
+your server, and you\'re all set.
+
+### Source Install (Tarball)
+
+If you have originally installed Odoo with the \"tarball\" version
+(source code archive), you have to replace the installation directory
+with a newer version. First download the latest tarball from Odoo.com.
+They are updated daily and include the latest security fixes (see step
+#1) After downloading the package, extract it to a temporary location on
+your server.
+
+You will get a folder labeled with the version of the source code, for
+example \"odoo-13.0+e.20190719\", that contains a folder
+\"odoo.egg-info\" and the actual source code folder named \"odoo\" (for
+Odoo 10 and later) or \"openerp\" for older versions. You can ignore the
+odoo.egg-info folder. Locate the folder where your current installation
+is deployed, and replace it with the newer \"odoo\" or \"openerp\"
+folder that was in the archive you just extracted.
+
+Be sure to match the folder layout, for example the new \"addons\"
+folder included in the source code should end up exactly at the same
+path it was before. Next, watch out for any specific configuration files
+that you may have manually copied or modified in the old folder, and
+copy them over to the new folder. Finally, restart the Odoo service or
+reboot the machine, and you are all set.
+
+### Source Install (Github)
+
+If you have originally installed Odoo with a full Github clone of the
+official repositories, the update procedure requires you to pull the
+latest source code via git. Change into the directory for each
+repository (the main Odoo repository, and the Enterprise repository),
+and run the following commands:
+
+    git fetch
+    git rebase --autostash
+
+The last command may encounter source code conflicts if you had edited
+the Odoo source code locally. The error message will give you the list
+of files with conflicts, and you will need to resolve the conflicts
+manually, by editing them and deciding which part of the code to keep.
+
+Alternatively, if you prefer to simply discard the conflicting changes
+and restore the official version, you can use the following command:
+
+    git reset --hard
+
+Finally, restart the Odoo service or reboot the machine, and you should
+be done.
+
+### Docker
+
+Please refer to our [Docker image
+documentation](https://hub.docker.com/_/odoo/) for specific update
+instructions.
+
+
+
+
+--- SOURCE: administration/on_premise.md ---
+
+show-content
+
+:   
+
+# On-premise
+
+## Register a database
+
+To register your database, enter your subscription code in the banner in
+the app dashboard. If the registration is successful, the banner will
+turn green and display the database expiration date.
+
+:::: tip
+::: title
+Tip
+:::
+
+The expiration date is also displayed at the bottom of the Settings
+page.
+::::
+
+## Duplicate a database {#on-premise/duplicate}
+
+Duplicate a database by accessing the database manager on your server
+([\<odoo-server\>/web/database/manager]{.title-ref}). Typically, you
+want to duplicate your production database into a neutralized testing
+database. It can be done by checking the neutralize box when prompted,
+which executes all `neutralize.sql`{.interpreted-text role="file"}
+scripts for every installed module.
+
+## Common error messages and solutions
+
+### Registration error
+
+In case of a registration error, the following message should be
+displayed.
+
+![Database registration error message](on_premise/error-message-sub-code.png)
+
+To resolve the issue:
+
+- Check the **validity of your Odoo Enterprise subscription** by
+  verifying if your subscription details have the tag
+  `In Progress`{.interpreted-text role="guilabel"} on your [Odoo
+  Account](https://accounts.odoo.com/my/subscription) or contact your
+  Account Manager.
+
+- Ensure that **no other database is linked** to the subscription code,
+  as only one database can be linked per subscription.
+
+  :::: tip
+  ::: title
+  Tip
+  :::
+
+  If a test or a development database is needed, you can
+  `duplicate a database
+  <on-premise/duplicate>`{.interpreted-text role="ref"}.
+  ::::
+
+- Verify that **no databases share the same UUID** (Universally Unique
+  Identifier) by opening your [Odoo
+  Contract](https://accounts.odoo.com/my/subscription). If two or more
+  databases share the same UUID, their name will be displayed.
+
+  ![Database UUID error message](on_premise/unlink-db-name-collision.png)
+
+  If that is the case, manually change the database(s) UUID or [send a
+  support ticket](https://www.odoo.com/help).
+
+- As the update notification must be able to reach Odoo\'s subscription
+  validation servers, ensure your **network and firewall settings**
+  allow the Odoo server to open outgoing connections towards:
+
+  - Odoo 18.0 and above: [services.odoo.com]{.title-ref} on port
+    [80]{.title-ref}
+  - Odoo 17.0 and below: [services.openerp.com]{.title-ref} on port
+    [80]{.title-ref}
+
+  These ports must be kept open even after registering a database, as
+  the update notification runs once a week.
+
+### Too many users error
+
+If you have more users in a local database than provisioned in your Odoo
+Enterprise subscription, the following message should be displayed.
+
+![Too many users on a database error message](on_premise/add-more-users.png)
+
+When the message appears, you have 30 days to act before the database
+expires. The countdown is updated every day.
+
+To resolve the issue, either:
+
+- **Add more users** to your subscription by clicking the
+  `Upgrade your subscription`{.interpreted-text role="guilabel"} link
+  displayed in the message to validate the upsell quotation and pay for
+  the extra users.
+- `Deactivate users <users/deactivate>`{.interpreted-text role="ref"}
+  and **reject** the upsell quotation.
+
+Once your database has the correct number of users, the expiration
+message disappears automatically after a few days, when the next
+verification occurs.
+
+### Database expired error
+
+If your database expires before you renew your subscription, the
+following message should be displayed.
+
+![Database expired error message](on_premise/database-expired.png)
+
+This message appears if you fail to act before the end of the 30-day
+countdown.
+
+To resolve the issue, either:
+
+- Click the `Renew your subscription`{.interpreted-text role="guilabel"}
+  link displayed in the message and complete the process. If you pay by
+  wire transfer, your subscription will be renewed when the payment
+  arrives which can take a few days. Credit card payments are processed
+  immediately.
+- [Send a support ticket](https://www.odoo.com/help).
+
+::: toctree
+on_premise/packages on_premise/source on_premise/update
+on_premise/deploy on_premise/email_gateway on_premise/geo_ip
+on_premise/community_to_enterprise
+:::
+
+
+
+
+--- SOURCE: administration/supported_versions.md ---
+
+hide-page-toc
+
+:   
+
+# Supported versions {#supported_versions}
+
+Odoo provides support and bug fixing **for the 3 last major versions**
+of Odoo.
+
+:::: note
+::: title
+Note
+:::
+
+Odoo releases intermediary versions called **Online versions** on the
+`Odoo Online
+<odoo_online>`{.interpreted-text role="doc"} hosting every two months.
+Odoo Online users can then benefit from the latest features of Odoo.
+
+- Admins of Odoo Online databases are invited to
+  `upgrade <upgrade>`{.interpreted-text role="doc"} them regularly.
+- Online versions are *not* released for Odoo.sh and On-Premise
+  installations.
+- Online versions are listed below as *SaaS*.
+::::
+
+This matrix shows the support status of every version.
+
+**Major releases are in bold type.**
+
+                   Odoo Online                                                                              Odoo.sh                                                                                  On-Premise                                                                               Release date     End of support
+  ---------------- ---------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------- ---------------- --------------------------
+  **Odoo 19.0**    `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   September 2025   September 2028 (planned)
+  Odoo SaaS 18.4   `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    N/A                                                                                      N/A                                                                                      July 2025        
+  Odoo SaaS 18.3   `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    N/A                                                                                      N/A                                                                                      May 2025         
+  Odoo SaaS 18.2   `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    N/A                                                                                      N/A                                                                                      March 2025       
+  **Odoo 18.0**    `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   October 2024     September 2027 (planned)
+  **Odoo 17.0**    `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   `<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}   November 2023    September 2026 (planned)
+  **Odoo 16.0**    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    October 2022     September 2025
+  **Odoo 15.0**    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    October 2021     October 2024
+  Older versions   `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    `<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}    Before 2021      Before 2024
+
+::: admonition
+Legend
+
+`<span class="text-success" style="font-size: 32px; line-height: 0.5">●</span>`{=html}
+Supported version
+
+`<span class="text-danger" style="font-size: 32px; line-height: 0.5">●</span>`{=html}
+End-of-support
+
+N/A Never released for this platform
+:::
+
+:::: important
+::: title
+Important
+:::
+
+Even though we don\'t support older versions, you can always [upgrade
+from any version](https://upgrade.odoo.com/).
+::::
+
+
+
+
+--- SOURCE: administration/upgrade.md ---
+
+# Upgrade
+
+An upgrade involves moving a database from an older version to a newer
+supported version (e.g., from Odoo 16.0 to Odoo 18.0). Regular upgrades
+are crucial as each version offers new features, bug fixes, and security
+patches. Using a
+`supported version <supported_versions>`{.interpreted-text role="doc"}
+is strongly recommended. Each major version is supported for three
+years.
+
+Depending on the hosting type and Odoo version used, a database upgrade
+can be **mandatory**.
+
+:::::: tabs
+::: group-tab
+Odoo Online
+
+- If a database is on a **major version** (e.g., 16.0, 17.0, 18.0), an
+  upgrade is mandatory every two years.
+- If a database is on a **minor version** (e.g., 17.1, 17.2, 17.4), an
+  upgrade is mandatory a few weeks after the next version is released.
+  Minor versions are usually released every two months.
+:::
+
+::: group-tab
+Odoo.sh
+
+After the initial three years of support, you will have another two
+years to complete the upgrade. You will be notified when an upgrade is
+required.
+
+![The \"unsupported version\" popup on Odoo.sh.](upgrade/odoo-sh-message.png)
+:::
+
+::: group-tab
+On-premise
+
+You can stay on the same version indefinitely, even if it is not
+recommended. Note that the smaller the version gap, the easier the
+upgrade should be.
+:::
+::::::
+
+::: spoiler
+Automatic upgrades: Odoo Online\'s Rolling Release process
+
+You will receive a notification in your database a few weeks before a
+mandatory upgrade will be automatically carried out. You are in control
+of the process as long as the deadline is not reached.
+
+![The upgrade message prompt on the top right of the database](upgrade/rr-upgrade-message.png)
+
+Concretely, Odoo's Upgrade Team performs a silent test upgrade of every
+database that should be upgraded. If the test is successful and lasts
+less than 20 minutes, you can directly trigger the upgrade from the
+database. If the test fails, you can test an upgrade using the [database
+manager](https://www.odoo.com/my/databases).
+
+When you are invited to upgrade, it is strongly recommended to
+`request an upgraded test
+database <upgrade-request-test>`{.interpreted-text role="ref"} first and
+spend time `testing <upgrade-testing>`{.interpreted-text role="ref"} it.
+
+An automatic upgrade to the next version will be triggered if no action
+is taken before the specified due date.
+:::
+
+An upgrade does not cover:
+
+> - Downgrading to a previous version of Odoo
+> - `Switching editions <on_premise/community_to_enterprise>`{.interpreted-text
+>   role="doc"} (e.g., from Community to Enterprise)
+> - `Changing hosting type <hosting/change-solution>`{.interpreted-text
+>   role="ref"} (e.g., from on-premise to Odoo Online)
+> - Migrating from another ERP to Odoo
+
+:::: warning
+::: title
+Warning
+:::
+
+If your database contains custom modules, it cannot be upgraded until a
+version of your custom modules is available for the target version of
+Odoo. For customers maintaining their own custom modules, we recommend
+to parallelize the process by `requesting an upgraded database
+<upgrade-request-test>`{.interpreted-text role="ref"} while also
+`upgrading the source code of your custom
+modules </developer/howtos/upgrade_custom_db>`{.interpreted-text
+role="doc"}.
+::::
+
+## Upgrading in a nutshell {#upgrade-nutshell}
+
+1.  Request an upgraded test database (see
+    `obtaining an upgraded test database
+    <upgrade-request-test>`{.interpreted-text role="ref"}).
+2.  If applicable, upgrade the source code of your custom module to be
+    compatible with the new version of Odoo (see
+    `/developer/howtos/upgrade_custom_db`{.interpreted-text
+    role="doc"}).
+3.  Thoroughly test the upgraded database (see
+    `testing the new version of the database
+    <upgrade-testing>`{.interpreted-text role="ref"}).
+4.  Report any issue encountered during the testing to Odoo by going to
+    the [Support page and selecting \"An issue related to my future
+    upgrade (I am testing an
+    upgrade)\"](https://www.odoo.com/help?stage=migration).
+5.  Once all issues are resolved and you are confident that the upgraded
+    database can be used as your main database without any issues, plan
+    the upgrade of your production database.
+6.  Request the upgrade for the production database, rendering it
+    unavailable for the time it takes to complete the process (see
+    `upgrading the production database <upgrade-production>`{.interpreted-text
+    role="ref"}).
+7.  Report any issue encountered during the upgrade to Odoo by going to
+    the [Support page and selecting \"An issue related to my upgrade
+    (production)\"](https://www.odoo.com/help?stage=post_upgrade).
+
+## Obtaining an upgraded test database {#upgrade-request-test}
+
+The [Upgrade page](https://upgrade.odoo.com) is the main platform for
+requesting an upgraded database. However, depending on the hosting type,
+you can upgrade from the command line (on-premise), the Odoo Online
+[database manager](https://www.odoo.com/my/databases), or your [Odoo.sh
+project](https://www.odoo.sh/project).
+
+:::: note
+::: title
+Note
+:::
+
+The Upgrade platform follows the same [Privacy
+Policy](https://www.odoo.com/privacy) as the other Odoo.com services.
+Visit the [General Data Protection Regulation
+page](https://www.odoo.com/gdpr) to learn more about how Odoo handles
+your data and privacy.
+::::
+
+:::::::::::::: tabs
+::: group-tab
+Odoo Online
+
+Odoo Online databases can be manually upgraded via the [database
+manager](https://www.odoo.com/my/databases).
+
+The database manager displays all databases associated with the user\'s
+account. Databases not on the most recent version of Odoo display an
+arrow in a circle icon next to their name, indicating that they can be
+upgraded.
+
+![The database manager with an upgrade button next to the name of a database.](upgrade/databases-page.png)
+
+Click the **arrow in a circle** icon to start the upgrade process. In
+the popup, fill in:
+
+- The **version** of Odoo you want to upgrade to, usually the latest
+  version
+- The **email** address that should receive the link to the upgraded
+  database
+- The `Purpose`{.interpreted-text role="guilabel"} of the upgrade, which
+  is automatically set to `Test`{.interpreted-text role="guilabel"} for
+  your first upgrade request
+
+![The \"Upgrade your database\" popup.](upgrade/upgrade-popup.png)
+
+The `Upgrade in progress`{.interpreted-text role="guilabel"} tag is
+displayed next to the database name until completion. Once the process
+succeeds, an email containing a link to the upgraded test database is
+sent to the address provided. The database can also be accessed from the
+database manager by clicking the dropdown arrow before the database
+name.
+
+![Clicking the menu arrow displays the upgraded test database.](upgrade/access-upgraded-db.png)
+:::
+
+::::: group-tab
+Odoo.sh
+
+Odoo.sh is integrated with the upgrade platform to simplify the upgrade
+process.
+
+![Odoo.sh project and tabs](upgrade/odoo-sh-staging.png)
+
+The **latest production daily automatic backup** is then sent to the
+Upgrade platform.
+
+Once the upgrade platform is done upgrading the backup and uploading it
+on the branch, it is put in a **special mode**: each time a **commit is
+pushed** on the branch, a **restore operation** of the upgraded backup
+and an **update of all the custom modules** occur. This allows you to
+test your custom modules on a pristine copy of the upgraded database.
+The log file of the upgrade process can be found in your newly upgraded
+staging build by going to `~/logs/upgrade.log`{.interpreted-text
+role="file"}.
+
+:::: important
+::: title
+Important
+:::
+
+In databases where custom modules are installed, their source code must
+be up-to-date with the target version of Odoo before the upgrade can be
+performed. If there are none, the \"update on commit\" mode is skipped,
+the upgraded database is built as soon as it is transferred from the
+upgrade platform, and the upgrade mode is exited.
+
+Check out the `/developer/howtos/upgrade_custom_db`{.interpreted-text
+role="doc"} page for more information.
+::::
+:::::
+
+::::::::: group-tab
+On-premise
+
+The standard upgrade process can be initiated by entering the following
+command line on the machine where the database is hosted:
+
+``` console
+$ python <(curl -s https://upgrade.odoo.com/upgrade) test -d <your db name> -t <target version>
+```
+
+:::: note
+::: title
+Note
+:::
+
+This command has some requirements on the environment it runs in:
+
+- Some external commands that must be provided by the operating system,
+  normally found in any Linux distribution (including WSL). An error
+  will be displayed if one or several of them are missing.
+- The system user that executes the command needs to be configured with
+  access to the database. Please refer to the PostgreSQL documentation
+  of the [client
+  environment](https://www.postgresql.org/docs/current/libpq-envars.html)
+  or the [client password
+  file](https://www.postgresql.org/docs/current/libpq-pgpass.html) for
+  this requirement.
+- The script needs to be able to reach one or multiple servers of the
+  upgrade platform both on TCP port 443 and to any random TCP port in
+  the range between 32768 and 60999. This can be in conflict with your
+  restrictive firewall and may need an exception added to the firewall
+  configuration.
+::::
+
+The following command can be used to display the general help and the
+main commands:
+
+``` console
+$ python <(curl -s https://upgrade.odoo.com/upgrade) --help
+```
+
+An upgraded test database can also be requested via the [Upgrade
+page](https://upgrade.odoo.com).
+
+:::: important
+::: title
+Important
+:::
+
+In databases where custom modules are installed, their source code must
+be up-to-date with the target version of Odoo before the upgrade can be
+performed. Check out the
+`/developer/howtos/upgrade_custom_db`{.interpreted-text role="doc"} page
+for more information.
+::::
+
+:::: note
+::: title
+Note
+:::
+
+\- For security reasons, only the person who submitted the upgrade
+request can download it. - For storage reasons, the database\'s copy is
+submitted without a filestore to the upgrade server. Therefore, the
+upgraded database does not contain the production filestore. - Before
+restoring the upgraded database, its filestore must be merged with the
+production filestore to be able to perform tests in the same conditions
+as it would be in the new version. - The upgraded database contains:
+
+- A [dump.sql]{.title-ref} file containing the upgraded database
+- A [filestore]{.title-ref} folder containing files extracted from
+  in-database records into attachments (if there are any) and new
+  standard Odoo files from the targeted Odoo version (e.g., new images,
+  icons, payment provider\'s logos, etc.). This is the folder that
+  should be merged with the production filestore in order to get the
+  full upgraded filestore.
+::::
+:::::::::
+::::::::::::::
+
+:::: note
+::: title
+Note
+:::
+
+You can request multiple test databases if you wish to test an upgrade
+more than once.
+::::
+
+:::: note
+::: title
+Note
+:::
+
+When an upgrade request is completed, an upgrade report is attached to
+the successful upgrade email, and it becomes available in the Discuss
+app for users who are part of the \"Administration / Settings\" group.
+This report provides important information about the changes introduced
+by the new version.
+::::
+
+## Testing the new version of the database {#upgrade-testing}
+
+It is essential to test the upgraded test database to ensure that you
+are not stuck in your day-to-day activities by a change in views,
+behavior, or an error message once the upgrade goes live.
+
+:::: note
+::: title
+Note
+:::
+
+Test databases are neutralized, and some features are disabled to
+prevent them from impacting the production database:
+
+1.  Scheduled actions are disabled.
+2.  Outgoing mail servers are disabled by archiving the existing ones
+    and adding a fake one.
+3.  Payment providers and delivery carriers are reset to the test
+    environment.
+4.  Bank synchronization is disabled. Should you want to test the
+    synchronization, contact your bank synchronization provider to get
+    sandbox credentials.
+::::
+
+Testing as many of your business flows as possible is strongly
+recommended to ensure they are working correctly and to get more
+familiar with the new version.
+
+::: admonition
+Basic test checklist
+
+- Are there views that are deactivated in your test database but active
+  in your production database?
+- Are your usual views still displayed correctly?
+- Are your reports (invoice, sales order, etc.) correctly generated?
+- Are your website pages working correctly?
+- Are you able to create and modify records? (sales orders, invoices,
+  purchases, users, contacts, companies, etc.)
+- Are there any issues with your mail templates?
+- Are there any issues with saved translations?
+- Are your search filters still present?
+- Can you export your data?
+:::
+
+::: spoiler
+Example of end-to-end testing
+
+- Checking a random product in your product catalog and comparing its
+  test and production data to verify everything is the same (product
+  category, selling price, cost price, vendor, accounts, routes, etc.).
+- Buying this product (Purchase app).
+- Confirming the reception of this product (Inventory app).
+- Checking if the route to receive this product is the same in your
+  production database (Inventory app).
+- Selling this product (Sales app) to a random customer.
+- Opening your customer database (Contacts app), selecting a customer
+  (or company), and checking its data.
+- Shipping this product (Inventory app).
+- Checking if the route to ship this product is the same as in your
+  production database (Inventory app).
+- Validating a customer invoice (Invoicing or Accounting app).
+- Crediting the invoice (issuing a credit note) and checking if it
+  behaves as in your production database.
+- Checking your reports\' results (Accounting app).
+- Randomly checking your taxes, currencies, bank accounts, and fiscal
+  year (Accounting app).
+- Making an online order (Website apps) from the product selection in
+  your shop until the checkout process and checking if everything
+  behaves as in your production database.
+
+This list is **not** exhaustive. Extend the example to your other apps
+based on your use of Odoo.
+:::
+
+If you face an issue while testing your upgraded test database, you can
+request the assistance of Odoo by going to the [Support page and
+selecting \"An issue related to my future upgrade (I am testing an
+upgrade)\"](https://www.odoo.com/help?stage=migration). In any case, it
+is essential to report any problem encountered during the testing to fix
+it before upgrading your production database.
+
+You might encounter significant differences with standard views,
+features, fields, and models during testing. Those changes cannot be
+reverted on a case-by-case basis. However, if a change introduced by a
+new version breaks a customization, it is the responsibility of the
+maintainer of your custom module to make it compatible with the new
+version of Odoo.
+
+:::: tip
+::: title
+Tip
+:::
+
+Do not forget to test:
+
+- Integrations with external software (EDI, APIs, etc.)
+- Workflows between different apps (online sales with eCommerce,
+  converting a lead all the way to a sales order, delivery of products,
+  etc.)
+- Data exports
+- Automated actions
+- Server actions in the action menu on form views, as well as by
+  selecting multiple records on list views
+::::
+
+## Upgrading the production database {#upgrade-production}
+
+Once the `tests <upgrade-testing>`{.interpreted-text role="ref"} are
+completed and you are confident that the upgraded database can be used
+as your main database without any issues, it is time to plan the go-live
+day.
+
+Your production database will be unavailable during its upgrade.
+Therefore, we recommend planning the upgrade at a time when the use of
+the database is minimal.
+
+As the standard upgrade scripts and your database are constantly
+evolving, it is also recommended to frequently request another upgraded
+test database to ensure that the upgrade process is still successful,
+especially if it takes a long time to finish. **Fully rehearsing the
+upgrade process the day before upgrading the production database is also
+recommended.**
+
+:::: important
+::: title
+Important
+:::
+
+Going into production without first testing may lead to:
+
+- Users failing to adjust to the changes and new features
+- Business interruptions (e.g., no longer having the possibility to
+  validate an action)
+- Poor customer experience (e.g., an eCommerce website that does not
+  work correctly)
+::::
+
+The process of upgrading a production database is similar to upgrading a
+test database, but with a few exceptions.
+
+:::::::::::: tabs
+::::: group-tab
+Odoo Online
+
+The process is similar to `obtaining an upgraded test database
+<upgrade-request-test>`{.interpreted-text role="ref"}, except for the
+purpose option, which must be set to `Production`{.interpreted-text
+role="guilabel"} instead of `Test`{.interpreted-text role="guilabel"}.
+
+:::: warning
+::: title
+Warning
+:::
+
+Once the upgrade is requested, the database will be unavailable until
+the upgrade is finished. Once the process is completed, it is impossible
+to revert to the previous version.
+::::
+:::::
+
+::::: group-tab
+Odoo.sh
+
+The process is similar to
+`obtaining an upgraded test database <upgrade-request-test>`{.interpreted-text
+role="ref"} on the `Production`{.interpreted-text role="guilabel"}
+branch.
+
+![View from the upgrade tab](upgrade/odoo-sh-prod.png)
+
+The process is **triggered as soon as a new commit is made** on the
+branch. This allows the upgrade process to be synchronized with the
+deployment of the custom modules\' upgraded source code. If there are no
+custom modules, the upgrade process is triggered immediately.
+
+:::: important
+::: title
+Important
+:::
+
+The database is unavailable throughout the process. If anything goes
+wrong, the platform automatically reverts the upgrade, as it would be
+for a regular update. In case of success, a backup of the database
+before the upgrade is created.
+::::
+
+The update of your custom modules must be successful to complete the
+entire upgrade process. Make sure the status of your staging upgrade is
+`successful`{.interpreted-text role="guilabel"} before trying it in
+production. More information on how to upgrade your custom modules can
+be found on `/developer/howtos/upgrade_custom_db`{.interpreted-text
+role="doc"}.
+:::::
+
+::::: group-tab
+On-premise
+
+The command to upgrade a database to production is similar to the one of
+upgrading a test database except for the argument [test]{.title-ref},
+which must be replaced by \`production\`:
+
+``` console
+$ python <(curl -s https://upgrade.odoo.com/upgrade) production -d <your db name> -t <target version>
+```
+
+An upgraded production database can also be requested via the [Upgrade
+page](https://upgrade.odoo.com).
+
+Once the database is uploaded, any modification to your production
+database will **not** be present on your upgraded database. This is why
+we recommend not using it during the upgrade process.
+
+:::: important
+::: title
+Important
+:::
+
+When requesting an upgraded database for production purposes, the copy
+is submitted without a filestore. Therefore, the upgraded database
+filestore must be merged with the production filestore before deploying
+the new version.
+::::
+:::::
+::::::::::::
+
+In case of an issue with your production database, you can request the
+assistance of Odoo by going to the [Support page and selecting \"An
+issue related to my upgrade
+(production)\"](https://www.odoo.com/help?stage=post_upgrade).
+
+## Service-level agreement (SLA) {#upgrade-sla}
+
+With Odoo Enterprise, upgrading a database to the most recent version of
+Odoo is **free**, including any support required to rectify potential
+discrepancies in the upgraded database.
+
+Information about the upgrade services included in the Enterprise
+Licence is available in the
+`Odoo Enterprise Subscription Agreement <upgrade>`{.interpreted-text
+role="ref"}. However, this section clarifies what upgrade services you
+can expect.
+
+### Upgrade services covered by the SLA {#upgrade-sla-covered}
+
+Databases hosted on Odoo\'s cloud platforms (Odoo Online and Odoo.sh) or
+self-hosted (On-Premise) can benefit from upgrade services at all times
+for:
+
+- the upgrade of all **standard applications**;
+- the upgrade of all **customizations created with the Studio app**, as
+  long as Studio is still installed and the respective subscription is
+  still active; and
+- the upgrade of all **developments and customizations covered by a
+  maintenance of customizations subscription**.
+
+Upgrade services are limited to the technical conversion and adaptation
+of a database (standard modules and data) to make it compatible with the
+version targeted by the upgrade.
+
+### Upgrade services not covered by the SLA {#upgrade-sla-not-covered}
+
+The following upgrade-related services are **not** included:
+
+- the **cleaning** of pre-existing data and configurations while
+  upgrading;
+- the upgrade of **additional modules not covered by a maintenance
+  contract** that are created in-house or by third parties, including
+  Odoo partners; and
+- **training** on using the upgraded version\'s features and workflows.
+
+::: seealso
+\- `Odoo.sh documentation <odoo_sh>`{.interpreted-text role="doc"} -
+`Supported Odoo versions <supported_versions>`{.interpreted-text
+role="doc"}
+:::
+
+

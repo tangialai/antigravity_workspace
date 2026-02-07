@@ -1,0 +1,56 @@
+# System files
+.DS_Store
+**/.DS_Store
+
+# Odoo Data & Environment (Heavy)
+ODOO/DATA_DIR/
+ODOO/ENV_CONFIG/
+LOGS/
+tmp/
+*.log
+
+# Python Environments & Cache
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+.env/
+n8n/python_n8n/venv/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE Configuration (UPDATED: Allowed for Personal Backup)
+# .vscode/                <-- Giữ lại để đồng bộ settings VSCode
+.idea/**/workspace.xml    # <-- Ignore file này vì nó thay đổi liên tục
+.idea/**/tasks.xml        # <-- Ignore
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# .qodo/                  <-- Giữ lại
+# .cursorignore           <-- Giữ lại
+# .editorconfig           <-- Giữ lại
+# .prettierrc             <-- Giữ lại
+
+# Agent & Antigravity (Device Specific)
+.gemini/
+# .agent/ # Backup this folder to share skills/workflows
+
+# Local/Private configuration (Luôn phải ignore)
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+known_hosts
+/n8n/
+/ODOO/DATA_DIR/
+/ODOO/NOVOBI/
+/ODOO/REFERENCES/
+/ODOO/RYANTAN/
+/tmp/

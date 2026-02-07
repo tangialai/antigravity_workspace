@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="IssueNavigationConfiguration">
+    <option name="links">
+      <list>
+        <IssueNavigationLink>
+          <option name="issueRegexp" value="\bodoo/(\w+)#(\d+)" />
+          <option name="linkRegexp" value="https://github.com/odoo/$1/issues/$2" />
+        </IssueNavigationLink>
+      </list>
+    </option>
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/NOVOBI/DBVI" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/NOVOBI/Dermalogica_main" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/NOVOBI/Dermalogica_uat" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/NOVOBI/stiiizy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo15" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo15en" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo16" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo16en" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo18" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo18en" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo19" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ODOO/REFERENCES/odoo19en" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/n8n/python_n8n" vcs="Git" />
+  </component>
+</project>

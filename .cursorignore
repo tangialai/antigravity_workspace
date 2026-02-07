@@ -1,0 +1,11 @@
+# Exclude heavy directories from AI Indexing
+ODOO/DATA_DIR/
+ODOO/ENV_CONFIG/
+ODOO/REFERENCES/
+
+# Logs and temporary files
+LOGS/
+**/*.log
+**/__pycache__/
+*.pyc
+.DS_Store
