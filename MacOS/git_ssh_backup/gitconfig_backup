@@ -1,0 +1,14 @@
+[init]
+    templateDir = /Users/ryantanmai/WORKSPACE/.git-templates
+
+# 1. Default / Personal Projects
+[includeIf "gitdir:/Users/ryantanmai/WORKSPACE/"]
+    path = /Users/ryantanmai/.gitconfig-tangialai
+
+# 2. Novobi Projects (Overrides default)
+[includeIf "gitdir:/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/"]
+    path = /Users/ryantanmai/.gitconfig-novobi
+
+# 3. DBVI Projects (Overrides Novobi and default)
+[includeIf "gitdir:/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/DBVI/"]
+    path = /Users/ryantanmai/.gitconfig-dbvi
