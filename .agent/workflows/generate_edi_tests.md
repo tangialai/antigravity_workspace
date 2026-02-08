@@ -16,7 +16,7 @@ description: Generate specialized unit tests for Odoo EDI Processors (Cardinal/e
 
 3. **Generate Tests**
     - Use the `odoo-edi-testing` skill patterns.
-    - Create a test file in `tests/test_{filename}.py`.
+    - Create a test file in `tests/odoo_test_{filename}.py`.
     - Ensure you include `process_context` for imports and `analytic_mapping` for exports if used.
 
 4. **Verify**

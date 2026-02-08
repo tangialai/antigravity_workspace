@@ -10,6 +10,16 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 
 This skill centralizes Odoo-specific standards to ensure consistency, extensibility, and automated upgradeability across all projects.
 
+### 🛡️ DBVI Project Standards (Mandatory)
+
+1. **Copyright Header**: Every Python file **MUST** start with:
+    ```python
+    # Copyright © 2026 Novobi, Inc
+    # See LICENSE file for full copyright and licensing details.
+    ```
+2. **Top-level Spacing**: Maintain **2 blank lines** between imports/global variables and class/function definitions (PEP 8 standard).
+3. **Manifest Organization**: Group `data` files by type (Security, Data, Views, Report, Wizards) and use `OPL-1` license for project modules.
+
 ---
 
 ## 1. Role & Mindset
@@ -59,6 +69,7 @@ my_module/
     - **Many2one**: Ends in `_id` (e.g., `partner_id`).
     - **X2many**: Ends in `_ids` (e.g., `line_ids`).
 - **View Elements**: New elements (`page`, `group`, `button`) **MUST** have a `name` attribute for extensibility.
+- **Encoding Header**: Prefer omitting the old `# -*- coding: utf-8 -*-` in favor of the Copyright header for Python 3 projects.
 
 ---
 
@@ -124,6 +135,10 @@ my_module/
 ### Inheritance
 
 - Always use `xpath` and prefer `name` or `id` selectors for stability.
+- **Inherited View ID (Crucial)**:
+    - When inheriting a view to **modify/extend** it (e.g., adding fields), the `id` of the new record **MUST** be unique (e.g., `view_partner_form_inherit_website`).
+    - **NEVER** use the same `id` as the parent view (e.g., `id="base.view_partner_form"`). This triggers a complete **Override/Replacement**, wiping out the original view and breaking other modules.
+    - **Ref**: See `odoo19docs_developer.md` > Views > Inheritance.
 
 ### Modern Attributes (Odoo 17+)
 
@@ -165,11 +180,14 @@ my_module/
 
 ---
 
-## 9. Reference Check Workflow
+### 🔍 Reference Check Workflow (Mandatory)
 
-1. **Locate Source**: Find standard code in `/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/`.
-2. **Analyze**: Verify `xpath` and method signatures.
-3. **Extend**: Implement inheritance following best practices.
+1. **Identify Target Version**: Check the module version in `__manifest__.py` or the project context (e.g., Odoo 19).
+2. **Locate Source**:
+    - **Odoo Core**: Reference the exact version in `/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/`.
+    - **Project Library**: Refer to the expert documentation in `/Users/ryantanmai/WORKSPACE/ODOO/LIBRARY/Odoo19docs/`.
+3. **Analyze**: Verify `xpath`, method signatures, and default behaviors for that specific version.
+4. **Extend**: Implement inheritance or customization following only the patterns valid for that version.
 
 ---
 

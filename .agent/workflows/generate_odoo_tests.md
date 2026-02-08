@@ -14,7 +14,7 @@ description: Generate unit tests for standard Odoo models and business logic
 
 3. **Generate Tests**
     - Use the `odoo-core-testing` skill patterns.
-    - Create `tests/test_{filename}.py`.
+    - Create `tests/odoo_test_{filename}.py`.
     - Use `TransactionCase` and `setUpClass` to prepare data.
     - Write one test method per logical branch (e.g., `test_action_success`, `test_action_failure`).
 

@@ -238,6 +238,7 @@ extensions=(
     "Codium.codium"                 # AI Test Gen
     "mintlify.document"             # Automatic Docs
     "henrikdev.ag-quota"            # Antigravity Quota Tracker
+    "MermaidChart.vscode-mermaid-chart" # Mermaid Diagram Editor
 )
 
 for ext in "${extensions[@]}"; do
@@ -386,6 +387,7 @@ echo "   ✓ Codeium AI ............. Free Coding Assistant (Autocomplete)"
 echo "   ✓ CodiumAI ............... Generate Unit Tests automatically"
 echo "   ✓ Mintlify ............... Write Docstrings with AI"
 echo "   ✓ GitLens ................ visualize code authorship"
+echo "   ✓ MermaidChart ........... Create & Edit Mermaid diagrams"
 echo ""
 echo "⚙️  CONFIGURATION:"
 echo "   ✓ Applied 'JetBrainsMono Nerd Font' for Terminal."
