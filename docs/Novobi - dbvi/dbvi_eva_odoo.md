@@ -4,120 +4,124 @@ This diagram illustrates the complete data flow, system boundaries, and staging 
 
 ```mermaid
 flowchart TD
-    %% Define High-Contrast Styles (Bold Dark Text)
-    classDef portal fill:#FFF,stroke:#FF6D00,stroke-width:3px,color:#E65100,font-weight:bold;
-    classDef gateway fill:#FFF,stroke:#2962FF,stroke-width:3px,color:#0D47A1,font-weight:bold;
-    classDef staging fill:#FFF,stroke:#FFD600,stroke-width:4px,color:#F57F17,font-weight:bold;
-    classDef core fill:#FFF,stroke:#00C853,stroke-width:3px,color:#1B5E20,font-weight:bold;
-    classDef manual fill:#FFF,stroke:#D50000,stroke-width:3px,color:#B71C1C,font-weight:bold;
+    %% Define Styles
+    classDef portal fill:#FFF,stroke:#FF6D00,stroke-width:2px,color:#E65100;
+    classDef gateway fill:#FFF,stroke:#2962FF,stroke-width:2px,color:#0D47A1;
+    classDef staging fill:#FFF,stroke:#FFD600,stroke-width:2px,color:#F57F17;
+    classDef core fill:#FFF,stroke:#00C853,stroke-width:2px,color:#1B5E20;
+    classDef manual fill:#FFF,stroke:#D50000,stroke-width:2px,color:#B71C1C;
 
-    %% Subgraph Styles (Darker Labels)
-    style EVA_PORTAL fill:#FFFFFF,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5,color:#212121;
-    style ODOO_SYSTEM fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#212121;
-    style LAYER_GATEWAY fill:#F8F9FA,stroke:#CCC,stroke-width:1px,color:#424242;
-    style LAYER_STAGING fill:#FFFDE7,stroke:#FFD600,stroke-width:1px,color:#424242;
-    style LAYER_REVIEW fill:#FFF,color:#424242;
-    style LAYER_CORE fill:#F1F8E9,stroke:#CCC,stroke-width:1px,color:#424242;
-
-    %% --- External Layer: eVA Portal ---
-    subgraph EVA_PORTAL ["eVA Portal"]
+    %% --- External Layer ---
+    subgraph EVA_PORTAL [eVA Portal]
         direction LR
-        EVA_BUYER(["🏢 eVA Buyer"]):::portal
-        EVA_SUPPLIER(["🚚 eVA Supplier"]):::portal
+        EVAB[eVA Buyer]:::portal
+        EVAS[eVA Supplier]:::portal
     end
 
-    %% --- Internal Layer: Odoo System ---
-    subgraph ODOO_SYSTEM ["DBVI Odoo"]
-
-        subgraph LAYER_GATEWAY ["1. Gateway & Audit Layer"]
-            CTRL{"cXML Gateway\nController"}:::gateway
-            LOG[("📜 Audit Log Archive")]:::gateway
+    %% --- Internal Layer ---
+    subgraph ODOO_SYSTEM [DBVI Odoo System]
+        subgraph LAYER_GATEWAY [1. Gateway: Security & Deduplication]
+            AUTH{Auth Check}:::gateway
+            CTRL[cXML Controller]:::gateway
+            DEDUP{Deduplication Check}:::gateway
+            LOG[(Audit Log Archive)]:::gateway
         end
 
-        subgraph LAYER_STAGING ["2. Staging Layer (Data Buffer)"]
-            PROC["Integration Router"]:::staging
-            STG_SO[["📦 Staging Sale Order"]]:::staging
-            STG_CO[["📝 Staging Change Order"]]:::staging
-            STG_PO[["🚜 Staging Purchase Order"]]:::staging
+        subgraph LAYER_STAGING [2. Processing & Normalization]
+            PROC[Integration Router]:::staging
+            STG_SO[Staging SO]:::staging
+            STG_CO[Staging Change Order]:::staging
+            STG_CAN[Cancellation Buffer]:::staging
         end
 
-        subgraph LAYER_REVIEW ["3. Governance & Review"]
-            REVIEW{"Manager Review\n& Approval"}:::manual
+        subgraph LAYER_REVIEW [3. Governance & Review]
+            REVIEW{Manager Review}:::manual
         end
 
-        subgraph LAYER_CORE ["4. Business Core Layer"]
-            SO["📄 Sale Order"]:::core
-            PO["🛒 Purchase Order"]:::core
-            MD[("🧠 Master Data")]:::core
+        subgraph LAYER_CORE [4. Business Core Layer]
+            SO_CORE[Official Sale Order]:::core
+            PO_CORE[Official Purchase Order]:::core
+            ROUND[Rounding Engine]:::core
+            MD_CORE[Master Data Mapping]:::core
         end
     end
 
-    %% --- Workflow Connections ---
+    %% --- Connections ---
+    EVAB --> AUTH
+    EVAS --> AUTH
 
-    %% Path A: Buyer Flow (Orange)
-    EVA_BUYER == "cXML PunchOut / Response" ==> CTRL
+    AUTH -->|Authorized| CTRL
+    CTRL --> DEDUP
 
-    %% Path B: Supplier Flow (Blue)
-    EVA_SUPPLIER == "cXML OrderRequest" ==> CTRL
+    DEDUP -->|Duplicate| LOG
+    DEDUP -->|New| PROC
 
-    CTRL -- "Record Log" --> LOG
-    CTRL ==> PROC
+    PROC -->|New Order| STG_SO
+    PROC -->|Amendment| STG_CO
+    PROC -->|Cancellation| STG_CAN
 
-    %% Routing logic to Staging
-    PROC == "To PO" ==> STG_PO
-    PROC == "To SO" ==> STG_SO
-    PROC == "To Change" ==> STG_CO
+    STG_SO --> SO_CORE
+    STG_SO --> PO_CORE
 
-    %% Final Processing
-    STG_SO ==> SO
-    STG_PO ==> PO
+    STG_CO --> REVIEW
+    STG_CAN --> REVIEW
 
-    STG_SO -.-> MD
-    STG_PO -.-> MD
+    REVIEW -->|Approve| SO_CORE
+    REVIEW -->|Approve| PO_CORE
+    REVIEW -->|Reject| REJECT[Alert Email]:::manual
 
-    STG_CO ==> REVIEW
-    REVIEW == "Approve & Apply" ==> SO
-    REVIEW == "Reject" ==> REJECT{{ 📧 Rejection Email }}:::manual
-
-    %% Audit Links
-    SO -.-> LOG
-    PO -.-> LOG
-
-    %% Global Line Styling (Enhanced Contrast)
-    linkStyle default stroke:#444,stroke-width:2px;
-
-    %% Buyer Paths (Deep Orange: #E65100)
-    linkStyle 0,4,8,10,15 stroke:#E65100,stroke-width:4px;
-
-    %% Supplier Paths (Deep Blue: #0D47A1)
-    linkStyle 1,5,6,7,9,11,12,14 stroke:#0D47A1,stroke-width:4px;
-
-    %% Shared/Audit Paths (Grey)
-    linkStyle 2,3,13 stroke:#424242,stroke-width:2px;
+    SO_CORE --> ROUND
+    PO_CORE --> ROUND
+    ROUND --> MD_CORE
+    MD_CORE --> PROC
 ```
 
-## 📝 Key Components Explained
+## 📝 Detailed System Components & Workflow
 
-### 🌍 eVA Portal Persona
+To ensure a robust, secure, and error-proof integration, the system is designed in four distinct layers:
 
-- **Buyer Hub**: Used by Commonwealth of Virginia agencies to place orders.
-- **Supplier Hub**: Used for catalog confirmations or vendor-driven data.
+### 🌍 1. eVA Portal Personas (The Roles)
 
-### 🛡️ Layer 1: Audit Trail
+The integration handles two primary transactional roles for Odoo:
 
-Every transaction is logged before being processed. This ensures we have a non-repudiation record for any disputes or troubleshooting.
+- **🏢 eVA Buyer Flow (Orange Path - Odoo as Buyer)**: This represents Odoo in the **Purchasing** role. After a "PunchOut" session with a vendor, eVA sends a message back to our Gateway to finalize and record the **Purchase Order** in Odoo.
+- **🚚 eVA Supplier Flow (Blue Path - Odoo as Supplier)**: This represents Odoo in the **Sales** role. Government Agencies send **cXML OrderRequests** directly to our Gateway. Odoo then processes these to create **Sale Orders** and **Change Orders**.
 
-### 📦 Layer 2: Staging Layer (The Buffer)
+### 🛡️ Layer 1: Gateway & Audit (The Black Box)
 
-Instead of direct writing to Odoo Core, processing flows through staging:
+This is the "Security Guard" of the system.
 
-- **`STG_SO` (Staging Sale Order)**: Raw incoming SO data to prevent production corruption.
-- **`STG_CO` (Staging Change Order)**: Dedicated version history for modifications.
-- **`STG_PO` (Staging Purchase Order)**: Capture PunchOut messages before PO creation.
+- **cXML Controller**: Validates that every incoming message is authentic using a "Shared Secret" (Digital Handshake). It also enforces **IP Whitelisting** and **TLS 1.2+** standards as agreed with the eVA Technical Group.
+- **Audit Log Archive**: Every single XML file (the raw data) is saved permanently.
+- **Duplicate Prevention**: The Gateway uses the `PayloadID` (or a combination of `UniqueName` + `VersionNumber`) to immediately discard redundant transmissions, preventing double-entry in accounting.
 
-### ⚙️ Layer 3: Business Integration
+### 📦 Layer 2: Staging Layer (The Safety Buffer)
 
-- **Sale Order**: Final revenue record for suppliers, updated by Change Orders.
-- **Purchase Order**: Standard Odoo workflow for procurement, created via Buyer PunchOut.
-- **Change Order Logic**: Strictly for **Sales** versioning. Purchase modifications follow standard procurement revision flows.
-- **Master Data**: Centralized mapping for `eva_identity_id` and `eva_uom_code`.
+A critical design choice. We **never** write incoming raw data directly into your official Sales or Purchase records.
+
+- **Why a Buffer?**: Incoming data can be "messy" (e.g., a product code that doesn't exist yet in Odoo). The Staging Layer holds this data in a temporary area.
+- **Data Enrichment & Normalization**:
+    - **UoM Normalization**: Translates eVA's numeric unit IDs (e.g., '47') into Odoo standard units ('50 lb Bag').
+    - **Tax & Shipping Extraction**: Specifically "quenches" the total cost by extracting tax and freight from either header fields or dedicated line items, ensuring the **TotalCost** matches Odoo's calculation to the cent.
+    - **Financial Rounding**: Appiles the portal's specific 5-decimal rounding rules to prevent 1-cent discrepancies during reconciliation.
+- **Preparer/Requester Capture**: For Sale Orders, we capture the Agency's **Preparer & Requester email/phone** (from header fields).
+- **STG_CO (Change Orders)**: Handles complex `transaction_type` logic:
+    - `SEND`: New record creation.
+    - `PCNCL/CCNCL`: Partial or cumulative cancellations requiring granular line updates (`add/change/delete`).
+    - `CNCL`: Full order cancellation triggers a hold on logistics and production.
+
+### 👥 Layer 3: Governance & Review (The Safety Switch)
+
+- **Manual Oversight**: While new orders can be automated, **Change Orders** and **Cancellations** trigger a **Manager Review** notification.
+- **Human in the Loop**: A manager must verify the impacts of a cancellation (e.g., if the goods are already shipped) before the official record is updated.
+
+### ⚙️ Layer 4: Business Core (The Final Records)
+
+The finish line where data becomes official:
+
+- **Sale Order**: Updated only after Staging validation and Manager Review.
+- **Purchase Order**: Supports **Split Accounting** (Fund, Funct, Object codes) and **Cardinal Account** mappings.
+- **🧠 Master Data**: The "Brain" linking everything:
+    - **Identity Mapping**: Agency/FIPS codes to Odoo Partners.
+    - **Product Mapping**: SupplierPartID & NIGP Codes to Odoo Products.
+    - **Rounding Engine**: Centralized utility to ensure financial calculations stay consistent with the eVA/Cardinal accounting standards.

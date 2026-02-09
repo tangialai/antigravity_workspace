@@ -74,12 +74,13 @@ brew link --force openldap 2>/dev/null || true
 brew install openssl readline sqlite3 xz tcl-tk || true
 
 # Install a default Python version if none exists in pyenv
-RECOMMENDED_PYTHON="3.12.8"
+RECOMMENDED_PYTHON="3.13.1" # For Odoo 19
+LEGACY_PYTHON="3.12.8"      # For compatibility
 echo "🐍 Checking for Python $RECOMMENDED_PYTHON via pyenv..."
 if ! pyenv versions --bare | grep -q "$RECOMMENDED_PYTHON"; then
     echo "⬇️ Installing Python $RECOMMENDED_PYTHON (This may take a few minutes)..."
     pyenv install "$RECOMMENDED_PYTHON"
-    pyenv global "$RECOMMENDED_PYTHON"
+    pyenv global "$RECOMMENDED_PYTHON" "$LEGACY_PYTHON"
     echo "✅ Python $RECOMMENDED_PYTHON installed and set as global."
 else
     echo "✅ Python $RECOMMENDED_PYTHON is already installed."
@@ -91,7 +92,7 @@ echo "🐍 Installing Python Dev Tools..."
 eval "$(pyenv init -)"
 pip install --upgrade pip
 pip install setuptools wheel # Required for building Odoo libs
-pip install --ignore-installed pre-commit pylint-odoo
+pip install --ignore-installed pre-commit pylint-odoo black isort debugpy
 pip install pdfminer.six # Required for PDF indexation in Odoo
 
 # --- 2.6 Configure PostgreSQL (Auto-Start & User Setup) ---
@@ -208,6 +209,7 @@ extensions=(
     # --- Odoo Essential Pack ---
     "ms-python.python"              # Python Intelligence
     "ms-python.debugpy"             # Debugger
+    "ms-python.black-formatter"     # Black Code Formatter (PEP 8)
     "trinhanhngoc.vscode-odoo"      # Odoo Snippets & Tools
     "bina.odoo-snippets"            # Additional Odoo Snippets
     "oteny.odoo-test-method-launcher" # Run Odoo Tests
@@ -232,6 +234,11 @@ extensions=(
     # --- Git & Productivity ---
     "eamodio.gitlens"               # Git Supercharged
     "gruntfuggly.todo-tree"         # Manage TODOs
+    
+    # --- Infrastructure & Containers ---
+    "ms-azuretools.vscode-docker"     # Official Docker Extension
+    "ms-azuretools.vscode-containers"   # Dev Containers
+    "ms-python.vscode-python-envs"      # Advanced Python Env Management
 
     # --- AI & Automation ---
     "Codeium.codeium"               # Free AI Copilot
@@ -239,6 +246,8 @@ extensions=(
     "mintlify.document"             # Automatic Docs
     "henrikdev.ag-quota"            # Antigravity Quota Tracker
     "MermaidChart.vscode-mermaid-chart" # Mermaid Diagram Editor
+    "cweijan.dbclient-jdbc"         # Unified Database Client
+    "echoapi.echoapi-for-vscode"    # API Testing Client
 )
 
 for ext in "${extensions[@]}"; do
@@ -256,13 +265,16 @@ ODOO_SETTINGS='{
     "editor.rulers": [120],
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
+    "editor.renderWhitespace": "none",
+    "editor.minimap.enabled": false,
     "workbench.iconTheme": "vscode-icons",
     
-    "python.languageServer": "Default",
+    "python.languageServer": "None",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.autoImportCompletions": true,
+    "python.createEnvironment.trigger": "off",
     
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.integrated.fontSize": 13,
@@ -279,6 +291,8 @@ ODOO_SETTINGS='{
         "*.csv": "csv",
         "*.xml": "xml"
     },
+    "files.insertFinalNewline": true, 
+    "files.trimFinalNewlines": true,
     "files.exclude": {
         "**/.git": true,
         "**/.DS_Store": true,
@@ -286,11 +300,28 @@ ODOO_SETTINGS='{
         "**/*.pyc": true
     },
     
+    "git.repositoryScanMaxDepth": -1,
+    "git.autoRepositoryDetection": "subFolders",
+    "git.autofetch": true,
+    
+    "codeium.enableConfig": {
+        "*": true,
+        "xml": true
+    },
+    
+    "prettier.trailingComma": "none",
+    "diffEditor.ignoreTrimWhitespace": false,
+    
     "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
     },
     
     "vs-odoo.odooPath": "auto",
@@ -390,7 +421,7 @@ echo "   ✓ GitLens ................ visualize code authorship"
 echo "   ✓ MermaidChart ........... Create & Edit Mermaid diagrams"
 echo ""
 echo "⚙️  CONFIGURATION:"
-echo "   ✓ Applied 'JetBrainsMono Nerd Font' for Terminal."
+echo "   ✓ Applied 'MesloLGS NF' (Powerlevel10k compatible) for Terminal."
 echo "   ✓ Enabled 'Format On Save' & 'Block Cursor'."
 echo "   ✓ Optimized for large Odoo codebases (XML Symbols disabled)."
 echo "----------------------------------------------------------------"
