@@ -207,8 +207,8 @@ AI: → Đề xuất Inventory App với tính năng tồn kho realtime
 
 Sau khi có 3 câu trả lời, AI phân tích để chọn template:
 
-| Keyword phát hiện                              | Loại dự án   | Template Vision                                                |
-| ---------------------------------------------- | ------------ | -------------------------------------------------------------- |
+| Keyword phát hiện                              | Loại dự án   | Template Vision                                                          |
+| ---------------------------------------------- | ------------ | ------------------------------------------------------------------------ |
 | "app quản lý", "hệ thống", "SaaS", "đăng nhập" | SaaS App     | `resources/awf_odoo_templates/awf_odoo_visions/awf_odoo_saas_app.md`     |
 | "landing page", "trang bán hàng", "giới thiệu" | Landing Page | `resources/awf_odoo_templates/awf_odoo_visions/awf_odoo_landing_page.md` |
 | "dashboard", "báo cáo", "thống kê"             | Dashboard    | `resources/awf_odoo_templates/awf_odoo_visions/awf_odoo_dashboard.md`    |
@@ -429,11 +429,11 @@ Anh xác nhận đúng chưa?"
 
 ---
 
-## Giai đoạn 8: ⭐ AUTO PHASE GENERATION (MỚI v2)
+## Giai đoạn 8: ⭐ AUTO PHASE GENERATION - Skill: `@writing-plans` & `@planning-with-files` 📝
 
-### 8.1. Tạo Plan Folder
+Sau khi User xác nhận, **TỰ ĐỘNG** áp dụng kỹ năng **`@writing-plans`** để tạo cấu trúc kế hoạch chi tiết, đảm bảo mọi khía cạnh kỹ thuật đều được bao phủ. Sử dụng **`@planning-with-files`** để tổ chức folder plan khoa học:
 
-Sau khi User xác nhận, **TỰ ĐỘNG** tạo folder structure:
+### 8.1. Tạo Plan Folder Structure
 
 ```
 plans/[YYMMDD]-[HHMM]-[feature-name]/

@@ -39,6 +39,9 @@
     // ═══════════════════════════════════════════════════════════════
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorCustomizations": {},
+    "workbench.editorAssociations": {
+        "*.md": "default"
+    },
 
     // ═══════════════════════════════════════════════════════════════
     // FILES - File handling & associations

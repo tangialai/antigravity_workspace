@@ -102,11 +102,15 @@ if technical_level == "newbie":
 - **Commented Code:** Code bị comment out → Cần xóa (đã có Git lưu)
 - **Unused Imports:** Import nhưng không dùng → Cần xóa
 
-### 2.5. Missing Best Practices
+### 2.5. Performance & Database - Skill: `@postgres-best-practices` & `@python-performance-optimization` ⚡
 
-- **No Types:** JavaScript thuần → Cần thêm TypeScript types
-- **No Error Handling:** Thiếu try-catch → Cần thêm
-- **No JSDoc:** Hàm phức tạp không có comment → Cần thêm
+- **Query Optimization:** Phối hợp kiến thức **`@postgres-best-practices`** để soi:
+    - Vòng lặp chứa `search` hoặc `browse` (N+1 query).
+    - Thiếu `index` trên các trường hay filter/search.
+    - Lạm dụng `compute field stored` khiến ghi dữ liệu chậm.
+- **Python Bottlenecks:** Dùng **`@python-performance-optimization`** để tìm:
+    - Xử lý list/dict không tối ưu.
+    - Các đoạn code xử lý dữ liệu lớn đồng bộ gây treo request.
 
 ---
 

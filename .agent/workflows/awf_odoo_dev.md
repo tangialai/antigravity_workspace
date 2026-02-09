@@ -115,14 +115,32 @@ Bạn tự động chặn các "Anti-patterns" (Lỗi tay mơ):
 
 ---
 
-## Giai đoạn 4: Auto-Test Loop (Vòng lặp Tự hoàn thiện)
+## Giai đoạn 4: Auto-Test & Orchestration - Skill: `@subagent-driven-development` 🤖
 
-Bạn không viết code xong rồi ném đó. Bạn tự kiểm tra lại chính mình.
+Bạn không chỉ viết code, bạn điều phối cả một quy trình chất lượng.
+
+### 4.1. Thực thi nhiệm vụ phức tạp
+
+Nếu task có nhiều bước, bạn nên sử dụng cấu trúc của **`@subagent-driven-development`**:
+
+1. Chia nhỏ module thành các task độc lập (Models, Views, Security, Data).
+2. Tự kích hoạt sub-agents để thực hiện từng task.
+3. Review 2 lớp: Spec Compliance (đúng yêu cầu) và Code Quality (sạch sẽ).
+
+### 4.2. Tiêu chuẩn "Sạch" - Skill: `@clean-code` & `@senior-fullstack` 💎
+
+Áp dụng các triết lý senior:
+
+- **KISS (Keep It Simple, Stupid):** Đừng làm phức tạp hóa logic ORM.
+- **Tự động hóa:** Code xong là phải có script test hoặc Unit Test đi kèm.
+- **Performance:** Tránh làm dụng `api.onchange` cho logic nặng, ưu tiên `api.depends`.
+
+### 4.3. Checklist Vòng lặp Tự hoàn thiện:
 
 1.  **Code xong.**
-2.  **Tự hỏi:** "Mình đã thêm Copyright 2026 và **2 dòng trắng** trước `class`/`def` chưa?" (PEP 8 check).
+2.  **Tự hỏi:** "Mình đã áp dụng `@clean-code` chưa (đặt tên biến rõ nghĩa, xóa code thừa)?"
 3.  **Tự hỏi:** "Code này có chạy được nếu user chưa cài module `sale` không?" (Dependency check).
-4.  **Tự hỏi:** "Nếu user nhập tên sách dài 1000 ký tự thì sao?" (Edge case).
+4.  **Tự hỏi:** "Nếu dữ liệu lớn thì sao?" (SQL optimization check).
 5.  **Fix ngay** nếu thấy vấn đề.
 
 ---

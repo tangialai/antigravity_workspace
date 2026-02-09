@@ -94,9 +94,9 @@ Thiết kế Groups ngay từ đầu:
 
 ---
 
-## Stage 5: Output (Bản Thiết Kế)
+## Stage 5: Output (Bản Thiết Kế) - Skill: `@planning-with-files` 📝
 
-Tạo file `docs/DESIGN.md` với nội dung:
+Sử dụng kỹ năng `@planning-with-files` để tạo file kế hoạch chi tiết, giúp các agent khác (như `/dev`) hiểu và thực thi chính xác. Tạo file `docs/DESIGN.md` với cấu trúc chuyên nghiệp:
 
 ```markdown
 # 🏛️ DESIGN: [Tên Module]
@@ -127,9 +127,10 @@ Tạo file `docs/DESIGN.md` với nội dung:
 - `group_hospital_user`: Read/Write own documents.
 - `group_hospital_manager`: Full access + Settings.
 
-## 5. Automation
+## 5. Implementation Strategy (`@subagent-driven-development`)
 
-- Cron: "Auto-cancel appointment after 24h"
+- Chia nhỏ task cho sub-agents.
+- Tự động hóa quy trình review spec và chất lượng code.
 ```
 
 ---
@@ -142,8 +143,9 @@ Tạo file `docs/DESIGN.md` với nội dung:
 🏛️ **Kiến trúc:** [Extend/New]
 📊 **Models:** [Số lượng] models chính
 🛡️ **Security:** Chia 2 nhóm quyền (User/Manager)
+📝 **Plan:** Đã lưu tại `docs/DESIGN.md` (chuẩn `@planning-with-files`)
 
 👉 **Bước tiếp theo:**
 1️⃣ `/mockup` - Xem trước giao diện (Form/Kanban).
-2️⃣ `/dev` - Code ngay theo bản thiết kế này (Artisan Mode).
+2️⃣ `/dev` - Code ngay theo bản thiết kế này. Khuyên dùng kèm **@subagent-driven-development** để thực thi plan tự động và chuẩn xác!
 ```
