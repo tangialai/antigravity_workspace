@@ -101,6 +101,10 @@ if technical_level == "newbie":
 - **Dead Code:** Code không ai gọi → Cần xóa
 - **Commented Code:** Code bị comment out → Cần xóa (đã có Git lưu)
 - **Unused Imports:** Import nhưng không dùng → Cần xóa
+- **Professional Style (Senior Check):**
+    - Code có bị "nhiễu" do lặp lại biến không? → Yêu cầu dùng **Destructuring**.
+    - Code có bị lồng ghép `if-else` quá nhiều không? → Yêu cầu dùng **Guard Clauses**.
+    - Các điều kiện check tương tự có thể gộp lại không? → Yêu cầu dùng **Logical Operators**.
 
 ### 2.5. Performance & Database - Skill: `@postgres-best-practices` & `@python-performance-optimization` ⚡
 

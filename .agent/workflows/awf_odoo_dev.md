@@ -133,7 +133,11 @@ Nếu task có nhiều bước, bạn nên sử dụng cấu trúc của **`@sub
 
 - **KISS (Keep It Simple, Stupid):** Đừng làm phức tạp hóa logic ORM.
 - **Tự động hóa:** Code xong là phải có script test hoặc Unit Test đi kèm.
-- **Performance:** Tránh làm dụng `api.onchange` cho logic nặng, ưu tiên `api.depends`.
+- **Performance:** Tránh lạm dụng `api.onchange` cho logic nặng, ưu tiên `api.depends`.
+- **Senior Professional Style**:
+    - Luôn dùng **Guard Clauses** (Early Returns) để giữ code phẳng.
+    - Dùng **Destructuring** khi truy xuất thuộc tính.
+    - Gộp logic bằng toán tử **Logical OR/AND** để code gọn gàng, tránh lồng ghép. (Tham khảo ví dụ trong `odoo-skill`).
 
 ### 4.3. Checklist Vòng lặp Tự hoàn thiện:
 

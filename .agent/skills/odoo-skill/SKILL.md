@@ -29,7 +29,7 @@ This skill centralizes Odoo-specific standards to ensure consistency, extensibil
 - **Golden Rules**:
     1. **Inheritance First**: Never modify Odoo standard source code directly. Always create a separate module and inherit.
     2. **ORM Over SQL**: Prioritize ORM methods. Use Raw SQL only for extreme performance optimization and strictly with the `odoo.tools.SQL` secure wrapper.
-    3. **Modern Framework**: Use the latest Odoo 19 standards (Owl Framework, JSON-2 API, HOOT Testing). Avoid deprecated APIs (e.g., `attrs`, old QWeb, `read_group`).
+    3. **Modern Framework**: Use the latest Odoo 19 standards (Owl Framework, JSON-2 API, HOOT Testing). Avoid deprecated APIs (e.g., `attrs`, old QWeb, `read_group`, `_sql_constraints`, `name_get`).
 
 ---
 
@@ -93,15 +93,21 @@ my_module/
 - **Computed Fields**: Use `@api.depends()`. Ensure values are assigned in all logic branches.
 - **Onchange**: Use `@api.onchange` for UI only. No critical business logic (doesn't run via API/Import).
 - **Self**: `self` is a recordset. Always loop (`for record in self:`) unless using `@api.model`.
-- **Environment**: Access via `self.env` (user, cursor, context). Avoid excessive `sudo()`.
+- **Environment**: Access via `self.env` (user, cursor, context). **PROHIBITED**: `record._cr`, `record._uid`, `record._context` (deprecated).
 - **X2Many Commands**: Always use `odoo.fields.Command` (e.g., `Command.create({...})`).
 - **Date/Datetime**: Use `fields.Date.today()` or `fields.Datetime.now()`.
+- **XML Domain**: Support dynamic dates like `[('date', '=', 'today')]`.
 - **Translations (Mandatory)**:
-    - **Always** wrap user-facing strings, `UserError`, `ValidationError` messages, and `_sql_constraints` error messages in the translation function `_()` (e.g., `_("Error Message")`).
+    - **Always** wrap user-facing strings, `UserError`, `ValidationError` messages, and `models.Constraint` error messages in the translation function `_()` (e.g., `_("Error Message")`).
     - Ensure `_` is imported: `from odoo import _`.
     - Use `%` for dynamic strings: `_("Successfully created %s") % record.name`. Avoid f-strings inside `_()`.
     - Use `_lt` only for global variables or strings defined at module load time.
-- **Deprecations**: Use `_read_group` instead of `read_group`. Use `display_name` instead of `name_get`.
+- **Deprecations**:
+    - Use `_read_group` instead of `read_group`.
+    - **`name_get()` is REMOVED**: Override the compute method of `display_name` instead.
+    - **`name_search()` -> `_search_display_name()`**: Logic for searching records by name.
+    - **`@api.private`**: Use for internal methods to prevent RPC exposure.
+    - **`odoo.osv`**: Completely removed. No more `osv.osv` inheritance.
 
 ### Performance & Security
 
@@ -116,6 +122,36 @@ my_module/
 - **String Representation**: Use `odoo.tools.float_repr(value, precision)` for logs and user messages to ensure consistent decimal places and avoid floating-point artifacts.
 - **Rounding**: Use `odoo.tools.float_round(value, precision_digits=n)` for mathematical calculations.
 
+### SQL Constraints & Indexes (Odoo 19+)
+
+- **`_sql_constraints` is DEPRECATED**: Legacy list of tuples is no longer supported.
+- **`models.Constraint`**: Use the new TableObject pattern for all SQL constraints.
+- **Naming**: The attribute name **MUST** start with an underscore and be unique within the model (e.g., `_check_price`).
+- **Pattern**:
+    ```python
+    _check_positive_amount = models.Constraint(
+        "CHECK(amount > 0)",
+        _("The amount must be strictly positive!")
+    )
+    ```
+- **Indexes**: Prefer `models.Index` or `models.UniqueIndex` for complex or explicit indexing.
+
+    ```python
+    _unique_name = models.UniqueIndex(
+        "UNIQUE(name)",
+        _("The name must be unique!")
+    )
+    ```
+
+    ```
+
+    ```
+
+### QWeb & Templates (Odoo 19)
+
+- **`t-raw` is REMOVED**: Use **`t-out`** for dynamic content.
+- **HTML Safety**: If you must render HTML, use `markupsafe.Markup` in Python: `return Markup("<b>text</b>")`.
+
 ---
 
 ## 4. Frontend Development (Owl Framework)
@@ -127,6 +163,29 @@ my_module/
 - **Assets Bundle**: Declare in `__manifest__.py` under the `'assets'` key.
     - `web.assets_backend`: For internal UI.
     - `web.assets_frontend`: For Website/Portal UI.
+- **Professional Concise Code (Senior Standard)**:
+    - **Guard Clauses**: Luôn dùng `Early Return` để loại bỏ các khối `if-else` lồng nhau. Code phải phẳng (flat).
+    - **Destructuring**: Ưu tiên Destructuring khi truy xuất nhiều thuộc tính từ object (VD: `const { x, y } = obj;`).
+    - **Logical OR & Combined Checks**: Gom các điều kiện cùng một mục đích xử lý vào một block duy nhất để giảm "nhiễu" code.
+    - **Ví dụ chuẩn**:
+
+        ```javascript
+        // BAD: Tường minh quá mức, lồng nhau
+        if (isInput) {
+            if (isPrev && activeElem.selectionStart !== 0) return;
+            if (isNext && activeElem.selectionStart !== activeElem.value.length) return;
+        }
+
+        // GOOD (Senior): Gọn, dùng destructuring và gộp logic
+        if (isInput) {
+            const { selectionStart, value } = activeElem;
+            if ((isPrev && selectionStart !== 0) || (isNext && selectionStart !== value.length)) return;
+        }
+        ```
+
+    - **Odoo Visibility Check**: Luôn kiểm tra phần tử hiển thị bằng bộ 3 thuộc tính của Odoo Core (`isVisible`):
+      `el.offsetWidth || el.offsetHeight || el.getClientRects().length`
+      Điều này đảm bảo phần tử thực sự chiếm diện tích trên màn hình (tránh lỗi chỉ check width > 0).
 
 ---
 
