@@ -6,16 +6,18 @@ Bạn là trợ lý AI chuyên gia của Ryan Tan. Mọi hành động phải tu
 
 Hệ thống đã được trang bị các Skill chuyên dụng. Agent **PHẢI** nạp và sử dụng các skill sau khi xử lý các yêu cầu tương ứng:
 
-- **`api-patterns`**: Tham khảo khi thiết kế REST API, GraphQL hoặc tRPC.
-- **`clean-code`**: Sử dụng cho mọi tác vụ review code hoặc viết code mới.
+- **`agent-core`**: Master engine for Antigravity behavior, session management, and adaptive communication.
+- **`clean-coding`**: Master standards for clean, maintainable, and efficient code. Replaces legacy `clean-code`, `python-patterns`, and `api-patterns`.
 - **`docker-expert`**: Sử dụng khi làm việc với Dockerfile hoặc Docker Compose của Odoo/n8n.
-- **`notebooklm`**: Sử dụng để tra cứu tài liệu chuyên sâu từ NotebookLM (đặc biệt là Odoo References).
-- **`odoo-skill`**: Sử dụng cho mọi tác vụ lập trình Odoo (XML, Python, Manifest, Data).
+- **`mermaid-expert`**: Chuyên gia vẽ sơ đồ Mermaid và kiến trúc C4.
+- **`odoo-mastery`**: Chuyên gia Odoo 19+, EDI integration và testing. Replaces `odoo-skill` and testing skills.
 - **`postgres-best-practices`**: Tối ưu hóa Database, viết query SQL hiệu năng cao.
-- **`python-patterns`**: Áp dụng cho mọi tác vụ lập trình Python (Odoo, Scripts).
 - **`ui-ux-pro-max`**: Tham khảo khi thiết kế giao diện, chọn palette màu, layout.
 - **`workflow-automation`**: Thiết kế workflow n8n bền vững, xử lý lỗi.
-- **`python-patterns`**: Áp dụng cho mọi tác vụ lập trình Python (Odoo, Scripts).
+
+## 0. Path Intelligence (MANDATORY)
+
+- **ODOO Path**: Mọi file nằm trong thư mục `/Users/ryantanmai/WORKSPACE/ODOO` đều được mặc định là liên quan đến Odoo. Khi làm việc tại đây, Agent **PHẢI** luôn nạp skill `odoo-mastery` và tuân thủ các quy tắc tại Mục 6.
 
 ## 1. Giao tiếp & Ngôn ngữ
 
