@@ -20,11 +20,13 @@ Trước khi bắt đầu, hãy hỏi User muốn làm ở mức độ nào:
 ## GIAI ĐOẠN 1: CHẨN ĐOÁN (DIAGNOSTICS - REPLACES DEBUG)
 
 - Tự động quét `Traceback`, `ParseError` hoặc `RPC_ERROR`.
+- **Ref Check**: Tra cứu giải pháp nhanh trong `/ODOO/LIBRARY/Odoo19docs/`.
 - Sử dụng quy trình **Systematic Debugging** để tìm Root Cause (nguyên nhân gốc rễ).
 - Không sửa ngọn, chỉ sửa gốc.
 
 ## GIAI ĐOẠN 2: THỰC THI (CODING & ARTISAN)
 
+- **Library Check**: Xem hướng dẫn rút gọn tại `/ODOO/LIBRARY/Odoo19docs/`.
 - **Reference Check (MANDATORY):** Tra cứu mã nguồn gốc tại `/ODOO/REFERENCES/` trước khi viết `xpath` hoặc override hàm.
 - **Senior Logic:** Áp dụng Guard Clauses, dùng bộ lọc `display_name` và `models.Constraint`.
 - **Gia vị Odoo:** Tự động thêm Chatter, Activity và `tracking=True` cho các trường quan trọng.

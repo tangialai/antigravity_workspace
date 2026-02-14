@@ -50,13 +50,14 @@ Hệ thống đã được trang bị các Skill chuyên dụng. Agent **PHẢI*
 
 - **Memory**: Mỗi khi bắt đầu một phiên làm việc mới hoặc thực hiện thay đổi lớn, hãy kiểm tra và cập nhật file `DASHBOARD.md` tại root Workspace.
 - **Logs**: Khi hoàn thành một tính năng hoặc milestone, hãy tạo một file log ngắn gọn trong thư mục `LOGS/` để lưu trữ lịch sử lâu dài.
+- **Temporary Files (Scratchpad)**: Mọi file tạm, file nháp, hoặc file phục vụ phân tích/thử nghiệm (không chính thức) **BẮT BUỘC** phải được lưu vào thư mục `/Users/ryantanmai/WORKSPACE/tmp`. Không tạo file rác trong source code chính.
 
-## 6. Odoo Reference Integrity
+## 7. Odoo Team Working Standards (MANDATORY)
 
-- **Reference Check**: Trước khi bắt đầu chỉnh sửa (Inherit/Override) một View hoặc Hàm gốc của Odoo, Agent **BẮT BUỘC** phải kiểm tra mã nguồn gốc trong thư mục `/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/`.
-- **Version Matching**: Luôn đảm bảo tra cứu đúng phiên bản Odoo tương ứng với project (ví dụ: odoo19, odoo18).
-- **Validation**: Kiểm tra kỹ field name, xpath, schema và function signature để tránh lỗi "cannot be located in parent view" hoặc "missing field".
-- **View Inheritance ID**: Khi kế thừa (inherit) một View gốc của Odoo, **LUÔN LUÔN** sử dụng chính ID của View gốc đó làm ID cho record kế thừa trong module của mình (ví dụ: `<record id="view_order_form" ... inherit_id="sale.view_order_form">`). Việc này giúp đảm bảo tính nhất quán và dễ dàng tra soát.
-- **View Element Naming**: Mọi element mới được thêm vào qua `xpath` (như `<page>`, `<group>`, `<notebook>`, `<button>`) **BẮT BUỘC** phải có thuộc tính `name` (hoặc `id` khi cần thiết). Việc này đảm bảo các module khác hoặc chính module này trong tương lai có thể kế thừa và tác động vào các element đó một cách chính xác qua `xpath`.
-- **Module Versioning**: Mỗi khi có thay đổi về Model (thêm field, đổi logic) hoặc View (xpath, đặt tên lại), **BẮT BUỘC** phải tăng phiên bản (version) trong file `__manifest__.py` để hệ thống (hoặc script upgrade) có thể nhận diện và cập nhật tự động.
-- **System Parameter Declaration**: Khi sử dụng System Parameter (`ir.config_parameter`) mới trong code, **PHẢI** khai báo chúng trong file dữ liệu XML (thường là `data/ir_config_parameter_data.xml`) với thuộc tính `noupdate="1"`. Việc này giúp Admin dễ dàng tìm thấy và cấu hình tham số từ giao diện Odoo.
+Tất cả các Agent và thành viên team **PHẢI TUÂN THỦ TUYỆT ĐỐI** bộ quy tắc chuyên môn (Protocol) sau:
+
+1.  **Skill & Library First**: Mỗi khi bắt đầu task Odoo, Agent **PHẢI** nạp skill `odoo-mastery` và ưu tiên tra cứu tài liệu tóm tắt nhanh tại `/Users/ryantanmai/WORKSPACE/ODOO/LIBRARY/Odoo19docs/`.
+2.  **Strict Reference**: Tuyệt đối không viết logic "mò". Phải đối chiếu chính xác hàm/view gốc tại `/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/`.
+3.  **Cross-Review Checklist**: Trước khi hoàn thành, hãy tự kiểm tra mã nguồn dựa trên bảng "Weighted Audit Scoring" (Mục 13) của skill `odoo-mastery`.
+4.  **No Exceptions in Linting**: Mọi đoạn code Python/JS mới phải tuân thủ chuẩn clean-coding.
+5.  **Single Source of Truth**: `odoo-mastery` SKILL.md là chuẩn mực cao nhất. Nếu có mâu thuẫn giữa các file quy tắc, hãy ưu tiên tuân theo hướng dẫn trong SKILL.md.

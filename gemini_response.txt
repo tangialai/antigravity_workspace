@@ -1,0 +1,15 @@
+import pandas as pd
+
+# 1. Create a sample DataFrame
+data = {'col1': [10, 20, 30, 40],
+        'col2': ['A', 'B', 'C', 'D']}
+df = pd.DataFrame(data)
+
+print("Original DataFrame:")
+print(df)
+
+# 2. Add a new column named 'NewIndex' that contains the index values
+df['NewIndex'] = df.index
+
+print("\nDataFrame with 'NewIndex' column:")
+print(df)

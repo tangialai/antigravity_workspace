@@ -10,12 +10,12 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 
 ## 📂 Workspace Overview
 
-| Domain      | Status         | Latest Activity                                          |
-| :---------- | :------------- | :------------------------------------------------------- |
-| **ODOO**    | 🟢 Ready       | Đã tạo bộ Library Odoo 19 cho NotebookLM.                |
-| **n8n**     | 🟡 Initialized | Đã thiết lập Rules cơ bản.                               |
-| **MacOS**   | 🟢 Active      | Đã hoàn tất Setup Guide & Scripts automation.            |
-| **SCRIPTS** | 🟢 Active      | Script `ODOO/SCRIPTS/convert_odoo_docs.py` đã hoạt động. |
+| Domain      | Status         | Latest Activity                                              |
+| :---------- | :------------- | :----------------------------------------------------------- |
+| **ODOO**    | 🟢 Ready       | Cập nhật Odoo Mastery Skill (Team Standards) và gộp Library. |
+| **n8n**     | 🟡 Initialized | Đã thiết lập Rules cơ bản.                                   |
+| **MacOS**   | 🟢 Active      | Đã hoàn tất Setup Guide & Scripts automation.                |
+| **SCRIPTS** | 🟢 Active      | Script `ODOO/SCRIPTS/convert_odoo_docs.py` đã hoạt động.     |
 
 ## 🗺️ Project Mapping
 
@@ -27,6 +27,7 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 
 ## 📝 Recent Milestones (Logs)
 
+- **2026-02-14**: Cập nhật Odoo Mastery Skill (Team Standards) và hợp nhất bộ thư viện tra cứu rút gọn.
 - **2026-01-31**: Hoàn tất `MacOS_Setup_Guide.md` và chuẩn hóa bộ script cài đặt máy Mac.
 - **2026-01-27**: Hoàn thành Script convert documentation đa phiên bản.
 - **2026-01-27**: Thiết lập Dashboard & Logs cho Workspace.

@@ -10,8 +10,8 @@ description: ✅ Kiểm soát chất lượng & Bảo mật Odoo (Review/Test/Se
 
 ## CÁC BƯỚC THỰC HIỆN:
 
-1. **Audit:** Review Naming, ORM Performance và tính ổn định của Xpath.
-2. **Security:** Kiểm tra file access rights (CSV) và các nguy cơ SQL Injection.
+1. **Audit:** Review Naming, ORM Performance và tính ổn định của Xpath dựa trên **Weighted Audit Scoring** (Mục 13 của Skill).
+2. **Security & Company**: Kiểm tra file access rights (CSV), các nguy cơ SQL Injection và tính nhất quán multi-company (`check_company`).
 3. **Testing:** Tự động tạo và thực thi Unit Test (Python/JS).
 4. **Approval:** Tăng version module trong manifest nếu đạt chuẩn cực phẩm.
 
