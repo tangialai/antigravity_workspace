@@ -71,6 +71,7 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 | Delete validation  | Override `unlink()`            | `@api.ondelete(at_uninstall=False)`           |
 | Field aggregation  | `group_operator=`              | `aggregator=`                                 |
 | SQL queries        | `cr.execute()`                 | `SQL` class with `execute_query_dict()`       |
+| SQL Constraints    | `_sql_constraints = [...]`     | `_name_unique = models.Constraint(...)`       |
 | Batch create       | Single dict                    | List of dicts (`create([{...}, {...}])`)      |
 
 ## 3. EDI & Integration (Specialized)
@@ -108,12 +109,13 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 3.  **Core Coverage Checklist**:
     - **CRUD**: Validate basic record lifecycle.
     - **Computed Fields**: Force recomputations and verify results.
-    - **Constraints**: Test both `@api.constrains` (Python) and `_sql_constraints`.
+    - **Constraints**: Test both `@api.constrains` (Python) and `models.Constraint` (SQL).
     - **Onchange**: Simulate UI behavior using `onchange()` methods.
     - **Exceptions**: Use `with self.assertRaises(ValidationError):` for negative testing.
 4.  **Pitfall Prevention**:
     - **HTML Fields**: Convert to string before assertion.
     - **Enterprise Constraints**: Always check for fields like `sale_line_warn` which can trigger NOT NULL failures if a product isn't properly linked.
+    - **Runtime Crash Prevention (CRITICAL)**: **NEVER** import the `tests` directory in the root `__init__.py` (`from . import tests`). This will load `odoo.tests` into the standard runtime environment, crashing the module installation and normal Odoo operation (e.g., `importlib._bootstrap` error). The `tests` folder should only be discovered and executed by the test runner.
 5.  **Execution**: Run with `--test-enable --stop-after-init` to ensure a clean test cycle.
 
 ## 4. Mandatory Team Analysis & Reference Check (MANDATORY)
@@ -346,6 +348,18 @@ Need to define method behavior?
 └── Normal record method → no decorator needed
 ```
 
+- **SQL Constraints (Odoo 19)**:
+    - Use `models.Constraint` defined as a class attribute instead of the `_sql_constraints` list.
+    - format: `_constraint_name = models.Constraint("CHECK/UNIQUE (...)", _("Error Message"))`
+
+```python
+class MyModel(models.Model):
+    _inherit = "my.model"
+
+    _code_unique = models.Constraint("UNIQUE(code)", _("The code must be unique!"))
+    _check_amount = models.Constraint("CHECK(amount > 0)", _("The amount must be positive!"))
+```
+
 - **Error Handling**:
     - Use `odoo.exceptions.ValidationError` for invalid data states (blocks transaction).
     - Use `odoo.exceptions.UserError` for business logic warnings (blocks transaction).
@@ -500,6 +514,74 @@ When performing a technical audit, evaluate modules based on these weighted cate
 - [ ] **XSS**: Ensure HTML fields or dynamically generated HTML are properly escaped.
 - [ ] **OCA Guidelines**: Review variable naming (underscore for private), file structure, and mandatory `__manifest__.py` keys.
 - [ ] **Deprecated Methods**: Scan for methods removed in Odoo 18/19 (e.g., old `_compute` signatures).
+
+---
+
+## 19. Team Standard: Odoo 19 Naming & Programming Patterns
+
+**Mục tiêu:** Cung cấp tiêu chuẩn đặt tên (Naming Conventions) và các quy tắc cốt lõi trong framework Odoo 19 giúp AI tạo ra code XML/Python chính xác, dễ bảo trì và đúng chuẩn hệ thống.
+
+### 19.1. Chuẩn đặt tên XML (XML IDs & Record Names)
+
+**Nguyên tắc chung:** Tất cả các XML ID chỉ được chứa chữ cái viết thường, số và dấu gạch dưới `[a-z0-9_]`.
+
+#### Views (Giao diện)
+
+- **View mới:** Cú pháp `{model_name}_view_{view_type}` (trong đó `view_type` là kanban, form, list, search...).
+    - _Ví dụ:_ `sale_order_view_form`
+- **View kế thừa (Inherit View):** TUYỆT ĐỐI sử dụng lại **chính xác ID của view gốc**. Odoo sẽ tự động gắn tiền tố là tên module hiện tại để tránh trùng lặp.
+- **Thuộc tính `name` của View:**
+    - _View mới:_ Giống hệt XML ID nhưng thay dấu gạch dưới `_` bằng dấu chấm `.`. (Ví dụ: `sale.order.view.form`).
+    - _View kế thừa:_ Thêm hậu tố `.inherit.{details}` để làm rõ mục đích. (Ví dụ: `sale.order.view.form.inherit.my_feature`).
+
+#### Actions (Hành động)
+
+- **Action chính của model:** `{model_name}_action`.
+- **Action phụ/đặc thù:** `{model_name}_action_{detail}` (ví dụ: `sale_order_action_quote`).
+- **Window action mở view cụ thể:** `{model_name}_action_view_{view_type}`.
+- **Thuộc tính `name` của Action:** Đây là tên sẽ hiển thị trực tiếp trên giao diện cho người dùng, do đó phải viết hoa chữ cái đầu và là ngôn ngữ tự nhiên, có nghĩa (Ví dụ: `name="Sales Orders"`).
+
+#### Menus (Trình đơn)
+
+- **Menu chính:** `{model_name}_menu`.
+- **Menu con:** `{model_name}_menu_{do_stuff}`.
+
+#### Security (Phân quyền)
+
+- **Group (Nhóm người dùng):** `{module_name}_group_{group_name}` (ví dụ: `estate_group_user`, `estate_group_manager`).
+- **Record Rule (Quy tắc bản ghi):** `{model_name}_rule_{concerned_group}` (ví dụ: `estate_property_rule_user`).
+
+### 19.2. Chuẩn đặt tên Python
+
+#### Models (Mô hình dữ liệu)
+
+- Tên model phải được viết theo **dạng số ít**, phân cách bằng dấu chấm (Ví dụ: `res.partner` thay vì `res.partners`).
+- **Transient Model (Wizard):** Đặt tên theo cấu trúc `<related_base_model>.<action>`. TUYỆT ĐỐI tránh dùng từ "wizard" trong tên (Ví dụ: `account.invoice.make`).
+
+#### Fields (Trường dữ liệu)
+
+- Luôn sử dụng kiểu `snake_case`.
+- **Many2one:** BẮT BUỘC có hậu tố `_id` (Ví dụ: `partner_id`). Không dùng `partner_id` để chứa list bản ghi.
+- **One2many / Many2many:** BẮT BUỘC có hậu tố `_ids` (Ví dụ: `sale_order_line_ids`).
+
+#### Methods (Phương thức)
+
+Sử dụng các tiền tố chuẩn sau để framework nhận diện dễ dàng:
+
+- **Compute Field:** `_compute_<field_name>`
+- **Search Field:** `_search_<field_name>`
+- **Default Value:** `_default_<field_name>`
+- **Selection:** `_selection_<field_name>`
+- **Onchange:** `_onchange_<field_name>`
+- **Constraint:** `_check_<constraint_name>`
+- **Action (Gắn với nút bấm trên UI):** `action_<action_name>`.
+  _(Lưu ý: Action method là public method nên KHÔNG có dấu `_`ở đầu. Luôn khai báo`self.ensure*one()` ở đầu hàm nếu hành động này chỉ áp dụng cho một bản ghi duy nhất).*
+
+### 19.3. Cảnh Báo & Các Lỗi Lập Trình Cần Tránh (Pitfalls)
+
+- **Cảnh báo về `cr.commit()`:** KHÔNG BAO GIỜ tự gọi hàm `cr.commit()` hoặc `cr.rollback()` trong code business thông thường. Framework Odoo tự động quản lý các transaction (giao dịch) của cơ sở dữ liệu. Việc gọi thủ công sẽ phá vỡ quy trình đồng bộ và gây lỗi rollback.
+- **Khái niệm `self`:** Trong Odoo ORM, `self` KHÔNG phải là một bản ghi đơn lẻ, mà là một **tập hợp các bản ghi (recordset)**. Luôn giả định `self` chứa nhiều bản ghi (viết code với vòng lặp `for record in self:`) trừ khi method đó đã được kiểm soát bằng `self.ensure_one()`.
+- **Trường phụ thuộc (Compute dependencies):** Khi viết hàm `_compute_`, luôn đảm bảo khai báo đầy đủ các trường phụ thuộc trong `@api.depends`.
 
 ### Automated Technical Review Workflow
 

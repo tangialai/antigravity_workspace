@@ -1,91 +1,46 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Start DBVI (Odoo 19)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/odoo-bin",
-      "args": [
-        "-u",
-        "vib_sale_eva",
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo19_dbvi.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/DBVI",
-      "console": "integratedTerminal"
-    },
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start DBVI (Odoo 19)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/odoo-bin",
+            "args": ["-u", "vib_eva_sale", "-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo19_dbvi.conf"],
+            "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
+            "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/DBVI",
+            "console": "integratedTerminal"
+        },
 
-    {
-      "name": "Debug DBVI (Odoo 19)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/odoo-bin",
-      "args": [
-        "-u",
-        "vib_sale_eva",
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo19_dbvi.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/DBVI",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    },
-    {
-      "name": "Start Dermalogica_main (Odoo 16)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
-      "args": [
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_main.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_main",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Debug Dermalogica_main (Odoo 16)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
-      "args": [
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_main.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_main",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    },
-    {
-      "name": "Start Dermalogica_uat (Odoo 16)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
-      "args": [
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_uat.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_uat",
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Debug Dermalogica_uat (Odoo 16)",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
-      "args": [
-        "-c",
-        "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_uat.conf"
-      ],
-      "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
-      "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_uat",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    }
-  ]
+        {
+            "name": "Start Odoo 18",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo18/odoo-bin",
+            "args": ["-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo18en.conf"],
+            "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
+            "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Oakworks",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Start Dermalogica_main (Odoo 16)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
+            "args": ["-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_main.conf"],
+            "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
+            "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_main",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Start Dermalogica_uat (Odoo 16)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo16/odoo-bin",
+            "args": ["-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo16_dermalogica_uat.conf"],
+            "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_10/bin/python",
+            "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Dermalogica_uat",
+            "console": "integratedTerminal"
+        }
+    ]
 }
