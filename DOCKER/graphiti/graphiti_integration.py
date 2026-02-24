@@ -8,6 +8,15 @@ from graphiti_core.embedder.gemini import GeminiEmbedder, GeminiEmbedderConfig
 # Load environment variables
 load_dotenv()
 
+from graphiti_core.cross_encoder.client import CrossEncoderClient
+
+class NoopReranker(CrossEncoderClient):
+    async def rerank(self, query, documents, top_n=None):
+        return documents[:top_n] if top_n else documents
+    
+    async def rank(self, query, documents, top_n=None):
+        return documents[:top_n] if top_n else documents
+
 
 async def initialize_graphiti():
     api_key = os.getenv("GOOGLE_API_KEY")
@@ -25,43 +34,29 @@ async def initialize_graphiti():
         ),
         embedder=GeminiEmbedder(
             config=GeminiEmbedderConfig(api_key=api_key, embedding_model="embedding-001")
-        )
+        ),
+        cross_encoder=NoopReranker()
     )
     return graphiti
 
 
 async def ingest_sample_data(graphiti):
+    from datetime import datetime
     # Example: Ingesting an Odoo-related event
     await graphiti.add_episode(
-        "Người dùng Ryan Tan vừa cập nhật Odoo 19 Mastery Skill để tuân thủ tiêu chuẩn OCA."
+        name="Odoo 19 Mastery Update",
+        episode_body="Người dùng Ryan Tan vừa cập nhật Odoo 19 Mastery Skill để tuân thủ tiêu chuẩn OCA.",
+        source_description="Manual Input",
+        reference_time=datetime.now()
     )
     print("✅ Đã nạp dữ liệu mẫu vào Graphiti.")
 
+
+async def main():
+    graphiti = await initialize_graphiti()
+    await ingest_sample_data(graphiti)
+
+
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    try:
-        # 1. Khởi tạo Graphiti
-        graphiti = loop.run_until_complete(initialize_graphiti())
-
-        # 2. Nạp dữ liệu
-        print("🚀 Bắt đầu nạp dữ liệu vào bộ não thứ hai...")
-
-        # Ví dụ 1: Một sự kiện công việc
-        loop.run_until_complete(graphiti.add_episode(
-            "Ryan Tan vừa thiết lập thành công hệ thống Graphiti trên Mac M4 để hỗ trợ code Odoo 19."
-        ))
-
-        # Ví dụ 2: Một ghi chú về kỹ thuật
-        loop.run_until_complete(graphiti.add_episode(
-            "Odoo 19 yêu cầu Python 3.13 và đã thay thế hoàn toàn RPC service ở frontend bằng fetch API."
-        ))
-
-        # Ví dụ 3: Một sở thích hoặc thói quen
-        loop.run_until_complete(graphiti.add_episode(
-            "Ryan thường ưu tiên sử dụng OrbStack thay cho Docker Desktop để tối ưu hiệu năng trên Mac M2."
-        ))
-
-        print("✨ Hoàn tất nạp dữ liệu! Hãy mở Neo4j Browser để xem kết quả.")
-    except Exception as e:
-        print(f"❌ Lỗi: {e}")
-        print("Gợi ý: Kiểm tra file .env đã có GOOGLE_API_KEY chưa và Docker Neo4j đã chạy chưa.")
+if __name__ == "__main__":
+    asyncio.run(main())

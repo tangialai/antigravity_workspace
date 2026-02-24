@@ -56,4 +56,9 @@ known_hosts
 /tmp/
 docs/
 Old_Mac_Config_Backup_*.tar.gz
-/DOCKER/volumes/
+# Docker & Graphiti Data
+DOCKER/volumes/
+**/__pycache__/
+**/.venv/
+**/venv/
+.DS_Store
