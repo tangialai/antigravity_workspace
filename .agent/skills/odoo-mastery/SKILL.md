@@ -64,15 +64,16 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 
 ## 2. Key Odoo 19 Framework Changes
 
-| Change             | Old (Odoo 17-)                 | New (Odoo 19)                                 |
-| ------------------ | ------------------------------ | --------------------------------------------- |
-| List view tag      | `<tree>`                       | `<list>`                                      |
-| Dynamic attributes | `attrs="{'invisible': [...]}"` | `invisible="..."` (direct boolean expression) |
-| Delete validation  | Override `unlink()`            | `@api.ondelete(at_uninstall=False)`           |
-| Field aggregation  | `group_operator=`              | `aggregator=`                                 |
-| SQL queries        | `cr.execute()`                 | `SQL` class with `execute_query_dict()`       |
-| SQL Constraints    | `_sql_constraints = [...]`     | `_name_unique = models.Constraint(...)`       |
-| Batch create       | Single dict                    | List of dicts (`create([{...}, {...}])`)      |
+| Change             | Old (Odoo 17-)                           | New (Odoo 19)                                 |
+| ------------------ | ---------------------------------------- | --------------------------------------------- |
+| List view tag      | `<tree>`                                 | `<list>`                                      |
+| Dynamic attributes | `attrs="{'invisible': [...]}"`           | `invisible="..."` (direct boolean expression) |
+| Delete validation  | Override `unlink()`                      | `@api.ondelete(at_uninstall=False)`           |
+| Field aggregation  | `group_operator=`                        | `aggregator=`                                 |
+| SQL queries        | `cr.execute()`                           | `SQL` class with `execute_query_dict()`       |
+| SQL Constraints    | `_sql_constraints = [...]`               | `_name_unique = models.Constraint(...)`       |
+| Batch create       | Single dict                              | List of dicts (`create([{...}, {...}])`)      |
+| Analytic Support   | Manual fields / `account.analytic.mixin` | `analytic.mixin` (Standardized Mixin)         |
 
 ## 3. EDI & Integration (Specialized)
 
@@ -786,12 +787,60 @@ payments = self.env['payment'].search_read([('order_id', 'in', orders.ids)])
 
 ### Delete Validation (Odoo 19 Pattern)
 
-```python
+````python
 @api.ondelete(at_uninstall=False)
 def _unlink_if_not_draft(self):
     if any(rec.state != 'draft' for rec in self):
         raise UserError("Cannot delete non-draft records")
+
+### 17.4. Analytic Distribution (Modern Mixin)
+
+**Mindset**: Tránh định nghĩa thủ công field `analytic_distribution`. Luôn sử dụng `analytic.mixin`.
+
+- **Inheritance**: `_inherit = ['your.model', 'analytic.mixin']`
+- **Benefits**:
+    - Tự động bao gồm `analytic_distribution` (Json) và `analytic_precision` (Integer).
+    - Tự động sanitize dữ liệu khi `create`/`write`.
+    - Hỗ trợ domain search nâng cao và `read_group` trên field JSON.
+    - Tự động kiểm tra `mandatory` plans từ `account.analytic.plan`.
+
+```python
+# Pattern: Model with Analytic Distribution
+class MyModel(models.Model):
+    _name = 'my.model'
+    _inherit = ['analytic.mixin']
+    _description = 'Model with Analytic'
+
+    # Không cần định nghĩa analytic_distribution ở đây
+    name = fields.Char(required=True)
+````
+
+**XML View**: Sử dụng widget `analytic_distribution`.
+
+### 17.5. Optimized Uniqueness Check (Batch Pattern)
+
+**Mindset**: Tránh dùng `search()` trong vòng lặp để kiểm tra trùng lặp (N+1 query). Sử dụng `_read_group` kết hợp với tham số `having` để lọc dữ liệu ngay từ Database.
+
+- **Pattern**:
+
+```python
+duplicates = self._read_group(
+    domain=[('name', 'in', self.mapped('name'))],
+    groupby=['name'],
+    having=[('__count', '>', 1)]
+)
+for name, in duplicates:
+    raise ValidationError(_(
+        "A record with the name %s already exists. Please use a unique name."
+    ) % name)
 ```
+
+- **Benefits**:
+    - Query Complexity: **O(1)** thay vì O(N).
+    - Database Filtering: Sử dụng `HAVING count(*) > 1` giúp giảm bớt việc xử lý dữ liệu thừa trên Python.
+    - Code Quality: Ngắn gọn, súc tích và tuân thủ chuẩn Odoo 19.
+
+---
 
 ## 18. Base Code Reference (Odoo 19)
 

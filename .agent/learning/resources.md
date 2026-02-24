@@ -112,3 +112,15 @@ New resources are appended to the end of this file by the `learning_research` wo
 **Date**: 2026-02-14
 **Description**: Kỹ năng chuyên sâu về kiểm thử chất lượng (QA/QC) cho Odoo 19, bao gồm unit test, integration test, kiểm tra bảo mật và hiệu suất (N+1 queries). Hỗ trợ tự động hóa việc tạo TransactionCase và HttpCase theo tiêu chuẩn OCA.
 **Key takeaway**: Luôn ưu tiên kiểm thử biên (boundary testing) và kiểm tra quyền truy cập (ACL) để đảm bảo hệ thống ổn định và bảo mật trong môi trường Docker.
+
+### [notebooklm-py](https://github.com/teng-lin/notebooklm-py)
+
+**Date**: 2026-02-24
+**Description**: Unofficial Python API and CLI for Google NotebookLM, enabling programmatic access to research, content generation (podcasts, videos, etc.), and structured data export. Ships with Claude Code skills.
+**Key takeaway**: Enables "Programmatic Research" and structured export of NotebookLM artifacts (JSON/Markdown) not available in the web UI.
+
+### [Valtec Vietnamese TTS](https://github.com/tronghieuit/valtec-tts)
+
+**Date**: 2026-02-24
+**Description**: The lightest Vietnamese Text-to-Speech (74.8M parameters) with Zero-Shot Voice Cloning. Runs exclusively on CPU and is 4x faster than real-time.
+**Key takeaway**: High-quality Vietnamese voice cloning is now accessible on entry-level hardware without requiring high-end GPUs, making it ideal for edge deployment or lightweight Python integrations.
