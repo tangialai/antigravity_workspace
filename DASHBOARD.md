@@ -16,7 +16,7 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 | **n8n**     | 🟡 Initialized | Đã thiết lập Rules cơ bản.                                   |
 | **MacOS**   | 🟢 Active      | Đã hoàn tất Setup Guide & Scripts automation.                |
 | **SCRIPTS** | 🟢 Active      | Script `ODOO/SCRIPTS/convert_odoo_docs.py` đã hoạt động.     |
-| **DOCKER**  | 🔵 Planning    | Đang thiết lập Graphiti tại `DOCKER/graphiti`.               |
+| **DOCKER**  | 🟢 Active      | Triển khai VITS-TTS Studio tại `DOCKER/vits-tts-studio`.     |
 
 ## 🗺️ Project Mapping
 

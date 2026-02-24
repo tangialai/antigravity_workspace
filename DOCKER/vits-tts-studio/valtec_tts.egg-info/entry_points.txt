@@ -1,0 +1,3 @@
+[console_scripts]
+valtec-tts = infer:main
+valtec-tts-demo = demo_gradio:main
