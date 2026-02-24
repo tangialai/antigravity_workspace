@@ -56,3 +56,4 @@ known_hosts
 /tmp/
 docs/
 Old_Mac_Config_Backup_*.tar.gz
+/DOCKER/volumes/
