@@ -17,6 +17,10 @@ Hệ thống đã được trang bị các Skill chuyên dụng. Agent **PHẢI*
 
 - **ODOO Path**: Mọi file nằm trong thư mục `/Users/ryantanmai/WORKSPACE/ODOO` đều được mặc định là liên quan đến Odoo. Khi làm việc tại đây, Agent **PHẢI** luôn nạp skill `odoo-mastery` và tuân thủ các quy tắc tại Mục 6.
 - **DOCKER Path**: Thư mục `/Users/ryantanmai/WORKSPACE/DOCKER` chứa các dự án nội bộ, công cụ chuyên dụng (như Graphiti) và cấu hình Docker tập trung. Agent **PHẢI** giữ cấu trúc ngăn nắp theo từng thư mục dự án riêng biệt bên trong.
+- **Machine Context**: Ryan sử dụng hai máy Mac:
+    - **Máy này (M4)**: Dùng để lập kế hoạch, nghiên cứu và phát triển.
+    - **Máy anh em (M2)**: Có Antigravity tương tự, dùng để host các dịch vụ Docker (như Graphiti) và thực thi.
+    - **Sync Strategy**: Hai máy đồng bộ qua Git và có chung cấu trúc thư mục `/Users/ryantanmai/WORKSPACE/`.
 
 ## 1. Giao tiếp & Ngôn ngữ
 

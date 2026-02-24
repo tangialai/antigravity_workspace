@@ -136,3 +136,9 @@ New resources are appended to the end of this file by the `learning_research` wo
 **Date**: 2026-02-24
 **Description**: Graphiti là một framework mã nguồn mở dùng để xây dựng và truy vấn các Đồ thị Tri thức (Knowledge Graphs) có nhận thức về thời gian, được tối ưu riêng cho AI agents. Nó cho phép cập nhật dữ liệu theo thời gian thực mà không cần tính toán lại toàn bộ đồ thị, hỗ trợ truy vấn lịch sử chính xác.
 **Key takeaway**: Khả năng "Bi-Temporal Data Model" và kiến trúc driver linh hoạt giúp AI agents không chỉ nhớ thông tin mà còn hiểu được sự thay đổi của các mối quan hệ theo dòng thời gian, vượt xa giới hạn của RAG truyền thống.
+
+### [OpenCTI - Open Cyber Threat Intelligence Platform](https://github.com/OpenCTI-Platform/opencti)
+
+**Date**: 2026-02-24
+**Description**: Nền tảng mã nguồn mở mạnh mẽ để quản lý, cấu trúc và trực quan hóa dữ liệu tình báo về các mối đe dọa an ninh mạng (CTI), sử dụng chuẩn STIX2 và hỗ trợ GraphQL API.
+**Key takeaway**: Hệ thống cung cấp khả năng suy luận (inference) dữ liệu mạnh mẽ, giúp biến các dữ liệu thô thành tri thức có ý nghĩa, cực kỳ hữu ích cho các dự án về Knowledge Graph và tích hợp bảo mật.
