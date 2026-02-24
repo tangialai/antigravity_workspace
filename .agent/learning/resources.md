@@ -124,3 +124,15 @@ New resources are appended to the end of this file by the `learning_research` wo
 **Date**: 2026-02-24
 **Description**: The lightest Vietnamese Text-to-Speech (74.8M parameters) with Zero-Shot Voice Cloning. Runs exclusively on CPU and is 4x faster than real-time.
 **Key takeaway**: High-quality Vietnamese voice cloning is now accessible on entry-level hardware without requiring high-end GPUs, making it ideal for edge deployment or lightweight Python integrations.
+
+### [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills)
+
+**Date**: 2026-02-24
+**Description**: Bộ sưu tập hơn 930 kỹ năng agentic chất lượng cao cho các AI Coding Assistant như Claude Code, Gemini CLI, Cursor. Hỗ trợ đầy đủ từ lập trình, kiến trúc, bảo mật đến tự động hóa.
+**Key takeaway**: Chuyển đổi AI Assistant từ một chatbot thông thường thành một "full-stack digital agency" với các protocol và workflow chuyên nghiệp.
+
+### [Graphiti - Build Real-Time Knowledge Graphs for AI Agents](https://github.com/getzep/graphiti)
+
+**Date**: 2026-02-24
+**Description**: Graphiti là một framework mã nguồn mở dùng để xây dựng và truy vấn các Đồ thị Tri thức (Knowledge Graphs) có nhận thức về thời gian, được tối ưu riêng cho AI agents. Nó cho phép cập nhật dữ liệu theo thời gian thực mà không cần tính toán lại toàn bộ đồ thị, hỗ trợ truy vấn lịch sử chính xác.
+**Key takeaway**: Khả năng "Bi-Temporal Data Model" và kiến trúc driver linh hoạt giúp AI agents không chỉ nhớ thông tin mà còn hiểu được sự thay đổi của các mối quan hệ theo dòng thời gian, vượt xa giới hạn của RAG truyền thống.

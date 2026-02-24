@@ -4,9 +4,9 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 
 ## 🤖 Current Session Context
 
-- **Conversation ID**: `124ebcbf-b398-4301-8f94-b64612b3d0ee`
-- **Active Task**: Thiết lập Hệ thống Chỉ huy & Nhật ký.
-- **Brain Folder**: [/Users/ryantanmai/.gemini/antigravity/brain/124ebcbf-b398-4301-8f94-b64612b3d0ee/](file:///Users/ryantanmai/.gemini/antigravity/brain/124ebcbf-b398-4301-8f94-b64612b3d0ee/)
+- **Conversation ID**: `2f3dc294-ca36-4307-863d-aabe87aea63b`
+- **Active Task**: Thiết lập Graphiti (Real-time Knowledge Graph).
+- **Brain Folder**: [/Users/ryantanmai/.gemini/antigravity/brain/2f3dc294-ca36-4307-863d-aabe87aea63b/](file:///Users/ryantanmai/.gemini/antigravity/brain/2f3dc294-ca36-4307-863d-aabe87aea63b/)
 
 ## 📂 Workspace Overview
 
@@ -16,6 +16,7 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 | **n8n**     | 🟡 Initialized | Đã thiết lập Rules cơ bản.                                   |
 | **MacOS**   | 🟢 Active      | Đã hoàn tất Setup Guide & Scripts automation.                |
 | **SCRIPTS** | 🟢 Active      | Script `ODOO/SCRIPTS/convert_odoo_docs.py` đã hoạt động.     |
+| **DOCKER**  | 🔵 Planning    | Đang thiết lập Graphiti tại `DOCKER/graphiti`.               |
 
 ## 🗺️ Project Mapping
 
@@ -25,8 +26,7 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 | **ODOO/NOVOBI/Dermalogica_main** | 16           | Python 3.10 | `odoo16_dermalogica_main.conf` |
 | **ODOO/NOVOBI/Dermalogica_uat**  | 16           | Python 3.10 | `odoo16_dermalogica_uat.conf`  |
 
-## 📝 Recent Milestones (Logs)
-
+- **2026-02-24**: Nghiên cứu và lập kế hoạch triển khai Graphiti phục vụ Odoo Context Engineering.
 - **2026-02-14**: Cập nhật Odoo Mastery Skill (Team Standards) và hợp nhất bộ thư viện tra cứu rút gọn.
 - **2026-01-31**: Hoàn tất `MacOS_Setup_Guide.md` và chuẩn hóa bộ script cài đặt máy Mac.
 - **2026-01-27**: Hoàn thành Script convert documentation đa phiên bản.
@@ -35,9 +35,11 @@ Chào mừng Ryan Tanmai trở lại! Đây là trạm chỉ huy trung tâm đ�
 
 ## 🔜 Next Steps
 
-1. [ ] Bắt đầu phát triển dự án Odoo 19 (DBVI).
-2. [ ] Thiết lập thêm các Workflow Odoo nâng cao (Scaffold, Venv manager).
-3. [ ] Nạp tài liệu Odoo 19 vào NotebookLM.
+1. [x] Nghiên cứu Graphiti và lập kế hoạch.
+2. [/] Thiết lập Graphiti (Neo4j Docker + Python integration).
+3. [ ] Bắt đầu phát triển dự án Odoo 19 (DBVI).
+4. [ ] Thiết lập thêm các Workflow Odoo nâng cao (Scaffold, Venv manager).
+5. [ ] Nạp tài liệu Odoo 19 vào NotebookLM.
 
 ---
 

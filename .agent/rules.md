@@ -15,9 +15,8 @@ Hệ thống đã được trang bị các Skill chuyên dụng. Agent **PHẢI*
 - **`ui-ux-pro-max`**: Tham khảo khi thiết kế giao diện, chọn palette màu, layout.
 - **`workflow-automation`**: Thiết kế workflow n8n bền vững, xử lý lỗi.
 
-## 0. Path Intelligence (MANDATORY)
-
 - **ODOO Path**: Mọi file nằm trong thư mục `/Users/ryantanmai/WORKSPACE/ODOO` đều được mặc định là liên quan đến Odoo. Khi làm việc tại đây, Agent **PHẢI** luôn nạp skill `odoo-mastery` và tuân thủ các quy tắc tại Mục 6.
+- **DOCKER Path**: Thư mục `/Users/ryantanmai/WORKSPACE/DOCKER` chứa các dự án nội bộ, công cụ chuyên dụng (như Graphiti) và cấu hình Docker tập trung. Agent **PHẢI** giữ cấu trúc ngăn nắp theo từng thư mục dự án riêng biệt bên trong.
 
 ## 1. Giao tiếp & Ngôn ngữ
 
