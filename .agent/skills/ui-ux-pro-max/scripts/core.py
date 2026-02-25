@@ -21,7 +21,8 @@ CSV_CONFIG = {
             "Style Category",
             "Keywords",
             "Best For",
-            "Type"],
+            "Type",
+            "AI Prompt Keywords"],
         "output_cols": [
             "Style Category",
             "Type",
@@ -32,33 +33,23 @@ CSV_CONFIG = {
             "Performance",
             "Accessibility",
             "Framework Compatibility",
-            "Complexity"]},
-    "prompt": {
-        "file": "prompts.csv",
-        "search_cols": [
-            "Style Category",
-            "AI Prompt Keywords (Copy-Paste Ready)",
-            "CSS/Technical Keywords"],
-        "output_cols": [
-            "Style Category",
-            "AI Prompt Keywords (Copy-Paste Ready)",
+            "Complexity",
+            "AI Prompt Keywords",
             "CSS/Technical Keywords",
-            "Implementation Checklist"]},
+            "Implementation Checklist",
+            "Design System Variables"]},
     "color": {
         "file": "colors.csv",
         "search_cols": [
             "Product Type",
-            "Keywords",
             "Notes"],
         "output_cols": [
             "Product Type",
-            "Keywords",
             "Primary (Hex)",
             "Secondary (Hex)",
             "CTA (Hex)",
             "Background (Hex)",
             "Text (Hex)",
-            "Border (Hex)",
             "Notes"]},
     "chart": {
         "file": "charts.csv",
@@ -197,6 +188,7 @@ STACK_CONFIG = {
     "html-tailwind": {"file": "stacks/html-tailwind.csv"},
     "react": {"file": "stacks/react.csv"},
     "nextjs": {"file": "stacks/nextjs.csv"},
+    "astro": {"file": "stacks/astro.csv"},
     "vue": {"file": "stacks/vue.csv"},
     "nuxtjs": {"file": "stacks/nuxtjs.csv"},
     "nuxt-ui": {"file": "stacks/nuxt-ui.csv"},
@@ -204,7 +196,8 @@ STACK_CONFIG = {
     "swiftui": {"file": "stacks/swiftui.csv"},
     "react-native": {"file": "stacks/react-native.csv"},
     "flutter": {"file": "stacks/flutter.csv"},
-    "shadcn": {"file": "stacks/shadcn.csv"}
+    "shadcn": {"file": "stacks/shadcn.csv"},
+    "jetpack-compose": {"file": "stacks/jetpack-compose.csv"}
 }
 
 # Common columns for all stacks
@@ -364,13 +357,6 @@ def detect_domain(query):
             "portfolio",
             "crypto",
             "dashboard"],
-        "prompt": [
-            "prompt",
-            "css",
-            "implementation",
-            "variable",
-            "checklist",
-            "tailwind"],
         "style": [
             "style",
             "design",
@@ -381,7 +367,13 @@ def detect_domain(query):
             "brutalism",
             "dark mode",
             "flat",
-            "aurora"],
+            "aurora",
+            "prompt",
+            "css",
+            "implementation",
+            "variable",
+            "checklist",
+            "tailwind"],
         "ux": [
             "ux",
             "usability",

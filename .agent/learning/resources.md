@@ -116,7 +116,7 @@ New resources are appended to the end of this file by the `learning_research` wo
 ### [notebooklm-py](https://github.com/teng-lin/notebooklm-py)
 
 **Date**: 2026-02-24
-**Description**: Unofficial Python API and CLI for Google NotebookLM, enabling programmatic access to research, content generation (podcasts, videos, etc.), and structured data export. Ships with Claude Code skills.
+**Description**: Unofficial Python API and CLI for Google NotebookLM, enabling programmatic access to research, content generation (podcasts, videos, etc.), và structured data export. Ships with Claude Code skills.
 **Key takeaway**: Enables "Programmatic Research" and structured export of NotebookLM artifacts (JSON/Markdown) not available in the web UI.
 
 ### [Valtec Vietnamese TTS](https://github.com/tronghieuit/valtec-tts)
@@ -142,3 +142,51 @@ New resources are appended to the end of this file by the `learning_research` wo
 **Date**: 2026-02-24
 **Description**: Nền tảng mã nguồn mở mạnh mẽ để quản lý, cấu trúc và trực quan hóa dữ liệu tình báo về các mối đe dọa an ninh mạng (CTI), sử dụng chuẩn STIX2 và hỗ trợ GraphQL API.
 **Key takeaway**: Hệ thống cung cấp khả năng suy luận (inference) dữ liệu mạnh mẽ, giúp biến các dữ liệu thô thành tri thức có ý nghĩa, cực kỳ hữu ích cho các dự án về Knowledge Graph và tích hợp bảo mật.
+
+### [UI/UX Pro Max Skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+
+**Date**: 2026-02-24
+**Description**: Kỹ năng AI cung cấp trí tuệ thiết kế (design intelligence) để xây dựng UI/UX chuyên nghiệp trên nhiều nền tảng và framework. v2.0 đi kèm với engine suy luận (reasoning engine) tự động tạo Design System hoàn chỉnh dựa trên yêu cầu dự án.
+**Key takeaway**: Chuyển đổi từ việc code UI thủ công sang việc sử dụng một "Design Reasoning Engine" giúp đảm bảo tính nhất quán, thẩm mỹ premium và tuân thủ các nguyên tắc UX/Accessibility một cách tự động.
+
+### [WorldMonitor](https://github.com/koala73/worldmonitor)
+
+**Date**: 2026-02-24
+**Description**: Một dashboard tình báo toàn cầu thời gian thực, kết hợp sức mạnh của AI, OSINT và công nghệ đồ họa 3D để theo dõi địa chính trị và hạ tầng.
+**Key takeaway**: Kiến trúc AI hybrid (Local + Cloud) và kỹ thuật visualization hiệu suất cao là bài học quý giá cho việc phát triển app hiện đại.
+
+### [Antigravity Manager](https://github.com/Draculabo/AntigravityManager)
+
+**Date**: 2026-02-24
+**Description**: Antigravity Manager là một ứng dụng desktop mạnh mẽ dành cho việc quản lý các tài khoản Google Gemini và Claude AI. Nó cho phép tập hợp (pool) nhiều tài khoản, tự động theo dõi thời gian thực dung lượng (quota) và tự động chuyển tài khoản thông minh (auto-switching) khi hết hạn mức.
+**Key takeaway**: Giải pháp "Local API Proxy" cung cấp một API Server tương thích với cấu trúc OpenAI/Anthropic, mở khóa khả năng dùng tài nguyên dồi dào của "Account Pool" cho các quy trình tự động hóa agent tốn kém năng lượng.
+
+### [AionUi - Open-source 24/7 Cowork App](https://github.com/iOfficeAI/AionUi)
+
+**Date**: 2026-02-24
+**Description**: AionUi là một nền tảng Cowork (AI Agents làm việc song song cùng bạn) mã nguồn mở, hoạt động cục bộ (local). Tích hợp sẵn Agent engine (không cần cài CLI phức tạp), hỗ trợ đa model (Gemini, Claude, OpenClaw, Codex, OLLAMA, v.v.), lập lịch tự động 24/7 và giao diện UI có thể tùy chỉnh.
+**Key takeaway**: Khả năng Multi-Agent Mode với cấu hình tool MCP (Model Context Protocol) thống nhất một lần cho mọi Agent (Claude Code, Qwen, etc.) giúp quản lý nhiều AI assistants hiệu quả trên cùng một giao diện thay vì phân tán nhiều CLI.
+
+### [AI Engineering Toolkit](https://github.com/Sumanth077/ai-engineering-toolkit)
+
+**Date**: 2026-02-24
+**Description**: Dữ liệu tuyển chọn (curated list) gồm hơn 100 thư viện, nền tảng, và bộ công cụ mã nguồn mở dành cho AI Engineers làm việc với LLM (Agent, RAG, Inference, Vector DB).
+**Key takeaway**: Đóng vai trò như "bản đồ kho báu" hệ sinh thái AI, giúp tra cứu nhanh chóng và lựa chọn công nghệ phù hợp nhất cho từng mảnh ghép kiến trúc phần mềm AI thay vì phải tìm kiếm đơn lẻ.
+
+### [Free LLM API resources](https://github.com/cheahjs/free-llm-api-resources)
+
+**Date**: 2026-02-24
+**Description**: Danh sách tổng hợp các nhà cung cấp API LLM miễn phí hoặc cung cấp credit dùng thử (OpenRouter, Google AI Studio, NVIDIA NIM, Mistral, Groq, v.v.). Cung cấp thông tin chi tiết về các model được hỗ trợ, giới hạn rate limit và điều khoản sử dụng dữ liệu.
+**Key takeaway**: Một nguồn tài nguyên vô giá để truy cập và thử nghiệm đa dạng các mô hình ngôn ngữ lớn (từ llama, gemma đến deepseek, qwen) thông qua API mà không tốn chi phí ban đầu, rất phù hợp cho việc phát triển và tự động hóa các AI Agents.
+
+### [Next AI Draw.io](https://github.com/DayuanJiang/next-ai-draw-io)
+
+**Date**: 2026-02-24
+**Description**: Dấu trang web Next.js tích hợp AI với công cụ vẽ sơ đồ draw.io, cho phép tạo và chỉnh sửa biểu đồ bằng ngôn ngữ tự nhiên. Hỗ trợ đa dạng model, cung cấp cả MCP Server để dùng cho Claude/Cursor, có khả năng xử lý tài liệu PDF/ẩn ảnh để xuất ra biểu đồ.
+**Key takeaway**: "Diagram as Code" kết hợp LLMs và MCP Server giúp biến thiết kế kiến trúc phần mềm, quy trình ERP Odoo thành biểu đồ tự động, giảm thiểu nỗ lực documentation một cách thần tốc.
+
+### [RAGFlow - Open-source RAG Engine](https://github.com/infiniflow/ragflow)
+
+**Date**: 2026-02-24
+**Description**: RAGFlow là một RAG (Retrieval-Augmented Generation) engine mã nguồn mở hàng đầu, kết hợp RAG với khả năng Agent để cung cấp "context layer" ưu việt cho LLMs. Nổi bật với triết lý "Quality in, quality out" dựa trên nhận diện cấu trúc tài liệu sâu (Deep document understanding).
+**Key takeaway**: Thay vì chunking văn bản một cách cơ học, RAGFlow cung cấp cơ chế template-based chunking chuyên sâu cho nhiều định dạng dị thể (PDF, Word, PPT, scan), giúp trích xuất thông tin chính xác hơn và hỗ trợ citation minh bạch, giảm thiểu hallucination.

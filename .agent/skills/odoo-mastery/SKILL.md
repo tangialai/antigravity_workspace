@@ -64,16 +64,17 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 
 ## 2. Key Odoo 19 Framework Changes
 
-| Change             | Old (Odoo 17-)                           | New (Odoo 19)                                 |
-| ------------------ | ---------------------------------------- | --------------------------------------------- |
-| List view tag      | `<tree>`                                 | `<list>`                                      |
-| Dynamic attributes | `attrs="{'invisible': [...]}"`           | `invisible="..."` (direct boolean expression) |
-| Delete validation  | Override `unlink()`                      | `@api.ondelete(at_uninstall=False)`           |
-| Field aggregation  | `group_operator=`                        | `aggregator=`                                 |
-| SQL queries        | `cr.execute()`                           | `SQL` class with `execute_query_dict()`       |
-| SQL Constraints    | `_sql_constraints = [...]`               | `_name_unique = models.Constraint(...)`       |
-| Batch create       | Single dict                              | List of dicts (`create([{...}, {...}])`)      |
-| Analytic Support   | Manual fields / `account.analytic.mixin` | `analytic.mixin` (Standardized Mixin)         |
+| Change             | Old (Odoo 17-)                           | New (Odoo 19)                                                     |
+| ------------------ | ---------------------------------------- | ----------------------------------------------------------------- |
+| List view tag      | `<tree>`                                 | `<list>`                                                          |
+| Dynamic attributes | `attrs="{'invisible': [...]}"`           | `invisible="..."` (direct boolean expression)                     |
+| Delete validation  | Override `unlink()`                      | `@api.ondelete(at_uninstall=False)`                               |
+| Field aggregation  | `group_operator=`                        | `aggregator=`                                                     |
+| SQL queries        | `cr.execute()`                           | `SQL` class with `execute_query_dict()`                           |
+| SQL Constraints    | `_sql_constraints = [...]`               | `_name_unique = models.Constraint(...)`                           |
+| Batch create       | Single dict                              | List of dicts (`create([{...}, {...}])`)                          |
+| Analytic Support   | Manual fields / `account.analytic.mixin` | `analytic.mixin` (Standardized Mixin)                             |
+| Duplicate Check    | `search()` loop                          | `_read_group(..., having=[('count', '>', 1)], groupby=['field'])` |
 
 ## 3. EDI & Integration (Specialized)
 
@@ -174,6 +175,7 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 - [ ] `t-key` is present in all `t-foreach` loops.
 - [ ] Hardcoded strings are wrapped in `_t()` for translation.
 - [ ] Props are handled reactively using `useState(props)` or `onWillUpdateProps` if needed.
+- [ ] **UI/UX Consistency**: Design follows `ui-ux-pro-max` guidelines for colors, fonts, and accessibility.
 
 ### Code Pattern: Custom Widget
 
