@@ -6,7 +6,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo19/odoo-bin",
-            "args": ["-u", "vib_eva_sale", "-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo19_dbvi.conf"],
+            "args": ["-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo19_dbvi.conf", "--dev=xml,qweb"],
             "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
             "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/DBVI",
             "console": "integratedTerminal"

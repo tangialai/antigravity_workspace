@@ -137,8 +137,13 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 ## 5. View Inheritance & XML Rules
 
 - **View ID**: LUÔN sử dụng chính ID của View gốc làm ID cho record kế thừa (VD: `id="view_order_form"` kế thừa từ `sale.view_order_form`).
-- **Element Naming**: Mọi element mới (`page`, `group`, `button`) PHẢI có thuộc tính `name`.
+- **Element Naming (CRITICAL)**: Mọi element cấu trúc mới (`group`, `page`, `button`) **BẮT BUỘC PHẢI CÓ** thuộc tính `name` (Ví dụ: `<group name="general_info">`, `<page name="accounting_mapping">`). Tuyệt đối không để `<group>` vô danh vì sẽ làm bất khả thi hoặc thiếu an toàn khi các module khác muốn kế thừa (`xpath`) vào nó.
 - **Versioning**: LUÔN tăng số phiên bản trong `__manifest__.py` sau khi hoàn tất chỉnh sửa.
+- **XPath Selection**: LUÔN sử dụng `hasclass('class_name')` thay vì `contains(@class, 'class_name')` để chọn chính xác class mong muốn và tránh false positive.
+- **Minimal XPaths**: Ưu tiên `position="before"` hoặc `position="after"` nhắm vào các element nhỏ nhất có thể. Tránh `position="replace"` cả block lớn để giảm rủi ro silent failure và xung đột với các module khác.
+- **Inheritance vs Primary**: KHÔNG bao giờ dùng `primary="True"` khi muốn patch (ghép) code vào View/Template gốc. Flag này tạo một bản copy độc lập và code của bạn sẽ không có hiệu lực trên View gốc.
+- **Directory Naming**: LUÔN dùng số ít cho các directory chứa code: `report/`, `model/`, `view/`, `wizard/` (đúng chuẩn Odoo/OCA).
+- **Path Sensitivity**: Nếu đổi tên hoặc di chuyển file XML, PHẢI chạy upgrade module (`-u`) để Odoo cập nhật trường `arch_fs` trong DB. Nếu không làm vậy, flag `--dev=xml` sẽ tìm file ở đường dẫn cũ và không nhận thay đổi mới.
 - **Config**: Khai báo `ir.config_parameter` trong XML with `noupdate="1"`.
 
 ## 6. Frontend (Owl Framework & OCA 2026 Standards)
@@ -351,6 +356,38 @@ Need to define method behavior?
 └── Normal record method → no decorator needed
 ```
 
+### 9.1. ir.default (User-defined Defaults)
+
+#### Concept & Performance
+
+Thay vì sử dụng hàm `_default_<field_name>` trong Python (luôn thực hiện `search` mỗi khi tạo bản ghi), hãy sử dụng `ir.default` để thiết lập giá trị mặc định ở tầng hệ thống.
+
+- **Ưu điểm**: Odoo cache giá trị này, tránh gọi câu lệnh SQL `search` lặp đi lặp lại.
+- **Đặc biệt hiệu quả**: Cho các trường `company_dependent=True` (Property Fields).
+
+#### Cách dùng trong XML (Data files)
+
+Sử dụng thẻ `<function>` để gọi hàm `set` của model `ir.default`:
+
+```xml
+<odoo>
+    <function model="ir.default" name="set" eval="('res.partner', 'property_supplier_payment_term_id', obj().env['account.payment.term'].search([('cardinal_ap_term', '=', '30')], limit=1).id)"/>
+</odoo>
+```
+
+#### Cách dùng trong Python
+
+```python
+# Thiết lập giá trị mặc định cho toàn hệ thống
+self.env['ir.default'].set('res.partner', 'field_name', value_id)
+
+# Thiết lập giá trị mặc định theo từng công ty
+self.env['ir.default'].set('res.partner', 'field_name', value_id, company_id=self.env.company.id)
+
+# Lấy giá trị mặc định hiện tại
+default_id = self.env['ir.default'].get('res.partner', 'field_name', company_id=self.env.company.id)
+```
+
 - **SQL Constraints (Odoo 19)**:
     - Use `models.Constraint` defined as a class attribute instead of the `_sql_constraints` list.
     - format: `_constraint_name = models.Constraint("CHECK/UNIQUE (...)", _("Error Message"))`
@@ -516,6 +553,7 @@ When performing a technical audit, evaluate modules based on these weighted cate
 - [ ] **SQL Injection**: Check for f-strings or manual formatting in `cr.execute()`.
 - [ ] **XSS**: Ensure HTML fields or dynamically generated HTML are properly escaped.
 - [ ] **OCA Guidelines**: Review variable naming (underscore for private), file structure, and mandatory `__manifest__.py` keys.
+- [ ] **hasclass usage**: Ensure all class matching in XPath uses `hasclass` instead of `contains` for precision.
 - [ ] **Deprecated Methods**: Scan for methods removed in Odoo 18/19 (e.g., old `_compute` signatures).
 
 ---
@@ -536,6 +574,13 @@ When performing a technical audit, evaluate modules based on these weighted cate
 - **Thuộc tính `name` của View:**
     - _View mới:_ Giống hệt XML ID nhưng thay dấu gạch dưới `_` bằng dấu chấm `.`. (Ví dụ: `sale.order.view.form`).
     - _View kế thừa:_ Thêm hậu tố `.inherit.{details}` để làm rõ mục đích. (Ví dụ: `sale.order.view.form.inherit.my_feature`).
+
+#### Thẻ cấu trúc bên trong View (`<group>`, `<page>`)
+
+- **BẮT BUỘC CÓ `name`**: Mọi thẻ `<group>` và `<page>` khi tạo mới **phải được đặt tên** bằng thuộc tính `name`.
+    - _Ví dụ ĐÚNG:_ `<group name="eva_purchase_inbound_group" string="Inbound (eVA -> Odoo)">`
+    - _Ví dụ SAI:_ `<group string="Inbound (eVA -> Odoo)">` (thiếu `name`)
+- Lợi ích: Đảm bảo các module khác có thể dùng XPath trỏ chính xác vào group/page này thông qua `expr="//group[@name='eva_purchase_inbound_group']"`. Nếu không có `name`, người sau phải dùng index (VD: `group[2]`) rất dễ gãy (brittle).
 
 #### Actions (Hành động)
 
