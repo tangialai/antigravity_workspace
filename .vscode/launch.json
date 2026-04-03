@@ -23,6 +23,16 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Start Odoo 17 - Nuvonic",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/Users/ryantanmai/WORKSPACE/ODOO/REFERENCES/odoo17/odoo-bin",
+            "args": ["-c", "/Users/ryantanmai/WORKSPACE/ODOO/CONF/odoo17_nuvonic.conf"],
+            "python": "/Users/ryantanmai/WORKSPACE/ODOO/ENV_CONFIG/python_venv_3_12/bin/python",
+            "cwd": "/Users/ryantanmai/WORKSPACE/ODOO/NOVOBI/Nuvonic",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Start Dermalogica_main (Odoo 16)",
             "type": "debugpy",
             "request": "launch",

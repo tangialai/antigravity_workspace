@@ -1,0 +1,1 @@
+/Users/ryantanmai/WORKSPACE/.agent/workflows/auto_logging.md

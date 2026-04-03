@@ -67,7 +67,7 @@
     "python.createEnvironment.trigger": "off",
 
     // Python formatting (autopep8)
-    "python.formatting.provider": "autopep8",
+    "python.formatting.provider": "none",
     "python.formatting.autopep8Args": ["--max-line-length=120", "--aggressive", "--aggressive"],
 
     // Python linting (pylint)
@@ -77,8 +77,8 @@
     // LANGUAGE-SPECIFIC - Per-language overrides
     // ═══════════════════════════════════════════════════════════════
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true,
+        "editor.defaultFormatter": null,
+        "editor.formatOnSave": false,
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         }

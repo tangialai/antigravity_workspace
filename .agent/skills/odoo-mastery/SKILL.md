@@ -70,10 +70,7 @@ Tất cả thành viên trong team **PHẢI TUÂN THỦ TUYỆT ĐỐI** các qu
 | Dynamic attributes | `attrs="{'invisible': [...]}"`           | `invisible="..."` (direct boolean expression)                     |
 | Delete validation  | Override `unlink()`                      | `@api.ondelete(at_uninstall=False)`                               |
 | Field aggregation  | `group_operator=`                        | `aggregator=`                                                     |
-| SQL queries        | `cr.execute()`                           | `SQL` class with `execute_query_dict()`                           |
-| SQL Constraints    | `_sql_constraints = [...]`               | `_name_unique = models.Constraint(...)`                           |
-| Batch create       | Single dict                              | List of dicts (`create([{...}, {...}])`)                          |
-| Analytic Support   | Manual fields / `account.analytic.mixin` | `analytic.mixin` (Standardized Mixin)                             |
+| Website Form Whitelist | `website_form_whitelisted="True"` | `website_form_blacklisted="False"` (or use `formbuilder_whitelist`) |
 | Duplicate Check    | `search()` loop                          | `_read_group(..., having=[('count', '>', 1)], groupby=['field'])` |
 
 ## 3. EDI & Integration (Specialized)
@@ -704,6 +701,8 @@ Comprehensive assistant for migrating modules between Odoo versions (14-19).
 | **List/Tree**    | `<tree string="Title">`               | `<list string="Title">`           |
 | **Kanban Box**   | `<t t-name="kanban-box">`             | `<t t-name="card">`               |
 | **Active ID**    | `context="{'default_x': active_id}"`  | `context="{'default_x': id}"`     |
+| **Form Whitelist** | `<record website_form_whitelisted="True">` | `<function name="formbuilder_whitelist">` |
+| **Merged Tags**   | `<odoo><data noupdate="1">` | `<odoo noupdate="1">` (Cleaner) |
 | **Cron Jobs**    | `<field name="numbercall">-1</field>` | Remove `numbercall` field         |
 
 ### 15.2. Python API Migrations
@@ -787,6 +786,7 @@ $o-theme-font-configs: map-merge(
 - **"Invalid field 'numbercall' in 'ir.cron'"**: Remove the field from XML.
 - **"Invalid view definition" (Search)**: Remove `<group>` tags.
 - **"Missing 'card' template"**: Rename `kanban-box` to `card`.
+- **"Invalid field 'website_form_whitelisted'"**: Field was renamed to `website_form_blacklisted`. **MANDATORY**: Use `<function model="ir.model.fields" name="formbuilder_whitelist">` instead of direct `<record>` updates, as Odoo protects these fields from standard XML writes.
 - **"External ID not found: website.snippet_options"**: Remove inheritance from `website.snippet_options`.
 
 ### 15.6. Upgrade Testing Checklist

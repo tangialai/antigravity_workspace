@@ -190,3 +190,9 @@ New resources are appended to the end of this file by the `learning_research` wo
 **Date**: 2026-02-24
 **Description**: RAGFlow là một RAG (Retrieval-Augmented Generation) engine mã nguồn mở hàng đầu, kết hợp RAG với khả năng Agent để cung cấp "context layer" ưu việt cho LLMs. Nổi bật với triết lý "Quality in, quality out" dựa trên nhận diện cấu trúc tài liệu sâu (Deep document understanding).
 **Key takeaway**: Thay vì chunking văn bản một cách cơ học, RAGFlow cung cấp cơ chế template-based chunking chuyên sâu cho nhiều định dạng dị thể (PDF, Word, PPT, scan), giúp trích xuất thông tin chính xác hơn và hỗ trợ citation minh bạch, giảm thiểu hallucination.
+
+### [Travel Optimization Engine](https://github.com/dotanminh/travel-optimization-engine)
+
+**Date**: 2026-04-01
+**Description**: Bộ 8 AI Skills tối ưu hóa chi phí vé máy bay (tiết kiệm 30-66%) xây dựng theo chuẩn Antigravity Skill Architecture.
+**Key takeaway**: Mô hình Orchestrator phân rã bài toán phức tạp thành các sub-skills chuyên biệt (date, route, fee, deal) giúp AI xử lý chính xác và tối ưu hơn.
